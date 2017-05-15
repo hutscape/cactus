@@ -9,8 +9,18 @@
     - `GND` on si7021 and `G` on nodeMCU
     - `SDA` on si7021 and `D3` on nodeMCU
     - `SCL` on si7021 and `D4` on nodeMCU
-1. Flash the [firmware](firmware/main.ino)
+1. Flash the [firmware](firmware/main.ino) with Arduino IDE
+
+    ![](images/settings.png)
 1. View the temperature and humidity values on the Arduino serial monitor with baud rate `115200`
+
+    ![](images/serial.png)
+
+## Iteration
+
+| No | Wireless | Sensor | Manufacture | Activity | Power | Firmware
+| ------ | ------ | ------ | ------ | ------ | ------ | ------ |
+| 2 | WiFi ([ESP8266](https://en.wikipedia.org/wiki/ESP8266)) | temperature & humidity ([Si7021](https://www.adafruit.com/product/3251)) |  | periodic wakeup to report sensor values | coin cell | Arduino ESP8266
 
 ## References 📚
 
