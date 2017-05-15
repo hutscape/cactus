@@ -5,10 +5,10 @@
 ## Getting started
 
 1. Connect [Si7021](https://www.adafruit.com/product/3251) breakout board and [WeMos nodeMCU](https://www.wemos.cc/product/d1-mini-pro.html)
-  - `VIN` on si7021 and `3V3` on nodeMCU
-  - `GND` on si7021 and `G` on nodeMCU
-  - `SDA` on si7021 and `D3` on nodeMCU
-  - `SCL` on si7021 and `D4` on nodeMCU
+    - `VIN` on si7021 and `3V3` on nodeMCU
+    - `GND` on si7021 and `G` on nodeMCU
+    - `SDA` on si7021 and `D3` on nodeMCU
+    - `SCL` on si7021 and `D4` on nodeMCU
 1. Flash the [firmware](firmware/main.ino)
 1. View the temperature and humidity values on the Arduino serial monitor with baud rate `115200`
 
