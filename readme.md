@@ -9,6 +9,8 @@
     - `GND` on si7021 and `G` on nodeMCU
     - `SDA` on si7021 and `D3` on nodeMCU
     - `SCL` on si7021 and `D4` on nodeMCU
+
+    ![](images/prototype.JPG)
 1. Flash the [firmware](firmware/main.ino) with Arduino IDE
 
     ![](images/settings.png)
