@@ -1,13 +1,13 @@
 // INFO: Display LED as a bar graph going from 1 LED ON to all 5 LEDs ON
 
-// Hardware: nodeMCU with Si7021 Adafruit breakout board
+// Hardware: nodeMCU with shift register 74hc595 and 5 LEDs
 // - DS pin 14 to Digital pin D7 on nodeMCU (data pin)
 // - SH_CP pin 11 to Digital pin D5 on nodeMCU (clock pin)
 // - ST_CP pin 12 to Digital pin D8 on nodeMCU (latch pin)
 // - GND pin 8 to GND
 // - Vcc pin 16 to 5V
 // - OE pin 13 to GND
-// - MR pin 10to 5V
+// - MR pin 10 to 5V
 // - pin 1 to LED and then 1kΩ resistor to GND
 // - pin 2 to LED and then 1kΩ resistor to GND
 // - pin 3 to LED and then 1kΩ resistor to GND
