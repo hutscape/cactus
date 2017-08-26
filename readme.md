@@ -1,6 +1,6 @@
-# hippo
+# ariel
 
-> measure temperature and humidity periodically
+> :sweat_drop: Measure humidity and temperature periodically or on button press 
 
 ## Getting started
 
