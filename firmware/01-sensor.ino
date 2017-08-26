@@ -29,7 +29,7 @@ void loop() {
   int temperature = sensor.getCelsiusHundredths();
   int humidity = sensor.getHumidityPercent();
   String sTemperature = "Temperature: " + String(temperature/100)+ "°C";
-  String sHumidity = "Humidity: " + String(humidity) + " %RH";
+  String sHumidity = "Humidity: " + String(humidity) + " RH%";
 
   Serial.println(sTemperature);
   Serial.println(sHumidity);
