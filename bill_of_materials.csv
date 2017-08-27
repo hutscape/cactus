@@ -1,6 +1,6 @@
-Type,Designator,Q,Value,Package,URL to buy,AVL1,AVL1 P/N,MOQ,Lead time,Data sheet,Unit price,Total price
-Circuit component,,1,Shift register,,http://sg.element14.com/nxp/74hc595d/ic-74hc-cmos-smd-74hc595-soic16/dp/1201269,,,,,,,0.761
-Circuit component,,5,LED ,,http://sg.element14.com/multicomp/mcl-s290yc/led-smd-0603-yellow/dp/1581246,,,1,,,0.053,0.265
-Circuit component,,1,"Tactile Switch, Non Illuminated, 24 V, 50 mA, 0.98 N",SMD,http://sg.element14.com/omron-electronic-components/b3fs-1000/switch-spst-no-0-05a-24vdc-smd/dp/3121161,omron,BFS-1000,1,,,0.744,0.744
-Circuit component,,1,I2C temperature / humidity sensor,SMD 1206,http://sg.element14.com/silicon-labs/si7021-a20-gm1/temp-humidity-sensor-0-4deg-c/dp/2473671,Silicon Labs,Si7021-A20,1,1,http://www.farnell.com/datasheets/2245066.pdf,6.85,6.85
-,,,,,,,,,,,SGD,8.62
+"Type","Designator","Q","Value","Package","URL to buy","AVL1","AVL1 P/N","MOQ","Lead time","Data sheet","Unit price","Total price"
+"Circuit component","","1","Shift register","","http://sg.element14.com/nxp/74hc595d/ic-74hc-cmos-smd-74hc595-soic16/dp/1201269","","","","","","","0.761"
+"Circuit component","","5","LED ","","http://sg.element14.com/multicomp/mcl-s290yc/led-smd-0603-yellow/dp/1581246","","","1","","","0.053","0.265"
+"Circuit component","","1","Tactile Switch, Non Illuminated, 24 V, 50 mA, 0.98 N","SMD","http://sg.element14.com/omron-electronic-components/b3fs-1000/switch-spst-no-0-05a-24vdc-smd/dp/3121161","omron","BFS-1000","1","","","0.744","0.744"
+"Circuit component","","1","I2C temperature / humidity sensor","SMD 1206","http://sg.element14.com/silicon-labs/si7021-a20-gm1/temp-humidity-sensor-0-4deg-c/dp/2473671","Silicon Labs","Si7021-A20","1","1","http://www.farnell.com/datasheets/2245066.pdf","6.85","6.85"
+"Battery holder","","1","1AA battery holder","","https://www.aliexpress.com/item/HL-2016-Hot-New-2-Slot-2-x-AA-Battery-Back-To-Back-Holder-Case-Box/32742624208.html","AliExpress","","1","21","","0.37","0.37"
