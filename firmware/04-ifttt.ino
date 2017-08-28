@@ -6,7 +6,7 @@
 // - ST_CP pin 12 to Digital pin D8 on nodeMCU (latch pin)
 // - GND pin 8 to GND
 // - Vcc pin 16 to 5V
-// - OE pin 13 to GND
+// - OE pin 13 to D1 on nodeMCU (control enable / disable chip)
 // - MR pin 10 to 5V
 // - pin 1 to LED 1 and then 1kΩ resistor to GND
 // - pin 2 to LED 2 and then 1kΩ resistor to GND
@@ -42,6 +42,7 @@ const int httpsPort = 443;
 
 #define SDA 0 // GPIO0 on ESP-01 module, D3 on nodeMCU WeMos
 #define SCL 2 // GPIO2 on ESP-01 module, D4 on nodeMCU WeMos
+#define EN 5
 
 int latchPin = 15; // pin D8 on NodeMCU boards
 int clockPin = 14; // pin D5 on NodeMCU boards
@@ -54,6 +55,10 @@ void setup() {
 
   // initialisation
   sensor.begin(SDA,SCL);
+
+  pinMode(EN, OUTPUT);
+  digitalWrite(EN, HIGH);
+
   pinMode(latchPin, OUTPUT);
   pinMode(clockPin, OUTPUT);
   pinMode(dataPin, OUTPUT);
@@ -74,7 +79,7 @@ void loop() {
   Serial.println(sBar);
   Serial.println("");
   display(barHumidity);
-  httpPost(humidity, temperature);
+  sendToIFTTT(humidity, temperature);
 
   delay(3600000); // 1 hour
 }
@@ -94,6 +99,7 @@ void connectWiFi() {
 }
 
 int display(int barValue) {
+  digitalWrite(EN, LOW);
   int position = 0;
 
   if (barValue == 1) {
@@ -111,9 +117,12 @@ int display(int barValue) {
   digitalWrite(latchPin, LOW);
   shiftOut(dataPin, clockPin, MSBFIRST, position);
   digitalWrite(latchPin, HIGH);
+
+  delay(5000);
+  digitalWrite(EN, HIGH);
 }
 
-void httpPost(int humidity, int temperature) {
+void sendToIFTTT(int humidity, int temperature) {
   WiFiClientSecure client;
   String postData = "?value1=" + String(humidity) + "&value2=" + String(temperature/100);
 
