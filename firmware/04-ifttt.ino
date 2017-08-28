@@ -19,6 +19,7 @@
 // - `GND` on si7021 and `G` on nodeMCU
 // - `SDA` on si7021 and `D3` on nodeMCU
 // - `SCL` on si7021 and `D4` on nodeMCU
+// - `D0` on nodeMCU and `RST` on nodeMCU to reset for wakeup
 
 // IDE: Arduino Tools settings
 // - Board: NodeMCU board ESP-12E
@@ -39,10 +40,11 @@ const char* ssid = "secret";
 const char* password = "secret";
 const char* host = "maker.ifttt.com";
 const int httpsPort = 443;
+const int sleepTimeS = 10; // 10 seconds
 
 #define SDA 0 // GPIO0 on ESP-01 module, D3 on nodeMCU WeMos
 #define SCL 2 // GPIO2 on ESP-01 module, D4 on nodeMCU WeMos
-#define EN 5
+#define EN 5 // GPIO05 on ESP-01 module, D1 on nodeMCU WeMos
 
 int latchPin = 15; // pin D8 on NodeMCU boards
 int clockPin = 14; // pin D5 on NodeMCU boards
@@ -52,6 +54,7 @@ SI7021 sensor;
 
 void setup() {
   Serial.begin(115200);
+  Serial.println("[INFO] Wake up!");
 
   // initialisation
   sensor.begin(SDA,SCL);
@@ -67,21 +70,13 @@ void setup() {
 }
 
 void loop() {
-  int temperature = sensor.getCelsiusHundredths();
-  int humidity = sensor.getHumidityPercent();
-  int barHumidity = humidity/20 + 1;
-  String sTemperature = "Temperature: " + String(temperature/100)+ "°C";
-  String sHumidity = "Humidity: " + String(humidity) + " RH%";
-  String sBar = "Graph: " + String(barHumidity) + " bars";
+  int temperature = getTemperature();
+  int humidity = getHumidity();
 
-  Serial.println(sTemperature);
-  Serial.println(sHumidity);
-  Serial.println(sBar);
-  Serial.println("");
-  display(barHumidity);
-  sendToIFTTT(humidity, temperature);
+  displayHumidity(humidity);
+  // sendToIFTTT(humidity, temperature);
 
-  delay(3600000); // 1 hour
+  goToSleep();
 }
 
 void connectWiFi() {
@@ -94,12 +89,31 @@ void connectWiFi() {
 
   Serial.println("");
   Serial.println("[INFO] WiFi connected");
-  Serial.println("[INFO] IP address: ");
+
+  Serial.print("[INFO] IP address: ");
   Serial.println(WiFi.localIP());
 }
 
-int display(int barValue) {
-  digitalWrite(EN, LOW);
+int getHumidity() {
+  int humidity = sensor.getHumidityPercent();
+  String sHumidity = "[INFO] Humidity: " + String(humidity) + " RH%";
+  Serial.println(sHumidity);
+
+  return humidity;
+}
+
+int getTemperature() {
+  int temperature = sensor.getCelsiusHundredths() / 100;
+  String sTemperature = "[INFO] Temperature: " + String(temperature)+ "°C";
+  Serial.println(sTemperature);
+
+  return temperature;
+}
+
+int displayHumidity(int humidity) {
+  int barValue = humidity/20 + 1;
+
+  digitalWrite(EN, LOW); // Enable Shift register
   int position = 0;
 
   if (barValue == 1) {
@@ -119,7 +133,7 @@ int display(int barValue) {
   digitalWrite(latchPin, HIGH);
 
   delay(5000);
-  digitalWrite(EN, HIGH);
+  digitalWrite(EN, HIGH); // Disable Shift register
 }
 
 void sendToIFTTT(int humidity, int temperature) {
@@ -155,4 +169,9 @@ void sendToIFTTT(int humidity, int temperature) {
 
   Serial.println("[INFO] Closing connection");
   return;
+}
+
+void goToSleep() {
+  Serial.println("[INFO] Going to sleep...");
+  ESP.deepSleep(sleepTimeS * 1000000);
 }
