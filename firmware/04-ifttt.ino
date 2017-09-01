@@ -44,7 +44,7 @@ const char* password = "secret";
 String iftttKey = "secret";
 const char* host = "maker.ifttt.com";
 const int httpsPort = 443;
-const int sleepTime = 10; // 10 seconds
+const int sleepTime = 3600; // 3600 seconds = 1 hour
 const int displayTime = 5; // 5 seconds
 
 #define SDA 0 // GPIO0 on ESP-01 module, D3 on nodeMCU WeMos
@@ -178,6 +178,6 @@ void sendToIFTTT(int humidity, int temperature) {
 }
 
 void goToSleep() {
-  Serial.println("[INFO] Going to sleep for 10 seconds");
+  Serial.println("[INFO] Going to sleep for 1 hour");
   ESP.deepSleep(sleepTime * 1000000);
 }
