@@ -5,9 +5,9 @@
 // - SH_CP pin 11 to Digital pin D5 on nodeMCU (clock pin)
 // - ST_CP pin 12 to Digital pin D8 on nodeMCU (latch pin)
 // - GND pin 8 to GND
-// - Vcc pin 16 to 5V
-// - OE pin 13 to D1 on nodeMCU (control enable / disable chip)
-// - MR pin 10 to 5V
+// - Vcc pin 16 to 3.3V
+// - OE pin 13 to the output of a Smidth Trigger to enable / disable chip
+// - MR pin 10 to 3.3V
 // - pin 1 to LED 1 and then 1kΩ resistor to GND
 // - pin 2 to LED 2 and then 1kΩ resistor to GND
 // - pin 3 to LED 3 and then 1kΩ resistor to GND
@@ -20,6 +20,7 @@
 // - `SDA` on si7021 and `D3` on nodeMCU
 // - `SCL` on si7021 and `D4` on nodeMCU
 // - `D0` on nodeMCU and `RST` on nodeMCU to reset for wakeup
+// - `D1` on nodeMCU and input of Smidth Trigger
 
 // IDE: Arduino Tools settings
 // - Board: NodeMCU board ESP-12E
@@ -38,9 +39,13 @@ extern "C" {
 // Edit "secret" ssid and password below
 const char* ssid = "secret";
 const char* password = "secret";
+
+// Set IFTTT Key from https://ifttt.com/services/maker_webhooks/settings
+String iftttKey = "secret";
 const char* host = "maker.ifttt.com";
 const int httpsPort = 443;
-const int sleepTimeS = 10; // 10 seconds
+const int sleepTime = 10; // 10 seconds
+const int displayTime = 5; // 5 seconds
 
 #define SDA 0 // GPIO0 on ESP-01 module, D3 on nodeMCU WeMos
 #define SCL 2 // GPIO2 on ESP-01 module, D4 on nodeMCU WeMos
@@ -60,7 +65,7 @@ void setup() {
   sensor.begin(SDA,SCL);
 
   pinMode(EN, OUTPUT);
-  digitalWrite(EN, HIGH);
+  digitalWrite(EN, LOW);
 
   pinMode(latchPin, OUTPUT);
   pinMode(clockPin, OUTPUT);
@@ -74,7 +79,7 @@ void loop() {
   int humidity = getHumidity();
 
   displayHumidity(humidity);
-  // sendToIFTTT(humidity, temperature);
+  sendToIFTTT(humidity, temperature);
 
   goToSleep();
 }
@@ -111,9 +116,10 @@ int getTemperature() {
 }
 
 int displayHumidity(int humidity) {
+  Serial.println("[INFO] LED ON for 5 seconds");
   int barValue = humidity/20 + 1;
 
-  digitalWrite(EN, LOW); // Enable Shift register
+  digitalWrite(EN, HIGH); // Enable Shift register
   int position = 0;
 
   if (barValue == 1) {
@@ -132,8 +138,9 @@ int displayHumidity(int humidity) {
   shiftOut(dataPin, clockPin, MSBFIRST, position);
   digitalWrite(latchPin, HIGH);
 
-  delay(5000);
-  digitalWrite(EN, HIGH); // Disable Shift register
+  delay(displayTime * 1000); // display LED for some time
+  digitalWrite(EN, LOW); // Disable Shift register
+  Serial.println("[INFO] LED OFF");
 }
 
 void sendToIFTTT(int humidity, int temperature) {
@@ -145,8 +152,7 @@ void sendToIFTTT(int humidity, int temperature) {
     return;
   }
 
-  // Get the "secret" from https://ifttt.com/services/maker_webhooks/settings
-  String url = "/trigger/read_humidity/with/key/secret" + postData;
+  String url = "/trigger/read_humidity/with/key/" + iftttKey + postData;
 
   client.print(String("GET ") + url + " HTTP/1.1\r\n" +
                "Host: " + host + "\r\n" +
@@ -172,6 +178,6 @@ void sendToIFTTT(int humidity, int temperature) {
 }
 
 void goToSleep() {
-  Serial.println("[INFO] Going to sleep...");
-  ESP.deepSleep(sleepTimeS * 1000000);
+  Serial.println("[INFO] Going to sleep for 10 seconds");
+  ESP.deepSleep(sleepTime * 1000000);
 }
