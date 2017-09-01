@@ -145,7 +145,7 @@ int displayHumidity(int humidity) {
 
 void sendToIFTTT(int humidity, int temperature) {
   WiFiClientSecure client;
-  String postData = "?value1=" + String(humidity) + "&value2=" + String(temperature/100);
+  String postData = "?value1=" + String(humidity) + "&value2=" + String(temperature);
 
   if (!client.connect(host, httpsPort)) {
     Serial.println("[ERROR] Connection failed");
