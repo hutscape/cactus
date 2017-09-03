@@ -1,5 +1,11 @@
 // INFO: Display humidity in a bar graph LED
 
+// Hardware: nodeMCU to button for interrupt
+// RST to button pin 1
+// D0 / GPIO16 to button pin 1
+// 10k resistor to 3.3V from button pin 1
+// GND to button pin 2
+
 // Hardware: nodeMCU with shift register 74hc595 and 5 LEDs
 // - DS pin 14 to Digital pin D7 on nodeMCU (data pin)
 // - SH_CP pin 11 to Digital pin D5 on nodeMCU (clock pin)
@@ -44,8 +50,8 @@ const char* password = "secret";
 String iftttKey = "secret";
 const char* host = "maker.ifttt.com";
 const int httpsPort = 443;
-const int sleepTime = 3600; // 3600 seconds = 1 hour
-const int displayTime = 5; // 5 seconds
+const int sleepTime = 14400; // 14400 seconds = 4 hour
+const int displayTime = 10; // 10 seconds
 
 #define SDA 0 // GPIO0 on ESP-01 module, D3 on nodeMCU WeMos
 #define SCL 2 // GPIO2 on ESP-01 module, D4 on nodeMCU WeMos
@@ -116,7 +122,7 @@ int getTemperature() {
 }
 
 int displayHumidity(int humidity) {
-  Serial.println("[INFO] LED ON for 5 seconds");
+  Serial.println("[INFO] Humidity bar LED display for 10 seconds");
   int barValue = humidity/20 + 1;
 
   digitalWrite(EN, HIGH); // Enable Shift register
@@ -140,7 +146,7 @@ int displayHumidity(int humidity) {
 
   delay(displayTime * 1000); // display LED for some time
   digitalWrite(EN, LOW); // Disable Shift register
-  Serial.println("[INFO] LED OFF");
+  Serial.println("[INFO] LED Display off");
 }
 
 void sendToIFTTT(int humidity, int temperature) {
@@ -173,11 +179,12 @@ void sendToIFTTT(int humidity, int temperature) {
     Serial.print(line);
   }
 
+  Serial.println("");
   Serial.println("[INFO] Closing connection");
   return;
 }
 
 void goToSleep() {
-  Serial.println("[INFO] Going to sleep for 1 hour");
+  Serial.println("[INFO] Going to sleep for 4 hours");
   ESP.deepSleep(sleepTime * 1000000);
 }
