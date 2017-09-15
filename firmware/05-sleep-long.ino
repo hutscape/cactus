@@ -17,9 +17,9 @@ extern "C" {
   #include "user_interface.h"
 }
 
-const int sleepTime = 2700; // 2700 seconds = 45 minutes
+const int sleepTime = 3600; // 3600 seconds = 1 hour
 
-#define FINAL_SLEEP_INTERVAL 4 // 4 * sleepTime = 3 hours
+#define FINAL_SLEEP_INTERVAL 6 // 6 * sleepTime = 6 hours
 #define CURRENT_SLEEP_INTERVAL_ADDR 30 // EEPROM address to store sleep interval
 #define CURRENT_SLEEP_INTERVAL EEPROM.read(CURRENT_SLEEP_INTERVAL_ADDR)
 
@@ -36,7 +36,7 @@ void setup() {
   if (CURRENT_SLEEP_INTERVAL == FINAL_SLEEP_INTERVAL) {
     blink(5);
     resetSleepInterval();
-    doSomething(); // do something after 3 hours only
+    doSomething();
     goToSleep();
   } else {
     blink(5);
