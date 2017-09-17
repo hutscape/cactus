@@ -53,9 +53,9 @@ const int httpsPort = 443;
 const int sleepTime = 14400; // 14400 seconds = 4 hour
 const int displayTime = 10; // 10 seconds
 
-#define SDA 0 // GPIO0 on ESP-01 module, D3 on nodeMCU WeMos
-#define SCL 2 // GPIO2 on ESP-01 module, D4 on nodeMCU WeMos
-#define EN 5 // GPIO05 on ESP-01 module, D1 on nodeMCU WeMos
+#define SDA 4 // GPIO4 on ESP-01 module, D2 on nodeMCU WeMos
+#define SCL 5 // GPIO5 on ESP-01 module, D1 on nodeMCU WeMos
+#define EN 2 // GPIO02 on ESP-01 module, D4 on nodeMCU WeMos
 
 int latchPin = 15; // pin D8 on NodeMCU boards
 int clockPin = 14; // pin D5 on NodeMCU boards
