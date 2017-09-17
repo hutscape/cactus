@@ -3,8 +3,8 @@
 // Hardware: nodeMCU with Si7021 Adafruit breakout board
 // - `VIN` on si7021 and `3V3` on nodeMCU
 // - `GND` on si7021 and `G` on nodeMCU
-// - `SDA` on si7021 and `D3` on nodeMCU
-// - `SCL` on si7021 and `D4` on nodeMCU
+// - `SDA` on si7021 and `D2` on nodeMCU
+// - `SCL` on si7021 and `D1` on nodeMCU
 
 // IDE: Arduino Tools settings
 // - Board: NodeMCU board ESP-12E
@@ -15,14 +15,14 @@
 
 #include <SI7021.h>
 
-#define SDA 0 // GPIO0 on ESP-01 module, D3 on nodeMCU WeMos
-#define SCL 2 // GPIO2 on ESP-01 module, D4 on nodeMCU WeMos
+#define SDA 4 // GPIO4 on ESP-01 module, D2 on nodeMCU WeMos
+#define SCL 5 // GPIO5 on ESP-01 module, D1 on nodeMCU WeMos
 
 SI7021 sensor;
 
 void setup() {
   Serial.begin(115200);
-  sensor.begin(SDA,SCL);
+  sensor.begin(SDA, SCL);
 }
 
 void loop() {
