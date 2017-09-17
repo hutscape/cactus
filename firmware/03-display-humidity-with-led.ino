@@ -17,8 +17,8 @@
 // Hardware: nodeMCU with Si7021 Adafruit breakout board
 // - `VIN` on si7021 and `3V3` on nodeMCU
 // - `GND` on si7021 and `G` on nodeMCU
-// - `SDA` on si7021 and `D3` on nodeMCU
-// - `SCL` on si7021 and `D4` on nodeMCU
+// - `SDA` on si7021 and `D2` on nodeMCU
+// - `SCL` on si7021 and `D1` on nodeMCU
 
 // IDE: Arduino Tools settings
 // - Board: NodeMCU board ESP-12E
