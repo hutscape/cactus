@@ -1,32 +1,5 @@
 // INFO: Display humidity in a bar graph LED
-
-// Hardware: nodeMCU to button for interrupt
-// RST to button pin 1
-// D0 / GPIO16 to button pin 1
-// 10k resistor to 3.3V from button pin 1
-// GND to button pin 2
-
-// Hardware: nodeMCU with shift register 74hc595 and 5 LEDs
-// - DS pin 14 to Digital pin D7 on nodeMCU (data pin)
-// - SH_CP pin 11 to Digital pin D5 on nodeMCU (clock pin)
-// - ST_CP pin 12 to Digital pin D8 on nodeMCU (latch pin)
-// - GND pin 8 to GND
-// - Vcc pin 16 to 3.3V
-// - OE pin 13 to the output of a Smidth Trigger to enable / disable chip
-// - MR pin 10 to 3.3V
-// - pin 1 to LED 1 and then 1kΩ resistor to GND
-// - pin 2 to LED 2 and then 1kΩ resistor to GND
-// - pin 3 to LED 3 and then 1kΩ resistor to GND
-// - pin 4 to LED 4 and then 1kΩ resistor to GND
-// - pin 5 to LED 5 and then 1kΩ resistor to GND
-
-// Hardware: nodeMCU with Si7021 Adafruit breakout board
-// - `VIN` on si7021 and `3V3` on nodeMCU
-// - `GND` on si7021 and `G` on nodeMCU
-// - `SDA` on si7021 and `D3` on nodeMCU
-// - `SCL` on si7021 and `D4` on nodeMCU
-// - `D0` on nodeMCU and `RST` on nodeMCU to reset for wakeup
-// - `D1` on nodeMCU and input of Smidth Trigger
+// WIRING: See schematic.png
 
 #include <SI7021.h>
 #include <ESP8266WiFi.h>
