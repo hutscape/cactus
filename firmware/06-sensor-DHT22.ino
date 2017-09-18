@@ -8,13 +8,6 @@
 // - right most pin on DHT22 is connected to `GND`
 // - add 10k resistor between left most pin and second left most pin
 
-// IDE: Arduino Tools settings
-// - Board: NodeMCU board ESP-12E
-// - Flash size: 4M
-// - CPU Frequency: 80MHz
-// - Upload speed: 115200
-// - Port: /dev/cu.wchusbserial1410
-
 // Refer: https://github.com/adafruit/DHT-sensor-library/blob/master/examples/DHTtester/DHTtester.ino
 
 #include "DHT.h"

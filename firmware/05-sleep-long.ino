@@ -4,13 +4,6 @@
 // Short pin D0 to pin RST
 // Note: Un-short the 2 pins above during uploading firmware
 
-// IDE: Arduino Tools settings
-// - Board: NodeMCU board ESP-12E
-// - Flash size: 4M
-// - CPU Frequency: 80MHz
-// - Upload speed: 115200
-// - Port: /dev/cu.wchusbserial1410
-
 #include <EEPROM.h>
 
 extern "C" {

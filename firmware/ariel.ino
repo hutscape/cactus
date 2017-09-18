@@ -28,13 +28,6 @@
 // - `D0` on nodeMCU and `RST` on nodeMCU to reset for wakeup
 // - `D1` on nodeMCU and input of Smidth Trigger
 
-// IDE: Arduino Tools settings
-// - Board: NodeMCU board ESP-12E
-// - Flash size: 4M
-// - CPU Frequency: 80MHz
-// - Upload speed: 115200
-// - Port: /dev/cu.wchusbserial1410
-
 #include <SI7021.h>
 #include <ESP8266WiFi.h>
 #include <EEPROM.h>
@@ -76,7 +69,7 @@ void setup() {
   // FIXME: LED should be off during sleep
   pinMode(EN, OUTPUT);
   digitalWrite(EN, LOW);
-  
+
   pinMode(LED, OUTPUT);
   blink(3);
 

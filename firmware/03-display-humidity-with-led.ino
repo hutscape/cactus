@@ -20,13 +20,6 @@
 // - `SDA` on si7021 and `D2` on nodeMCU
 // - `SCL` on si7021 and `D1` on nodeMCU
 
-// IDE: Arduino Tools settings
-// - Board: NodeMCU board ESP-12E
-// - Flash size: 4M
-// - CPU Frequency: 80MHz
-// - Upload speed: 115200
-// - Port: /dev/cu.wchusbserial1410
-
 #include <SI7021.h>
 
 #define SDA 4 // GPIO4 on ESP-01 module, D2 on nodeMCU WeMos
