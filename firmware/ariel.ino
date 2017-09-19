@@ -29,9 +29,9 @@ const int displayTime = 10; // 10 seconds
 #define CURRENT_SLEEP_INTERVAL_ADDR 30 // EEPROM address to store sleep interval
 #define CURRENT_SLEEP_INTERVAL EEPROM.read(CURRENT_SLEEP_INTERVAL_ADDR)
 
-int latchPin = 15; // pin D8 on NodeMCU boards
-int clockPin = 14; // pin D5 on NodeMCU boards
 int dataPin = 13; // pin D7 on NodeMCU boards
+int clockPin = 14; // pin D5 on NodeMCU boards
+int latchPin = 15; // pin D8 on NodeMCU boards
 
 SI7021 sensor;
 
@@ -39,30 +39,36 @@ void setup() {
   EEPROM.begin(512);
   Serial.begin(115200);
 
-  // FIXME: LED should be off during sleep
   pinMode(EN, OUTPUT);
   digitalWrite(EN, LOW);
 
   pinMode(LED, OUTPUT);
   blink(3);
 
+  Serial.print("[INFO] Reset reason:");
+  Serial.println(getResetReason());
+
   if (CURRENT_SLEEP_INTERVAL > FINAL_SLEEP_INTERVAL) {
     resetSleepInterval();
+
     initialise();
+    senseAndSend();
+
+    goToSleep();
   } else {
     increaseSleepInterval();
     goToSleep();
   }
 }
 
-void loop() {
+void loop() { }
+
+void senseAndSend() {
   int temperature = getTemperature();
   int humidity = getHumidity();
 
   displayHumidity(humidity);
   sendToIFTTT(humidity, temperature);
-
-  goToSleep();
 }
 
 void blink(int times) {
@@ -125,7 +131,7 @@ int displayHumidity(int humidity) {
   Serial.println("[INFO] Humidity bar LED display for 10 seconds");
   int barValue = humidity/20 + 1;
 
-  digitalWrite(EN, HIGH); // Enable Shift register
+  digitalWrite(EN, LOW); // Enable Shift register
   int position = 0;
 
   if (barValue == 1) {
@@ -145,7 +151,7 @@ int displayHumidity(int humidity) {
   digitalWrite(latchPin, HIGH);
 
   delay(displayTime * 1000); // display LED for some time
-  digitalWrite(EN, LOW); // Disable Shift register
+  digitalWrite(EN, HIGH); // Disable Shift register
   Serial.println("[INFO] LED Display off");
 }
 
@@ -184,6 +190,7 @@ void sendToIFTTT(int humidity, int temperature) {
   return;
 }
 
+// deep sleep related function
 void resetSleepInterval() {
   Serial.println("[INFO] Reset sleep interval");
   EEPROM.write(CURRENT_SLEEP_INTERVAL_ADDR, 0);
