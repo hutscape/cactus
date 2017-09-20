@@ -45,9 +45,6 @@ void setup() {
   pinMode(LED, OUTPUT);
   blink(3);
 
-  Serial.print("[INFO] Reset reason:");
-  Serial.println(getResetReason());
-
   // TODO: When button is pressed, always senseAndSend()
   if (CURRENT_SLEEP_INTERVAL > FINAL_SLEEP_INTERVAL) {
     resetSleepInterval();
