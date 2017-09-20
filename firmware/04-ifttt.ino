@@ -1,5 +1,5 @@
 // INFO: Display humidity in a bar graph LED
-// WIRING: See schematic.png
+// WIRING: https://github.com/sayanee/ariel/blob/master/firmware/02-shift-register/schematic.png
 
 #include <SI7021.h>
 #include <ESP8266WiFi.h>

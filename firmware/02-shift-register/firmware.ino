@@ -1,5 +1,5 @@
 // INFO: Display LED as a bar graph going from 1 LED ON to all 5 LEDs ON
-// WIRING: See schematic.png
+// WIRING: https://github.com/sayanee/ariel/blob/master/firmware/02-shift-register/schematic.png
 
 #define EN 2 // GPIO02 on ESP-01 module, D4 on nodeMCU WeMos
 

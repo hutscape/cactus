@@ -1,5 +1,5 @@
 // INFO: Display humidity and temperature every frequency
-// WIRING: See schematic.png
+// WIRING: https://github.com/sayanee/ariel/blob/master/firmware/01-sensor-si7021/schematic.png
 
 #include <SI7021.h>
 
