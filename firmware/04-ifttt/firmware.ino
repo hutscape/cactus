@@ -1,4 +1,4 @@
-// INFO: Display humidity in a bar graph LED
+// INFO: Display humidity in a bar graph LED periodically
 // WIRING: https://github.com/sayanee/ariel/blob/master/firmware/02-shift-register/schematic.png
 
 #include <SI7021.h>
