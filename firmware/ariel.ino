@@ -71,7 +71,7 @@ void senseAndSend() {
 
 void blink(int times) {
   for (int i=0; i <= times; i++){
-    Serial.print("Blink ");
+    Serial.print("[INFO] Blink ");
     Serial.println(i);
 
     digitalWrite(2, HIGH);
