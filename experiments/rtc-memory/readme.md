@@ -7,7 +7,7 @@ RTC memory in ESP8266 survives deep sleep mode to reduce power consumption even 
 Write a simple number to RTC Memory, deep sleep it and then wake it up again to read the same number! Use the number of count, when to turn on the radio to process something.
 
 ### RTC Memory read
-```
+```c
 bool	system_rtc_mem_read	(
 	uint32	src_addr,
 	void	*	des_addr,
@@ -16,7 +16,7 @@ bool	system_rtc_mem_read	(
 ```
 
 ### RTC Memory write
-```
+```c
 bool	system_rtc_mem_write	(
 	uint32	des_addr,
 	void	*	src_addr,
