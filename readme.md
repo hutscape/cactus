@@ -1,6 +1,10 @@
 # ariel
 
-> :sweat_drop: Measure humidity and temperature periodically or on button press
+> Measure humidity and temperature periodically or on button press
+
+## Development
+
+Run `make install` to add git-secrets and git pre-commit hooks.
 
 ## Getting started
 
@@ -12,31 +16,6 @@
 
     ![](images/serial-2.png)
 1. Ensure the bar LEDs are lit accordingly
-
-## Development
-
-### Git secrets
-
-Prevent passwords from being committed
-
-1. Install git secrets
-
-    ```sh
-    git secrets --install
-    ```
-1. Add to `.git/config`
-
-    ```
-    [secrets]
-      	patterns = ssid\\s=\\s\".*\"
-      	allowed = ssid\\s=\\s\"secret\"
-      	patterns = password\\s=\\s\".*\"
-      	allowed = password\\s=\\s\"secret\"
-      	patterns = /trigger/read_humidity/with/key/.*
-      	allowed = /trigger/read_humidity/with/key/secret
-    ```
-1. Check for password with `git secrets --scan -r firmware`
-  - Or create a git pre-commit hook
 
 ## References 📚
 
