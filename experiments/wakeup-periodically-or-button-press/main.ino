@@ -2,6 +2,7 @@
 #define RTCMEMORYSIZE 8
 #define MAXHOUR 2 // number of times to deep sleep
 #define TIMEINTERVAL 10000000 // 10 seconds
+#define USERBUTTON 12 // GPIO012 on ESP or D6 on WeMos
 
 // Edit "secret" ssid and password below
 const char* ssid = "secret";
@@ -21,24 +22,29 @@ typedef struct {
 rtcStore rtcMem;
 
 void setup() {
+  int userButtonValue = digitalRead(USERBUTTON);
+
   Serial.begin(115200);
   Serial.println("");
 
+  Serial.println("==========================");
   Serial.println("Waking up...");
 
+  Serial.print("User pressed button? [1:No, 0:Yes] ");
+  Serial.println(userButtonValue);
+
   Serial.print("Reading ");
+
   readFromRTCMemory();
 
-  if (rtcMem.count == 0) {
+  if (rtcMem.count == 0 || userButtonValue == 0) {
     if (rtcMem.doAction == 1) {
       Serial.println("Connect to WiFi!");
       connectToWifi();
     } else if (rtcMem.doAction == 0) {
-      Serial.println("Prepare to doAction something!");
+      Serial.println("Prepare to do an action!");
       prepareToDoSomething();
     }
-  } else {
-    Serial.println("Just go back to sleep again");
   }
 
   writeToRTCMemory();
@@ -53,6 +59,8 @@ void prepareToDoSomething() {
   rtcMem.doAction = 1;
   system_rtc_mem_write(RTCMEMORYSTART, &rtcMem, RTCMEMORYSIZE);
   yield();
+  Serial.print("Completed preparing to do something..." );
+  // FIXME: Does not wake up to do the action after user button press
   ESP.deepSleep(1, WAKE_RF_DEFAULT);
 }
 
@@ -83,18 +91,13 @@ void connectToWifi() {
     Serial.println("");
     Serial.println("WiFi could not be connected !!!!");
   }
-
 }
 
 void readFromRTCMemory() {
   system_rtc_mem_read(RTCMEMORYSTART, &rtcMem, sizeof(rtcMem));
 
-  Serial.print("size of rtcMem: ");
-  Serial.print(sizeof(rtcMem));
-  Serial.print(", count = ");
-  Serial.print(rtcMem.count);
-  Serial.print(", doAction? = ");
-  Serial.println(rtcMem.doAction);
+  Serial.print("count = ");
+  Serial.println(rtcMem.count);
   yield();
 }
 
@@ -109,10 +112,4 @@ void writeToRTCMemory() {
 
   system_rtc_mem_write(RTCMEMORYSTART, &rtcMem, RTCMEMORYSIZE);
   yield();
-
-  Serial.print("Writing ");
-  Serial.print("count = ");
-  Serial.print(rtcMem.count);
-  Serial.print(", doAction = ");
-  Serial.println(rtcMem.doAction);
 }
