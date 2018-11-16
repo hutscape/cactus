@@ -1,6 +1,6 @@
 # RTC Memory
 
-RTC memory in ESP8266 survives deep sleep mode to reduce power consumption even further.
+Use RTC memory, instead of EEPROM, in ESP8266 because it survives deep sleep mode to reduce power consumption even further
 
 ## Firmware [[link](main.ino)]
 

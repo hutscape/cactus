@@ -1,4 +1,4 @@
-// INFO: Sleep for more than 1 hour
+// INFO: Sleep for more than 1 hour using EEPROM
 
 // Hardware: nodeMCU to button for interrupt
 // Short pin D0 to pin RST
