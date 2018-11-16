@@ -4,7 +4,7 @@ Test chip `SN74HC174` Hex D-Type Flip-Flop with Arduino code.
 
 ## Hardware
 
-![](hardware.png)
+![](schematic.png)
 
 ## Firmware
 
