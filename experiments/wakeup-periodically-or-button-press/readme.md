@@ -6,15 +6,19 @@ Display and send sensor data to cloud periodically on wake up after deep sleep o
 
 ![Wiring](schematic.jpg)
 
+![Prototype](prototype.jpg)
+
 ## Firmware [[link](main.ino)]
 
 Features:
 
 - Wakeup
   - periodically without any WiFi to save battery
-  - upon user button press
+  - upon user long button press (button must be pressed a bit long)
 - Increment the interval count on the RTC memory
 - Connect to WiFi and do something only if the interval count of the wakeup is correct or the user has pressed button
+
+![Arduino settings](arduino-settings.png)
 
 ![](console.png)
 
