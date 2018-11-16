@@ -1,7 +1,5 @@
 // INFO: Wake up after every long sleep interval or button press
 
-// Hardware: See schematic.png
-
 #include <EEPROM.h>
 
 extern "C" {

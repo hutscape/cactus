@@ -4,8 +4,7 @@ Display humidity in a bar graph LED
 
 ## Hardware
 
-[With shift register](../shift-register/schematic.png)
-
+![With shift register](../shift-register/schematic.png)
 
 ## Firmware
 
