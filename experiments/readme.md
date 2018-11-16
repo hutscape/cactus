@@ -24,6 +24,6 @@ Hardware and firmware components to build up to the entire project
 ## Parallel experiments
 
 1. [DHT22 sensor](DHT22-sensor): Display humidity and temperature every second with `DHT22` sensor
-1. [D flip-flop](d-flip-flop): test `SN74HC174` Hex D-Type Flip-Flop with Arduino code
+1. [D flip-flop](d-flip-flop): Test `SN74HC174` Hex D-Type Flip-Flop with Arduino code
 1. [Long sleep](long-sleep): Sleep for more than 1 hour using EEPROM
-1. [Wakeup after long sleep or on button press](long-sleep-or-button-press
+1. [Wakeup after long sleep or on button press](long-sleep-or-button-press)
