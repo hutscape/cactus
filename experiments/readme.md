@@ -19,7 +19,7 @@ Hardware and firmware components to build up to the entire project
 1. [RTC Memory](rtc-memory): Use RTC memory in ESP8266 because it survives deep sleep mode to reduce power consumption even further
 1. [IFTTT](ifttt): Display humidity in a bar graph LED and send to IFTTT periodically
 1. [Wake up with no radio](wakeup-with-no-radio): Wakeup with no radio connectivity to save power consumption
-1. [Wake up periodically or on button press](wakeup-periodically-or-button-press)
+1. [Wake up periodically or on button press](wakeup-periodically-or-button-press): Display and send sensor data to cloud periodically on wake up after deep sleep or by pressing the button on-board
 
 ## Parallel experiments
 

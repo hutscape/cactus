@@ -1,6 +1,10 @@
 # Wake up periodically or on button press
 
-Send sensor data to cloud periodically or by pressing the button on-board.
+Display and send sensor data to cloud periodically on wake up after deep sleep or by pressing the button on-board
+
+## Hardware
+
+![Wiring](schematic.jpg)
 
 ## Firmware [[link](main.ino)]
 
