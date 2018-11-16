@@ -4,13 +4,21 @@ Display and send sensor data to cloud periodically on wake up after deep sleep o
 
 ## Hardware
 
+### Schematic
+
 ![Wiring](schematic.jpg)
+
+### Prototype
 
 ![Prototype](prototype.jpg)
 
+### Other notes
+
+On WeMos board , the pin `REST` to `10kΩ` pulled up to `+3V3` is already there [[Reference](../references/wemos-d1-mini-shematics.jpg)]. Remember to include it back with the ESP8266 module.
+
 ## Firmware [[link](main.ino)]
 
-Features:
+### Features
 
 - Wakeup
   - periodically without any WiFi to save battery
@@ -18,7 +26,11 @@ Features:
 - Increment the interval count on the RTC memory
 - Connect to WiFi and do something only if the interval count of the wakeup is correct or the user has pressed button
 
+### Arduino flashing settings
+
 ![Arduino settings](arduino-settings.png)
+
+### Arduino console results
 
 ![](console.png)
 
