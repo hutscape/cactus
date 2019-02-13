@@ -3,7 +3,7 @@
 ## Main components
 
 1. **`Si7021`** sensor for temperature and humidity
-1. **Shift register** to extend from 1 PED to 5 LEDs
+1. **Shift register** to extend from 1 LED to 5 LEDs
 1. **RTC Memory** on ESP8266 to count long sleep intervals
 1. **IFTTT** for cloud connectivity on wakeup
 1. Wake up after deep sleep with no radio to save power
