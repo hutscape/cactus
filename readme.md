@@ -47,4 +47,4 @@ Run `make install` to add git-secrets and git pre-commit hooks.
 
 ### Programming
 
-1 [ESP8266 pogo jig programming](https://hackaday.io/project/20046-esp8266-pogo-jig-programming-board)
+1. [ESP8266 pogo jig programming](https://hackaday.io/project/20046-esp8266-pogo-jig-programming-board)

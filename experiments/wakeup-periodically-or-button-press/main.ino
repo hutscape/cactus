@@ -14,9 +14,9 @@ void setup() {
     Serial.println("User long pressed button!");
   }
 
-  Serial.println("Read the sensor and send to cloud.");
-  Serial.println("Going into deep sleep for 20s, unless button pressed...");
-  ESP.deepSleep(20e6);
+  Serial.println("Do task");
+  Serial.println("Going into deep sleep for 10s, unless button pressed...");
+  ESP.deepSleep(10e6);
 }
 
 void loop() {
