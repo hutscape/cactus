@@ -1,0 +1,5 @@
+# Hardware
+
+## Schematic
+
+![](schematic.png)
