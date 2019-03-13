@@ -17,23 +17,23 @@ $EndDescr
 $Comp
 L 74xx:74HC595 U4
 U 1 1 5C77296E
-P 8750 1650
-F 0 "U4" H 8550 2200 50  0000 C CNN
-F 1 "74HC595" H 8550 1000 50  0000 C CNN
-F 2 "" H 8750 1650 50  0001 C CNN
-F 3 "http://www.ti.com/lit/ds/symlink/sn74hc595.pdf" H 8750 1650 50  0001 C CNN
-	1    8750 1650
+P 9250 1650
+F 0 "U4" H 9050 2200 50  0000 C CNN
+F 1 "74HC595" H 9050 1000 50  0000 C CNN
+F 2 "" H 9250 1650 50  0001 C CNN
+F 3 "http://www.ti.com/lit/ds/symlink/sn74hc595.pdf" H 9250 1650 50  0001 C CNN
+	1    9250 1650
 	-1   0    0    -1  
 $EndComp
 $Comp
 L wemos_mini:WeMos_D1_mini U3
 U 1 1 5C77373A
-P 5300 1600
-F 0 "U3" H 5300 1050 60  0000 C CNN
-F 1 "WeMos_D1_mini" H 5300 2181 60  0000 C CNN
-F 2 "" H 5700 900 60  0000 C CNN
-F 3 "https://wiki.wemos.cc/products:d1_mini_shields:battery_shield" H 5300 2181 60  0001 C CNN
-	1    5300 1600
+P 5400 1600
+F 0 "U3" H 5400 1050 60  0000 C CNN
+F 1 "WeMos_D1_mini" H 5400 2181 60  0000 C CNN
+F 2 "" H 5800 900 60  0000 C CNN
+F 3 "https://wiki.wemos.cc/products:d1_mini_shields:battery_shield" H 5400 2181 60  0001 C CNN
+	1    5400 1600
 	1    0    0    1   
 $EndComp
 $Comp
@@ -127,82 +127,82 @@ Wire Wire Line
 $Comp
 L power:GND #PWR05
 U 1 1 5C8612CC
-P 4400 2050
-F 0 "#PWR05" H 4400 1800 50  0001 C CNN
-F 1 "GND" H 4405 1877 50  0000 C CNN
-F 2 "" H 4400 2050 50  0001 C CNN
-F 3 "" H 4400 2050 50  0001 C CNN
-	1    4400 2050
+P 4500 2050
+F 0 "#PWR05" H 4500 1800 50  0001 C CNN
+F 1 "GND" H 4505 1877 50  0000 C CNN
+F 2 "" H 4500 2050 50  0001 C CNN
+F 3 "" H 4500 2050 50  0001 C CNN
+	1    4500 2050
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	4600 1900 4400 1900
+	4700 1900 4500 1900
 Wire Wire Line
-	4400 1900 4400 2050
+	4500 1900 4500 2050
 $Comp
 L power:GND #PWR07
 U 1 1 5C8625CA
-P 8750 2350
-F 0 "#PWR07" H 8750 2100 50  0001 C CNN
-F 1 "GND" H 8755 2177 50  0000 C CNN
-F 2 "" H 8750 2350 50  0001 C CNN
-F 3 "" H 8750 2350 50  0001 C CNN
-	1    8750 2350
+P 9250 2350
+F 0 "#PWR07" H 9250 2100 50  0001 C CNN
+F 1 "GND" H 9400 2300 50  0000 C CNN
+F 2 "" H 9250 2350 50  0001 C CNN
+F 3 "" H 9250 2350 50  0001 C CNN
+	1    9250 2350
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:LED D1
 U 1 1 5C862AA3
-P 7350 1100
-F 0 "D1" H 7350 1200 50  0000 C CNN
-F 1 "LED" H 7350 1000 50  0000 C CNN
-F 2 "" H 7350 1100 50  0001 C CNN
-F 3 "~" H 7350 1100 50  0001 C CNN
-	1    7350 1100
+P 7550 1100
+F 0 "D1" H 7550 1200 50  0000 C CNN
+F 1 "LED" H 7550 1000 50  0000 C CNN
+F 2 "" H 7550 1100 50  0001 C CNN
+F 3 "~" H 7550 1100 50  0001 C CNN
+	1    7550 1100
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:LED D2
 U 1 1 5C862B20
-P 7350 1400
-F 0 "D2" H 7350 1500 50  0000 C CNN
-F 1 "LED" H 7350 1300 50  0000 C CNN
-F 2 "" H 7350 1400 50  0001 C CNN
-F 3 "~" H 7350 1400 50  0001 C CNN
-	1    7350 1400
+P 7550 1400
+F 0 "D2" H 7550 1500 50  0000 C CNN
+F 1 "LED" H 7550 1300 50  0000 C CNN
+F 2 "" H 7550 1400 50  0001 C CNN
+F 3 "~" H 7550 1400 50  0001 C CNN
+	1    7550 1400
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:LED D3
 U 1 1 5C862C14
-P 7350 1700
-F 0 "D3" H 7350 1800 50  0000 C CNN
-F 1 "LED" H 7350 1600 50  0000 C CNN
-F 2 "" H 7350 1700 50  0001 C CNN
-F 3 "~" H 7350 1700 50  0001 C CNN
-	1    7350 1700
+P 7550 1700
+F 0 "D3" H 7550 1800 50  0000 C CNN
+F 1 "LED" H 7550 1600 50  0000 C CNN
+F 2 "" H 7550 1700 50  0001 C CNN
+F 3 "~" H 7550 1700 50  0001 C CNN
+	1    7550 1700
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:LED D4
 U 1 1 5C862C76
-P 7350 2000
-F 0 "D4" H 7350 2100 50  0000 C CNN
-F 1 "LED" H 7350 1900 50  0000 C CNN
-F 2 "" H 7350 2000 50  0001 C CNN
-F 3 "~" H 7350 2000 50  0001 C CNN
-	1    7350 2000
+P 7550 2000
+F 0 "D4" H 7550 2100 50  0000 C CNN
+F 1 "LED" H 7550 1900 50  0000 C CNN
+F 2 "" H 7550 2000 50  0001 C CNN
+F 3 "~" H 7550 2000 50  0001 C CNN
+	1    7550 2000
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:LED D5
 U 1 1 5C862CE0
-P 7350 2300
-F 0 "D5" H 7350 2400 50  0000 C CNN
-F 1 "LED" H 7350 2200 50  0000 C CNN
-F 2 "" H 7350 2300 50  0001 C CNN
-F 3 "~" H 7350 2300 50  0001 C CNN
-	1    7350 2300
+P 7550 2300
+F 0 "D5" H 7550 2400 50  0000 C CNN
+F 1 "LED" H 7550 2200 50  0000 C CNN
+F 2 "" H 7550 2300 50  0001 C CNN
+F 3 "~" H 7550 2300 50  0001 C CNN
+	1    7550 2300
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -220,85 +220,85 @@ NoConn ~ 3450 4000
 $Comp
 L Device:R_Small R4
 U 1 1 5C871A82
-P 7600 1100
-F 0 "R4" V 7500 1050 50  0000 L CNN
-F 1 "1k" V 7700 1050 50  0000 L CNN
-F 2 "" H 7600 1100 50  0001 C CNN
-F 3 "~" H 7600 1100 50  0001 C CNN
-	1    7600 1100
+P 7800 1100
+F 0 "R4" V 7700 1050 50  0000 L CNN
+F 1 "1k" V 7900 1050 50  0000 L CNN
+F 2 "" H 7800 1100 50  0001 C CNN
+F 3 "~" H 7800 1100 50  0001 C CNN
+	1    7800 1100
 	0    1    1    0   
 $EndComp
 $Comp
 L Device:R_Small R5
 U 1 1 5C871CA9
-P 7600 1400
-F 0 "R5" V 7500 1350 50  0000 L CNN
-F 1 "1k" V 7700 1350 50  0000 L CNN
-F 2 "" H 7600 1400 50  0001 C CNN
-F 3 "~" H 7600 1400 50  0001 C CNN
-	1    7600 1400
+P 7800 1400
+F 0 "R5" V 7700 1350 50  0000 L CNN
+F 1 "1k" V 7900 1350 50  0000 L CNN
+F 2 "" H 7800 1400 50  0001 C CNN
+F 3 "~" H 7800 1400 50  0001 C CNN
+	1    7800 1400
 	0    1    1    0   
 $EndComp
 $Comp
 L Device:R_Small R6
 U 1 1 5C871E05
-P 7600 1700
-F 0 "R6" V 7500 1650 50  0000 L CNN
-F 1 "1k" V 7700 1650 50  0000 L CNN
-F 2 "" H 7600 1700 50  0001 C CNN
-F 3 "~" H 7600 1700 50  0001 C CNN
-	1    7600 1700
+P 7800 1700
+F 0 "R6" V 7700 1650 50  0000 L CNN
+F 1 "1k" V 7900 1650 50  0000 L CNN
+F 2 "" H 7800 1700 50  0001 C CNN
+F 3 "~" H 7800 1700 50  0001 C CNN
+	1    7800 1700
 	0    1    1    0   
 $EndComp
 $Comp
 L Device:R_Small R7
 U 1 1 5C871EB9
-P 7600 2000
-F 0 "R7" V 7500 1950 50  0000 L CNN
-F 1 "1k" V 7700 1950 50  0000 L CNN
-F 2 "" H 7600 2000 50  0001 C CNN
-F 3 "~" H 7600 2000 50  0001 C CNN
-	1    7600 2000
+P 7800 2000
+F 0 "R7" V 7700 1950 50  0000 L CNN
+F 1 "1k" V 7900 1950 50  0000 L CNN
+F 2 "" H 7800 2000 50  0001 C CNN
+F 3 "~" H 7800 2000 50  0001 C CNN
+	1    7800 2000
 	0    1    1    0   
 $EndComp
 $Comp
 L Device:R_Small R8
 U 1 1 5C871F77
-P 7600 2300
-F 0 "R8" V 7500 2250 50  0000 L CNN
-F 1 "1k" V 7700 2250 50  0000 L CNN
-F 2 "" H 7600 2300 50  0001 C CNN
-F 3 "~" H 7600 2300 50  0001 C CNN
-	1    7600 2300
+P 7800 2300
+F 0 "R8" V 7700 2250 50  0000 L CNN
+F 1 "1k" V 7900 2250 50  0000 L CNN
+F 2 "" H 7800 2300 50  0001 C CNN
+F 3 "~" H 7800 2300 50  0001 C CNN
+	1    7800 2300
 	0    1    1    0   
 $EndComp
 Wire Wire Line
-	6850 1100 6850 1400
-Connection ~ 6850 2000
+	7050 1100 7050 1400
+Connection ~ 7050 2000
 Wire Wire Line
-	6850 2000 6850 2300
-Connection ~ 6850 1700
+	7050 2000 7050 2300
+Connection ~ 7050 1700
 Wire Wire Line
-	6850 1700 6850 2000
-Connection ~ 6850 1400
+	7050 1700 7050 2000
+Connection ~ 7050 1400
 Wire Wire Line
-	6850 1400 6850 1700
+	7050 1400 7050 1700
 $Comp
 L power:GND #PWR06
 U 1 1 5C88238D
-P 6850 2300
-F 0 "#PWR06" H 6850 2050 50  0001 C CNN
-F 1 "GND" H 6855 2127 50  0000 C CNN
-F 2 "" H 6850 2300 50  0001 C CNN
-F 3 "" H 6850 2300 50  0001 C CNN
-	1    6850 2300
+P 7050 2300
+F 0 "#PWR06" H 7050 2050 50  0001 C CNN
+F 1 "GND" H 7055 2127 50  0000 C CNN
+F 2 "" H 7050 2300 50  0001 C CNN
+F 3 "" H 7050 2300 50  0001 C CNN
+	1    7050 2300
 	1    0    0    -1  
 $EndComp
-NoConn ~ 9150 1550
-NoConn ~ 8350 1750
-NoConn ~ 8350 1850
-NoConn ~ 8350 1950
-NoConn ~ 8350 2150
+NoConn ~ 9650 1550
+NoConn ~ 8850 1750
+NoConn ~ 8850 1850
+NoConn ~ 8850 1950
+NoConn ~ 8850 2150
 $Comp
 L wemos_mini:WeMos_Battery_Shield U1
 U 1 1 5C885570
@@ -340,46 +340,17 @@ F 3 "" H 1450 2050 50  0001 C CNN
 	1    1450 2050
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	2100 1950 2100 2250
-Wire Wire Line
-	2100 2250 1450 2250
-NoConn ~ 4600 2000
-Text Label 1950 1250 2    50   ~ 0
-TX
-Text Label 4450 1300 2    50   ~ 0
-TX
-Text Label 1950 1350 2    50   ~ 0
-RX
-Text Label 4450 1400 2    50   ~ 0
-RX
-Text Label 1950 1450 2    50   ~ 0
-D1
-Text Label 4450 1500 2    50   ~ 0
-D1
-Text Label 1950 1550 2    50   ~ 0
-D2
-Text Label 4450 1600 2    50   ~ 0
-D2
-Text Label 1950 1650 2    50   ~ 0
-D3
-Text Label 4450 1700 2    50   ~ 0
-D3
-Text Label 1950 1750 2    50   ~ 0
+Text Label 4550 1600 2    50   ~ 0
+I2C_SDA
+Text Label 4550 1800 2    50   ~ 0
 D4
-Text Label 4450 1800 2    50   ~ 0
-D4
-Text Label 3650 1250 0    50   ~ 0
-RST
-Text Label 6150 1300 0    50   ~ 0
+Text Label 6250 1300 0    50   ~ 0
 RST
 Text Label 3650 1350 0    50   ~ 0
 A0
-Text Label 6150 1400 0    50   ~ 0
+Text Label 6250 1400 0    50   ~ 0
 A0
-Text Label 3650 1450 0    50   ~ 0
-D0
-Text Label 6150 1500 0    50   ~ 0
+Text Label 6250 1500 0    50   ~ 0
 D0
 Wire Wire Line
 	1450 2150 1450 2250
@@ -402,9 +373,9 @@ Wire Notes Line
 Text Notes 900  850  0    79   ~ 0
 WeMos Battery Shield 
 Text Label 4200 3250 0    50   ~ 0
-D1
+I2C_SCL
 Text Label 4200 3400 0    50   ~ 0
-D2
+I2C_SDA
 $Comp
 L power:GND #PWR04
 U 1 1 5C89C91B
@@ -420,53 +391,33 @@ Wire Wire Line
 	3450 3800 3250 3800
 Wire Wire Line
 	3250 3800 3250 3850
-Text Label 6150 2000 0    50   ~ 0
+Text Label 6250 2000 0    50   ~ 0
 3_3V
 Text Label 4200 3900 0    50   ~ 0
 3_3V
-Text Label 8900 1050 0    50   ~ 0
+Text Label 9400 1050 0    50   ~ 0
 3_3V
-Text Label 6150 1900 0    50   ~ 0
+Text Label 6250 1900 0    50   ~ 0
 D8
-Text Label 9300 1750 0    50   ~ 0
+Text Label 9800 1750 0    50   ~ 0
 D8
-Text Label 9300 1850 0    50   ~ 0
+Text Label 9800 1850 0    50   ~ 0
 D4
-Text Label 9300 1250 0    50   ~ 0
+Text Label 9800 1250 0    50   ~ 0
 D7
-Text Label 6150 1800 0    50   ~ 0
+Text Label 6250 1800 0    50   ~ 0
 D7
-Text Label 9300 1450 0    50   ~ 0
+Text Label 9800 1450 0    50   ~ 0
 D5
-Text Label 6150 1600 0    50   ~ 0
+Text Label 6250 1600 0    50   ~ 0
 D5
-Text Label 3650 1950 0    50   ~ 0
-3_3V
-Wire Wire Line
-	2100 1250 1950 1250
-Wire Wire Line
-	2100 1350 1950 1350
-Wire Wire Line
-	2100 1450 1950 1450
-Wire Wire Line
-	2100 1550 1950 1550
-Wire Wire Line
-	2100 1650 1950 1650
-Wire Wire Line
-	2100 1750 1950 1750
-Wire Wire Line
-	3500 1250 3650 1250
 Wire Wire Line
 	3500 1350 3650 1350
-Wire Wire Line
-	3500 1450 3650 1450
-Wire Wire Line
-	3500 1950 3650 1950
 Text Label 1200 3150 2    50   ~ 0
 RST
 Text Label 1200 3350 2    50   ~ 0
 D0
-Text Label 6150 1700 0    50   ~ 0
+Text Label 6250 1700 0    50   ~ 0
 D6
 Text Label 1200 3550 2    50   ~ 0
 D6
@@ -479,41 +430,29 @@ Wire Notes Line
 Wire Notes Line
 	900  2600 3900 2600
 Wire Notes Line
-	4200 900  6400 900 
-Wire Notes Line
-	6400 900  6400 2600
-Wire Notes Line
-	6400 2600 4200 2600
-Wire Notes Line
 	4200 900  4200 2600
 Wire Wire Line
-	4600 1300 4450 1300
+	4700 1500 4550 1500
 Wire Wire Line
-	4600 1400 4450 1400
+	4700 1600 4550 1600
 Wire Wire Line
-	4600 1500 4450 1500
+	4700 1800 4550 1800
 Wire Wire Line
-	4600 1600 4450 1600
+	6100 1300 6250 1300
 Wire Wire Line
-	4600 1700 4450 1700
+	6100 1400 6250 1400
 Wire Wire Line
-	4600 1800 4450 1800
+	6100 1500 6250 1500
 Wire Wire Line
-	6000 1300 6150 1300
+	6100 1600 6250 1600
 Wire Wire Line
-	6000 1400 6150 1400
+	6100 1700 6250 1700
 Wire Wire Line
-	6000 1500 6150 1500
+	6100 1800 6250 1800
 Wire Wire Line
-	6000 1600 6150 1600
+	6100 1900 6250 1900
 Wire Wire Line
-	6000 1700 6150 1700
-Wire Wire Line
-	6000 1800 6150 1800
-Wire Wire Line
-	6000 1900 6150 1900
-Wire Wire Line
-	6000 2000 6150 2000
+	6100 2000 6250 2000
 Text Notes 4200 850  0    79   ~ 0
 WeMos D1 Mini v3.0.0
 Wire Wire Line
@@ -536,107 +475,91 @@ Wire Notes Line
 Text Notes 900  2950 0    79   ~ 0
 Button circuit
 Wire Wire Line
-	6850 1100 7200 1100
+	7050 1100 7400 1100
 Wire Wire Line
-	6850 1400 7200 1400
+	7050 1400 7400 1400
 Wire Wire Line
-	6850 2000 7200 2000
+	7050 2000 7400 2000
 Wire Wire Line
-	6850 1700 7200 1700
+	7050 1700 7400 1700
 Wire Wire Line
-	9150 1250 9300 1250
+	9650 1250 9800 1250
 Wire Wire Line
-	9150 1450 9300 1450
+	9650 1450 9800 1450
 Wire Wire Line
-	9150 1750 9300 1750
+	9650 1750 9800 1750
 Wire Wire Line
-	9150 1850 9300 1850
+	9650 1850 9800 1850
 Wire Wire Line
-	8750 1050 8900 1050
+	9250 1050 9400 1050
 $Comp
 L power:PWR_FLAG #FLG02
 U 1 1 5C8B6759
-P 8750 2350
-F 0 "#FLG02" H 8750 2425 50  0001 C CNN
-F 1 "PWR_FLAG" V 8750 2650 50  0000 C CNN
-F 2 "" H 8750 2350 50  0001 C CNN
-F 3 "~" H 8750 2350 50  0001 C CNN
-	1    8750 2350
+P 9250 2350
+F 0 "#FLG02" H 9250 2425 50  0001 C CNN
+F 1 "PWR_FLAG" V 9250 2650 50  0000 C CNN
+F 2 "" H 9250 2350 50  0001 C CNN
+F 3 "~" H 9250 2350 50  0001 C CNN
+	1    9250 2350
 	0    -1   -1   0   
 $EndComp
 Wire Wire Line
-	7700 1100 7850 1100
-Text Label 8200 1250 2    50   ~ 0
+	7900 1100 8050 1100
+Text Label 8600 1250 2    50   ~ 0
 QA
-Text Label 7850 1100 2    50   ~ 0
+Text Label 8050 1100 2    50   ~ 0
 QA
 Entry Wire Line
-	7950 1150 8050 1250
-Wire Wire Line
-	8050 1250 8350 1250
-Wire Wire Line
-	8350 1350 8050 1350
+	8350 1150 8450 1250
 Entry Wire Line
-	7950 1250 8050 1350
-Wire Wire Line
-	8350 1450 8050 1450
-Wire Wire Line
-	8350 1550 8050 1550
-Wire Wire Line
-	8350 1650 8050 1650
+	8350 1250 8450 1350
 Entry Wire Line
-	7950 1350 8050 1450
+	8350 1350 8450 1450
 Entry Wire Line
-	7950 1450 8050 1550
+	8350 1450 8450 1550
 Entry Wire Line
-	7950 1550 8050 1650
-Text Label 8200 1350 2    50   ~ 0
+	8350 1550 8450 1650
+Text Label 8600 1350 2    50   ~ 0
 QB
-Text Label 8200 1450 2    50   ~ 0
+Text Label 8600 1450 2    50   ~ 0
 QC
-Text Label 8200 1550 2    50   ~ 0
+Text Label 8600 1550 2    50   ~ 0
 QD
-Text Label 8200 1650 2    50   ~ 0
+Text Label 8600 1650 2    50   ~ 0
 QE
 Wire Wire Line
-	7700 1400 7850 1400
+	7900 1400 8050 1400
 Wire Wire Line
-	7700 1700 7850 1700
+	7900 1700 8050 1700
 Wire Wire Line
-	7700 2000 7850 2000
+	7900 2000 8050 2000
 Wire Wire Line
-	7700 2300 7850 2300
+	7900 2300 8050 2300
 Entry Wire Line
-	7850 1400 7950 1500
+	8050 1400 8150 1500
 Entry Wire Line
-	7850 1700 7950 1800
+	8050 1700 8150 1800
 Entry Wire Line
-	7850 1100 7950 1200
+	8050 1100 8150 1200
 Entry Wire Line
-	7850 2000 7950 2100
+	8050 2000 8150 2100
 Entry Wire Line
-	7850 2300 7950 2400
+	8050 2300 8150 2400
 Wire Wire Line
-	6850 2300 7200 2300
-Connection ~ 6850 2300
-Text Label 7850 1400 2    50   ~ 0
+	7050 2300 7400 2300
+Connection ~ 7050 2300
+Text Label 8050 1400 2    50   ~ 0
 QB
-Text Label 7850 1700 2    50   ~ 0
+Text Label 8050 1700 2    50   ~ 0
 QC
-Text Label 7850 2000 2    50   ~ 0
+Text Label 8050 2000 2    50   ~ 0
 QD
-Text Label 7850 2300 2    50   ~ 0
+Text Label 8050 2300 2    50   ~ 0
 QE
 Wire Notes Line
-	6700 900  6700 2600
-Wire Notes Line
-	6700 2600 9600 2600
-Wire Notes Line
-	6700 900  9600 900 
-Wire Notes Line
-	9600 900  9600 2600
-Connection ~ 8750 2350
-Text Notes 6700 850  0    79   ~ 0
+	6900 900  6900 2600
+Connection ~ 9250 2350
+Text Notes 6900 850  0    79   ~ 0
 LED Circuit
 Wire Wire Line
 	4050 3900 4200 3900
@@ -647,21 +570,83 @@ Wire Wire Line
 Wire Wire Line
 	3650 3250 4200 3250
 Wire Notes Line
-	3050 3000 4450 3000
-Wire Notes Line
-	4450 3000 4450 4700
-Wire Notes Line
-	4450 4700 3050 4700
-Wire Notes Line
 	3050 3000 3050 4700
 Text Notes 3050 2950 0    79   ~ 0
 Sensor circuit
 Text Notes 1000 4350 0    50   ~ 0
 On button press, ESP8266 will wake up and \ndisplay the humidity values in the LEDs.
-Wire Bus Line
-	7950 950  7950 2600
 Text Notes 1000 2500 0    50   ~ 0
 Battery shield is connected to a LiPo battery.
-Text Notes 4250 2550 0    50   ~ 0
+Text Notes 4350 2550 0    50   ~ 0
 WeMos remains in deep sleep for 6 hours and wakes \nup to sense the humidity value, display it in the LEDs \nand post the value to the cloud.
+Text Notes 7650 3250 0    50   Italic 0
+Humidity RH% | LED ON\n0 - 20       | D1\n21 - 40      | D1, D2\n41 - 60      | D1, D2, D3\n61 - 80      | D1, D2, D3, D4\n81 - 100     | D1, D2, D3, D4, D5
+Wire Notes Line
+	7600 2750 9100 2750
+Wire Notes Line
+	9100 3300 7600 3300
+Wire Notes Line
+	7600 3300 7600 2750
+Wire Notes Line
+	9100 2750 9100 3300
+Text Notes 8200 2550 0    50   ~ 0
+Humidity values are displayed in the LEDs.
+Wire Notes Line
+	9950 900  9950 2600
+Wire Notes Line
+	6900 2600 9950 2600
+Wire Notes Line
+	6900 900  9950 900 
+Wire Wire Line
+	8450 1250 8850 1250
+Wire Wire Line
+	8450 1350 8850 1350
+Wire Wire Line
+	8450 1450 8850 1450
+Wire Wire Line
+	8450 1550 8850 1550
+Wire Wire Line
+	8450 1650 8850 1650
+NoConn ~ 2100 1250
+NoConn ~ 2100 1350
+NoConn ~ 2100 1450
+NoConn ~ 2100 1550
+NoConn ~ 2100 1650
+NoConn ~ 2100 1750
+NoConn ~ 3500 1250
+Wire Wire Line
+	2100 1950 1950 1950
+Wire Wire Line
+	1950 1950 1950 2250
+Wire Wire Line
+	1950 2250 1450 2250
+Text Label 2000 1950 2    50   ~ 0
+5V
+Text Label 4700 2000 2    50   ~ 0
+5V
+NoConn ~ 3500 1950
+NoConn ~ 3500 1450
+Text Label 4550 1500 2    50   ~ 0
+I2C_SCL
+NoConn ~ 4700 1300
+NoConn ~ 4700 1400
+NoConn ~ 4700 1700
+Wire Bus Line
+	8150 1050 8350 1050
+Wire Notes Line
+	4200 900  6600 900 
+Wire Notes Line
+	6600 900  6600 2600
+Wire Notes Line
+	4200 2600 6600 2600
+Wire Notes Line
+	4600 3000 4600 4700
+Wire Notes Line
+	3050 3000 4600 3000
+Wire Notes Line
+	3050 4700 4600 4700
+Wire Bus Line
+	8150 1050 8150 2400
+Wire Bus Line
+	8350 1050 8350 1550
 $EndSCHEMATC
