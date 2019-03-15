@@ -1,10 +1,9 @@
-// INFO: Display LED as a bar graph going from 1 LED ON to all 5 LEDs ON
-
 #define EN 2 // GPIO02 on ESP-01 module, D4 on nodeMCU WeMos
 
 int dataPin = 13; // pin D7 `GPIO13` on NodeMCU boards
 int clockPin = 14; // pin D5 `GPIO14` on NodeMCU boards
 int latchPin = 15; // pin D8 `GPIO15` on NodeMCU boards
+long randNumber;
 
 void setup() {
   pinMode(EN, OUTPUT);
@@ -18,15 +17,8 @@ void setup() {
 
 void loop() {
   digitalWrite(EN, HIGH); // enable
-
-  display(2); // binary 10: LED 1 ON
-  display(6); // binary 110: LED 1, 2 ON
-  display(14); // binary 1110: LED 1, 2, 3 ON
-  display(30); // binary 11110: LED 1, 2, 3, 4 ON
-  display(62); // binary 111110: LED 1, 2, 3, 4, 5 ON
-
+  display(31); // All 5 LEDs are on: 31 (dec) is 11111 (bin)
   digitalWrite(EN, LOW); // disable
-
   delay(5000); // LED off for 5 seconds
 }
 
