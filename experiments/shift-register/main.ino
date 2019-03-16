@@ -13,13 +13,12 @@ void setup() {
   pinMode(dataPin, OUTPUT);
 
   Serial.begin(115200);
+
+  digitalWrite(EN, LOW); // enable
+  display(31);
 }
 
 void loop() {
-  digitalWrite(EN, HIGH); // enable
-  display(31); // All 5 LEDs are on: 31 (dec) is 11111 (bin)
-  digitalWrite(EN, LOW); // disable
-  delay(5000); // LED off for 5 seconds
 }
 
 int display(int position) {
@@ -27,5 +26,4 @@ int display(int position) {
   shiftOut(dataPin, clockPin, MSBFIRST, position);
   digitalWrite(latchPin, HIGH);
   Serial.println(position);
-  delay(500);
 }
