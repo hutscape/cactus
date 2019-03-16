@@ -15,7 +15,7 @@ void setup() {
   Serial.begin(115200);
 
   digitalWrite(EN, LOW); // enable
-  display(31);
+  display(31); // Display all 5 LEDs: 11111 (binary), 31 (decimal)
 }
 
 void loop() {
