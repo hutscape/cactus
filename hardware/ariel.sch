@@ -394,7 +394,7 @@ Wire Wire Line
 Text Label 6250 2000 0    50   ~ 0
 3_3V
 Text Label 2050 3900 0    50   ~ 0
-3_3V
+5V
 Text Label 9400 1050 0    50   ~ 0
 3_3V
 Text Label 6250 1900 0    50   ~ 0
@@ -644,9 +644,9 @@ Wire Notes Line
 	900  3000 2450 3000
 Wire Notes Line
 	900  4700 2450 4700
+Connection ~ 9250 2350
 Wire Bus Line
 	8350 1050 8350 1550
 Wire Bus Line
 	8150 1050 8150 2400
-Connection ~ 9250 2350
 $EndSCHEMATC
