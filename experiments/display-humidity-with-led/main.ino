@@ -1,57 +1,46 @@
 // INFO: Display humidity in a bar graph LED
+#include "Adafruit_Si7021.h"
+#define EN 2 // GPIO02 on ESP-01 module, D4 on nodeMCU WeMos
 
-#include <SI7021.h>
+int dataPin = 13; // pin D7 `GPIO13` on NodeMCU boards
+int clockPin = 14; // pin D5 `GPIO14` on NodeMCU boards
+int latchPin = 15; // pin D8 `GPIO15` on NodeMCU boards
+long randNumber;
 
-#define SDA 4 // GPIO4 on ESP-01 module, D2 on nodeMCU WeMos
-#define SCL 5 // GPIO5 on ESP-01 module, D1 on nodeMCU WeMos
-
-int latchPin = 15; // pin D8 on NodeMCU boards
-int clockPin = 14; // pin D5 on NodeMCU boards
-int dataPin = 13; // pin D7 on NodeMCU boards
-
-SI7021 sensor;
+Adafruit_Si7021 sensor = Adafruit_Si7021();
 
 void setup() {
-  sensor.begin(SDA,SCL);
+  Serial.begin(115200);
+
+  if (!sensor.begin()) {
+    Serial.println("Did not find Si7021 sensor!");
+    while (true)
+      ;
+  }
+
+  pinMode(EN, OUTPUT);
+
   pinMode(latchPin, OUTPUT);
   pinMode(clockPin, OUTPUT);
   pinMode(dataPin, OUTPUT);
+
   Serial.begin(115200);
+
+  digitalWrite(EN, LOW); // enable
+  display(31); // Display all 5 LEDs: 11111 (binary), 31 (decimal)
 }
 
 void loop() {
-  int temperature = sensor.getCelsiusHundredths();
-  int humidity = sensor.getHumidityPercent();
-  int barHumidity = humidity/20 + 1;
-  String sTemperature = "Temperature: " + String(temperature/100)+ "°C";
-  String sHumidity = "Humidity: " + String(humidity) + " RH%";
-  String sBar = "Graph: " + String(barHumidity) + " bars";
-
-  Serial.println(sTemperature);
-  Serial.println(sHumidity);
-  Serial.println(sBar);
-  Serial.println("");
-  display(barHumidity);
-
-  delay(2000);
+  Serial.print("Humidity:    ");
+  Serial.print(sensor.readHumidity(), 2);
+  Serial.print("\tTemperature: ");
+  Serial.println(sensor.readTemperature(), 2);
+  delay(1000);
 }
 
-int display(int barValue) {
-  int position = 0;
-
-  if (barValue == 1) {
-    position = 2;
-  } else if (barValue == 2) {
-    position = 6;
-  } else if (barValue == 3) {
-    position = 14;
-  } else if (barValue == 4) {
-    position = 30;
-  } else {
-    position = 62;
-  }
-
+int display(int position) {
   digitalWrite(latchPin, LOW);
   shiftOut(dataPin, clockPin, MSBFIRST, position);
   digitalWrite(latchPin, HIGH);
+  Serial.println(position);
 }

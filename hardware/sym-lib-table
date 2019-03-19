@@ -1,0 +1,4 @@
+(sym_lib_table
+  (lib (name ariel-rescue)(type Legacy)(uri ${KIPRJMOD}/ariel-rescue.lib)(options "")(descr ""))
+  (lib (name Si7021_breakout_board)(type Legacy)(uri /Users/sayanee/Documents/ariel/hardware/library/Si7021_breakout_board.lib)(options "")(descr ""))
+)

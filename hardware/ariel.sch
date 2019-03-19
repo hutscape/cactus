@@ -191,18 +191,6 @@ F 3 "~" H 6750 2300 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Sensor_Humidity:Si7020-A20 U4
-U 1 1 5C86A90D
-P 1600 4250
-F 0 "U4" V 1150 4250 50  0000 C CNN
-F 1 "Si7020-A20" V 2100 4250 50  0000 C CNN
-F 2 "Package_DFN_QFN:DFN-6-1EP_3x3mm_P1mm_EP1.5x2.4mm" H 1600 3850 50  0001 C CNN
-F 3 "https://www.silabs.com/documents/public/data-sheets/Si7020-A20.pdf" H 1400 4550 50  0001 C CNN
-	1    1600 4250
-	0    1    1    0   
-$EndComp
-NoConn ~ 1300 4350
-$Comp
 L Device:R_Small R1
 U 1 1 5C871A82
 P 7000 1100
@@ -335,31 +323,25 @@ F 3 "~" H 1800 1250 50  0001 C CNN
 $EndComp
 Text Notes 900  850  0    79   ~ 0
 WeMos Battery Shield 
-Text Label 2050 3600 0    50   ~ 0
+Text Label 1250 4100 2    50   ~ 0
 I2C_SCL
-Text Label 2050 3750 0    50   ~ 0
+Text Label 1250 4000 2    50   ~ 0
 I2C_SDA
 $Comp
 L power:GND #PWR01
 U 1 1 5C89C91B
-P 1100 4200
-F 0 "#PWR01" H 1100 3950 50  0001 C CNN
-F 1 "GND" H 1105 4027 50  0000 C CNN
-F 2 "" H 1100 4200 50  0001 C CNN
-F 3 "" H 1100 4200 50  0001 C CNN
-	1    1100 4200
+P 1800 4600
+F 0 "#PWR01" H 1800 4350 50  0001 C CNN
+F 1 "GND" H 1805 4427 50  0000 C CNN
+F 2 "" H 1800 4600 50  0001 C CNN
+F 3 "" H 1800 4600 50  0001 C CNN
+	1    1800 4600
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	1300 4150 1100 4150
-Wire Wire Line
-	1100 4150 1100 4200
 Text Label 5500 2050 0    50   ~ 0
 3_3V
-Text Label 2050 4250 0    50   ~ 0
-5V
 Text Label 8600 1050 0    50   ~ 0
-3_3V
+5V
 Text Label 5500 1950 0    50   ~ 0
 D8
 Text Label 9000 1750 0    50   ~ 0
@@ -513,14 +495,6 @@ Wire Notes Line
 	6100 900  6100 2600
 Text Notes 6100 850  0    79   ~ 0
 LED Circuit
-Wire Wire Line
-	1900 4250 2050 4250
-Wire Wire Line
-	1500 3750 1500 3600
-Wire Wire Line
-	1700 3750 2050 3750
-Wire Wire Line
-	1500 3600 2050 3600
 Wire Notes Line
 	900  3350 900  5050
 Text Notes 900  3300 0    79   ~ 0
@@ -636,6 +610,26 @@ Wire Notes Line
 	3450 900  3450 3000
 Wire Notes Line
 	5850 900  5850 3000
+$Comp
+L Si7021_breakout_board:Si7021_breakout U4
+U 1 1 5C97D9C5
+P 1800 4100
+F 0 "U4" H 1500 4550 50  0000 L CNN
+F 1 "Si7021_breakout" H 1050 3650 50  0000 L CNN
+F 2 "" H 1800 3500 50  0000 C CNN
+F 3 "http://ams.com/eng/Products/Environmental-Sensors/Air-Quality-Sensors/CCS811" H 1800 3900 50  0001 C CNN
+	1    1800 4100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1400 4000 1250 4000
+Wire Wire Line
+	1400 4100 1250 4100
+Text Label 1950 3600 0    50   ~ 0
+5V
+Wire Wire Line
+	1800 3600 1950 3600
+NoConn ~ 2200 4050
 Wire Bus Line
 	7550 1050 7550 1550
 Wire Bus Line
