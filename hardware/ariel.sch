@@ -28,91 +28,91 @@ $EndComp
 $Comp
 L Device:R_Small R6
 U 1 1 5C7739E8
-P 3400 3600
-F 0 "R6" H 3250 3600 50  0000 L CNN
-F 1 "470" H 3450 3600 50  0000 L CNN
-F 2 "" H 3400 3600 50  0001 C CNN
-F 3 "~" H 3400 3600 50  0001 C CNN
-	1    3400 3600
+P 4100 3600
+F 0 "R6" H 3950 3600 50  0000 L CNN
+F 1 "470" H 4150 3600 50  0000 L CNN
+F 2 "" H 4100 3600 50  0001 C CNN
+F 3 "~" H 4100 3600 50  0001 C CNN
+	1    4100 3600
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:R_Small R7
 U 1 1 5C773C60
-P 3250 3900
-F 0 "R7" V 3150 3850 50  0000 L CNN
-F 1 "1k" V 3350 3850 50  0000 L CNN
-F 2 "" H 3250 3900 50  0001 C CNN
-F 3 "~" H 3250 3900 50  0001 C CNN
-	1    3250 3900
+P 3950 3900
+F 0 "R7" V 3850 3850 50  0000 L CNN
+F 1 "1k" V 4050 3850 50  0000 L CNN
+F 2 "" H 3950 3900 50  0001 C CNN
+F 3 "~" H 3950 3900 50  0001 C CNN
+	1    3950 3900
 	0    1    1    0   
 $EndComp
 $Comp
 L Device:R_Small R8
 U 1 1 5C773D83
-P 3250 4200
-F 0 "R8" V 3150 4200 50  0000 C CNN
-F 1 "10k" V 3350 4200 50  0000 C CNN
-F 2 "" H 3250 4200 50  0001 C CNN
-F 3 "~" H 3250 4200 50  0001 C CNN
-	1    3250 4200
+P 3950 4200
+F 0 "R8" V 3850 4200 50  0000 C CNN
+F 1 "10k" V 4050 4200 50  0000 C CNN
+F 2 "" H 3950 4200 50  0001 C CNN
+F 3 "~" H 3950 4200 50  0001 C CNN
+	1    3950 4200
 	0    1    1    0   
 $EndComp
 $Comp
 L Device:C_Small C1
 U 1 1 5C773EE5
-P 3700 4200
-F 0 "C1" V 3600 4150 50  0000 L CNN
-F 1 "10u" V 3800 4150 50  0000 L CNN
-F 2 "" H 3700 4200 50  0001 C CNN
-F 3 "~" H 3700 4200 50  0001 C CNN
-	1    3700 4200
+P 4400 4200
+F 0 "C1" V 4300 4150 50  0000 L CNN
+F 1 "10u" V 4500 4150 50  0000 L CNN
+F 2 "" H 4400 4200 50  0001 C CNN
+F 3 "~" H 4400 4200 50  0001 C CNN
+	1    4400 4200
 	0    1    1    0   
 $EndComp
 $Comp
 L Switch:SW_Push SW1
 U 1 1 5C85EE0D
-P 4000 3900
-F 0 "SW1" H 4000 4050 50  0000 C CNN
-F 1 "SW_Push" H 4000 3850 50  0000 C CNN
-F 2 "" H 4000 4100 50  0001 C CNN
-F 3 "" H 4000 4100 50  0001 C CNN
-	1    4000 3900
+P 4700 3900
+F 0 "SW1" H 4700 4050 50  0000 C CNN
+F 1 "SW_Push" H 4700 3850 50  0000 C CNN
+F 2 "" H 4700 4100 50  0001 C CNN
+F 3 "" H 4700 4100 50  0001 C CNN
+	1    4700 3900
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	3350 3900 3450 3900
+	4050 3900 4150 3900
 Wire Wire Line
-	3350 4200 3450 4200
+	4050 4200 4150 4200
 Wire Wire Line
-	3450 3900 3450 4200
-Connection ~ 3450 3900
+	4150 3900 4150 4200
+Connection ~ 4150 3900
 Wire Wire Line
-	3450 3900 3800 3900
-Connection ~ 3450 4200
+	4150 3900 4500 3900
+Connection ~ 4150 4200
 Wire Wire Line
-	3450 4200 3600 4200
+	4150 4200 4300 4200
 $Comp
 L power:GND #PWR04
 U 1 1 5C8607DD
-P 4250 3950
-F 0 "#PWR04" H 4250 3700 50  0001 C CNN
-F 1 "GND" H 4255 3777 50  0000 C CNN
-F 2 "" H 4250 3950 50  0001 C CNN
-F 3 "" H 4250 3950 50  0001 C CNN
-	1    4250 3950
+P 4950 3950
+F 0 "#PWR04" H 4950 3700 50  0001 C CNN
+F 1 "GND" H 4955 3777 50  0000 C CNN
+F 2 "" H 4950 3950 50  0001 C CNN
+F 3 "" H 4950 3950 50  0001 C CNN
+	1    4950 3950
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	4200 3900 4250 3900
+	4900 3900 4950 3900
 Wire Wire Line
-	4250 3900 4250 3950
+	4950 3900 4950 3950
 Wire Wire Line
-	3400 3500 4400 3500
+	4100 3500 5100 3500
 Wire Wire Line
-	4400 3500 4400 4200
+	5100 3500 5100 4200
 Wire Wire Line
-	4400 4200 3800 4200
+	5100 4200 4500 4200
 $Comp
 L power:GND #PWR05
 U 1 1 5C8612CC
@@ -353,15 +353,15 @@ Text Label 5500 1650 0    50   ~ 0
 D5
 Wire Wire Line
 	2500 1750 2650 1750
-Text Label 3000 3500 2    50   ~ 0
+Text Label 3700 3500 2    50   ~ 0
 RST
-Text Label 3000 3700 2    50   ~ 0
+Text Label 3700 3700 2    50   ~ 0
 D0
 Text Label 5500 1750 0    50   ~ 0
 D6
-Text Label 3000 3900 2    50   ~ 0
+Text Label 3700 3900 2    50   ~ 0
 D6
-Text Label 3000 4200 2    50   ~ 0
+Text Label 3700 4200 2    50   ~ 0
 3_3V
 Wire Wire Line
 	3950 1700 3800 1700
@@ -386,23 +386,23 @@ Wire Wire Line
 Text Notes 3450 850  0    79   ~ 0
 WeMos D1 Mini v3.0.0
 Wire Wire Line
-	3400 3500 3000 3500
-Connection ~ 3400 3500
+	4100 3500 3700 3500
+Connection ~ 4100 3500
 Wire Wire Line
-	3400 3700 3000 3700
+	4100 3700 3700 3700
 Wire Wire Line
-	3150 3900 3000 3900
+	3850 3900 3700 3900
 Wire Wire Line
-	3150 4200 3000 4200
+	3850 4200 3700 4200
 Wire Notes Line
-	2700 5050 4700 5050
+	3400 5050 5400 5050
 Wire Notes Line
-	4700 5050 4700 3350
+	5400 5050 5400 3350
 Wire Notes Line
-	4700 3350 2700 3350
+	5400 3350 3400 3350
 Wire Notes Line
-	2700 3350 2700 5050
-Text Notes 2700 3300 0    79   ~ 0
+	3400 3350 3400 5050
+Text Notes 3400 3300 0    79   ~ 0
 Button circuit
 Wire Wire Line
 	6250 1100 6600 1100
@@ -490,7 +490,7 @@ Wire Notes Line
 	900  3350 900  5050
 Text Notes 900  3300 0    79   ~ 0
 Sensor circuit
-Text Notes 2800 4700 0    50   ~ 0
+Text Notes 3500 4700 0    50   ~ 0
 On button press, ESP8266 will wake up and \ndisplay the humidity values in the LEDs.
 Text Notes 2150 1200 0    50   ~ 0
 WeMos Battery shield is \nconnected to a LiPo battery.
@@ -541,12 +541,6 @@ Wire Bus Line
 	7350 1050 7550 1050
 Wire Notes Line
 	3450 900  5850 900 
-Wire Notes Line
-	2450 3350 2450 5050
-Wire Notes Line
-	900  3350 2450 3350
-Wire Notes Line
-	900  5050 2450 5050
 NoConn ~ 1100 2300
 Wire Notes Line
 	900  900  3300 900 
@@ -609,11 +603,8 @@ Wire Wire Line
 	1400 4000 1250 4000
 Wire Wire Line
 	1400 4100 1250 4100
-Text Label 1950 3600 0    50   ~ 0
+Text Label 2050 3450 0    50   ~ 0
 5V
-Wire Wire Line
-	1800 3600 1950 3600
-NoConn ~ 2200 4050
 Wire Wire Line
 	8850 1850 8950 1850
 Connection ~ 8450 2350
@@ -633,10 +624,42 @@ Text Label 3800 2000 2    50   ~ 0
 EN
 Wire Wire Line
 	8450 2350 8450 2550
-Wire Bus Line
-	7550 1050 7550 1550
-Wire Bus Line
-	7350 1050 7350 2400
 Text Label 8950 1850 0    50   ~ 0
 EN
+$Comp
+L Device:R_Small R9
+U 1 1 5C9E0F92
+P 2400 4050
+F 0 "R9" V 2300 4000 50  0000 L CNN
+F 1 "0ohm" V 2500 3950 50  0000 L CNN
+F 2 "" H 2400 4050 50  0001 C CNN
+F 3 "~" H 2400 4050 50  0001 C CNN
+	1    2400 4050
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	2200 4050 2300 4050
+Wire Wire Line
+	2050 3600 2050 3450
+Wire Wire Line
+	1800 3600 2050 3600
+Connection ~ 2050 3600
+Text Notes 2200 4650 0    50   ~ 0
+Do not populate for \nAdafruit 5-pin breakout \nboard. Populate it for \nother 4-pin breakout \nboard.
+Wire Wire Line
+	2550 3600 2550 4050
+Wire Wire Line
+	2550 4050 2500 4050
+Wire Wire Line
+	2050 3600 2550 3600
+Wire Notes Line
+	3200 3350 3200 5050
+Wire Notes Line
+	900  5050 3200 5050
+Wire Notes Line
+	900  3350 3200 3350
+Wire Bus Line
+	7350 1050 7350 2400
+Wire Bus Line
+	7550 1050 7550 1550
 $EndSCHEMATC
