@@ -5,7 +5,6 @@
 int dataPin = 13; // pin D7 `GPIO13` on NodeMCU boards
 int clockPin = 14; // pin D5 `GPIO14` on NodeMCU boards
 int latchPin = 15; // pin D8 `GPIO15` on NodeMCU boards
-long randNumber;
 
 Adafruit_Si7021 sensor = Adafruit_Si7021();
 
@@ -19,23 +18,26 @@ void setup() {
   }
 
   pinMode(EN, OUTPUT);
+  digitalWrite(EN, LOW); // enable shift register
 
   pinMode(latchPin, OUTPUT);
   pinMode(clockPin, OUTPUT);
   pinMode(dataPin, OUTPUT);
 
   Serial.begin(115200);
-
-  digitalWrite(EN, LOW); // enable
-  display(31); // Display all 5 LEDs: 11111 (binary), 31 (decimal)
 }
 
 void loop() {
-  Serial.print("Humidity:    ");
-  Serial.print(sensor.readHumidity(), 2);
-  Serial.print("\tTemperature: ");
-  Serial.println(sensor.readTemperature(), 2);
-  delay(1000);
+  Serial.print("Temperature: ");
+  Serial.print(sensor.readTemperature());
+  Serial.print("\tHumidity:    ");
+  Serial.print(sensor.readHumidity());
+
+  int barHumidity = sensor.readHumidity()/20 + 1;
+  String sBar = "\tGraph: " + String(barHumidity) + " bars";
+  Serial.println(sBar);
+
+ display(pow(2, barHumidity) -1); // Display humidity in LEDs
 }
 
 int display(int position) {

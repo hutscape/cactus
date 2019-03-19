@@ -127,12 +127,12 @@ $EndComp
 $Comp
 L power:GND #PWR07
 U 1 1 5C8625CA
-P 8450 2350
-F 0 "#PWR07" H 8450 2100 50  0001 C CNN
-F 1 "GND" H 8600 2300 50  0000 C CNN
-F 2 "" H 8450 2350 50  0001 C CNN
-F 3 "" H 8450 2350 50  0001 C CNN
-	1    8450 2350
+P 8450 2550
+F 0 "#PWR07" H 8450 2300 50  0001 C CNN
+F 1 "GND" H 8600 2500 50  0000 C CNN
+F 2 "" H 8450 2550 50  0001 C CNN
+F 3 "" H 8450 2550 50  0001 C CNN
+	1    8450 2550
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -267,7 +267,6 @@ F 3 "" H 6250 2300 50  0001 C CNN
 	1    6250 2300
 	1    0    0    -1  
 $EndComp
-NoConn ~ 8850 1550
 NoConn ~ 8050 1750
 NoConn ~ 8050 1850
 NoConn ~ 8050 1950
@@ -300,8 +299,6 @@ F 3 "" H 1800 1200 50  0001 C CNN
 $EndComp
 Text Label 3800 1800 2    50   ~ 0
 I2C_SDA
-Text Label 3800 2000 2    50   ~ 0
-D4
 Text Label 5500 1350 0    50   ~ 0
 RST
 Text Label 2650 1750 0    50   ~ 0
@@ -346,8 +343,6 @@ Text Label 5500 1950 0    50   ~ 0
 D8
 Text Label 9000 1750 0    50   ~ 0
 D8
-Text Label 9000 1850 0    50   ~ 0
-D4
 Text Label 9000 1250 0    50   ~ 0
 D7
 Text Label 5500 1850 0    50   ~ 0
@@ -424,8 +419,6 @@ Wire Wire Line
 Wire Wire Line
 	8850 1750 9000 1750
 Wire Wire Line
-	8850 1850 9000 1850
-Wire Wire Line
 	8450 1050 8600 1050
 $Comp
 L power:PWR_FLAG #FLG02
@@ -491,8 +484,6 @@ Text Label 7250 2000 2    50   ~ 0
 QD
 Text Label 7250 2300 2    50   ~ 0
 QE
-Wire Notes Line
-	6100 900  6100 2600
 Text Notes 6100 850  0    79   ~ 0
 LED Circuit
 Wire Notes Line
@@ -505,22 +496,18 @@ Text Notes 2150 1200 0    50   ~ 0
 WeMos Battery shield is \nconnected to a LiPo battery.
 Text Notes 3600 2900 0    50   ~ 0
 WeMos remains in deep sleep for 6 hours and wakes \nup to sense the humidity value, display it in the LEDs \nand post the value to the cloud.
-Text Notes 6850 3250 0    50   Italic 0
+Text Notes 6900 3650 0    50   Italic 0
 Humidity RH% | LED ON\n0 - 20       | D1\n21 - 40      | D1, D2\n41 - 60      | D1, D2, D3\n61 - 80      | D1, D2, D3, D4\n81 - 100     | D1, D2, D3, D4, D5
 Wire Notes Line
-	6800 2750 8300 2750
+	6850 3150 8350 3150
 Wire Notes Line
-	8300 3300 6800 3300
+	8350 3700 6850 3700
 Wire Notes Line
-	6800 3300 6800 2750
+	6850 3700 6850 3150
 Wire Notes Line
-	8300 2750 8300 3300
-Text Notes 7400 2550 0    50   ~ 0
+	8350 3150 8350 3700
+Text Notes 6250 2850 0    50   ~ 0
 Humidity values are displayed in the LEDs.
-Wire Notes Line
-	9150 900  9150 2600
-Wire Notes Line
-	6100 2600 9150 2600
 Wire Notes Line
 	6100 900  9150 900 
 Wire Wire Line
@@ -560,7 +547,6 @@ Wire Notes Line
 	900  3350 2450 3350
 Wire Notes Line
 	900  5050 2450 5050
-Connection ~ 8450 2350
 NoConn ~ 1100 2300
 Wire Notes Line
 	900  900  3300 900 
@@ -601,8 +587,6 @@ Wire Notes Line
 Wire Notes Line
 	900  900  900  3000
 Wire Wire Line
-	3950 2000 3800 2000
-Wire Wire Line
 	4650 1000 4800 1000
 Wire Notes Line
 	3450 3000 5850 3000
@@ -617,7 +601,7 @@ P 1800 4100
 F 0 "U4" H 1500 4550 50  0000 L CNN
 F 1 "Si7021_breakout" H 1050 3650 50  0000 L CNN
 F 2 "" H 1800 3500 50  0000 C CNN
-F 3 "http://ams.com/eng/Products/Environmental-Sensors/Air-Quality-Sensors/CCS811" H 1800 3900 50  0001 C CNN
+F 3 "https://learn.adafruit.com/adafruit-si7021-temperature-plus-humidity-sensor/downloads" H 1800 3900 50  0001 C CNN
 	1    1800 4100
 	1    0    0    -1  
 $EndComp
@@ -630,8 +614,29 @@ Text Label 1950 3600 0    50   ~ 0
 Wire Wire Line
 	1800 3600 1950 3600
 NoConn ~ 2200 4050
+Wire Wire Line
+	8850 1850 8950 1850
+Connection ~ 8450 2350
+Wire Notes Line
+	6100 3000 9150 3000
+Wire Notes Line
+	6100 900  6100 3000
+Wire Notes Line
+	9150 900  9150 3000
+Wire Wire Line
+	8850 1550 9000 1550
+Text Label 9000 1550 0    50   ~ 0
+5V
+Wire Wire Line
+	3950 2000 3800 2000
+Text Label 3800 2000 2    50   ~ 0
+EN
+Wire Wire Line
+	8450 2350 8450 2550
 Wire Bus Line
 	7550 1050 7550 1550
 Wire Bus Line
 	7350 1050 7350 2400
+Text Label 8950 1850 0    50   ~ 0
+EN
 $EndSCHEMATC
