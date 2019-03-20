@@ -644,8 +644,8 @@ Wire Wire Line
 Wire Wire Line
 	1800 3600 2050 3600
 Connection ~ 2050 3600
-Text Notes 2200 4500 0    50   ~ 0
-Do not populate for \nAdafruit 5-pin breakout \nboard
+Text Notes 2200 4800 0    50   ~ 0
+Do not populate for \nAdafruit 5-pin Si7021 \nbreakout board. \n\nPopulate it for other \n4-pin Si7021 breakout \nboards.
 Wire Wire Line
 	2550 3600 2550 4050
 Wire Wire Line
