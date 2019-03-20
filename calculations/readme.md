@@ -3,7 +3,7 @@
 ## Main components
 
 | Chip # | Chip | Operating Voltage | Active mode | Standby / Sleep mode |
-| ------ | ------ | ------ | ------ | ------ | ------ |
+| ------ | ------ | ------ | ------ | ------ |
 | SN4HC595 | Shift register | 2V - 6V | 80uA | 1uA |
 | Si7021 | Temperature / Humidity sensor | 1.9V - 3.6V | 150uA | 60nA |
 | ESP8266 | WiFi based MCU | 3.3V | 170mA | 10uA |
