@@ -20,7 +20,7 @@ U 1 1 5C77296E
 P 8650 1650
 F 0 "U3" H 8450 2200 50  0000 C CNN
 F 1 "74HC595" H 8450 1000 50  0000 C CNN
-F 2 "" H 8650 1650 50  0001 C CNN
+F 2 "Package_SO:SOIC-16_3.9x9.9mm_P1.27mm" H 8650 1650 50  0001 C CNN
 F 3 "http://www.ti.com/lit/ds/symlink/sn74hc595.pdf" H 8650 1650 50  0001 C CNN
 	1    8650 1650
 	-1   0    0    -1  
