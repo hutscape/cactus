@@ -569,7 +569,7 @@ U 1 1 5C954F32
 P 1800 2000
 F 0 "U1" H 2200 2550 60  0000 C CNN
 F 1 "WeMos_Battery_Shield" H 2300 1400 60  0000 C CNN
-F 2 "WeMos:D1_mini_board" H 2200 1300 60  0001 C CNN
+F 2 "WeMos:Battery_shield" H 2200 1300 60  0001 C CNN
 F 3 "http://www.wemos.cc/Products/d1_mini.html" H 1800 2794 60  0001 C CNN
 	1    1800 2000
 	1    0    0    -1  

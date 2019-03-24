@@ -1,7 +1,7 @@
 (export (version D)
   (design
     (source /Users/sayanee/Documents/ariel/hardware/ariel.sch)
-    (date "2019 March 23, Saturday 15:34:04")
+    (date "2019 March 24, Sunday 17:36:40")
     (tool "Eeschema (5.0.1-3-g963ef8bb5)")
     (sheet (number 1) (name /) (tstamps /)
       (title_block
@@ -135,7 +135,7 @@
       (tstamp 5C9440E1))
     (comp (ref U1)
       (value WeMos_Battery_Shield)
-      (footprint WeMos:D1_mini_board)
+      (footprint WeMos:Battery_shield)
       (datasheet http://www.wemos.cc/Products/d1_mini.html)
       (libsource (lib wemos_mini) (part WeMos_Battery_Shield) (description "WeMos D1 mini"))
       (sheetpath (names /) (tstamps /))
