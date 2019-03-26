@@ -17,12 +17,12 @@ $EndDescr
 $Comp
 L 74xx:74HC595 U3
 U 1 1 5C77296E
-P 8650 1650
-F 0 "U3" H 8450 2200 50  0000 C CNN
-F 1 "74HC595" H 8450 1000 50  0000 C CNN
-F 2 "Package_SO:SOIC-16_3.9x9.9mm_P1.27mm" H 8650 1650 50  0001 C CNN
-F 3 "http://www.ti.com/lit/ds/symlink/sn74hc595.pdf" H 8650 1650 50  0001 C CNN
-	1    8650 1650
+P 8650 1750
+F 0 "U3" H 8450 2300 50  0000 C CNN
+F 1 "74HC595" H 8450 1100 50  0000 C CNN
+F 2 "Package_SO:SOIC-16_3.9x9.9mm_P1.27mm" H 8650 1750 50  0001 C CNN
+F 3 "http://www.ti.com/lit/ds/symlink/sn74hc595.pdf" H 8650 1750 50  0001 C CNN
+	1    8650 1750
 	-1   0    0    -1  
 $EndComp
 $Comp
@@ -127,12 +127,12 @@ $EndComp
 $Comp
 L power:GND #PWR07
 U 1 1 5C8625CA
-P 8650 2550
-F 0 "#PWR07" H 8650 2300 50  0001 C CNN
-F 1 "GND" H 8800 2500 50  0000 C CNN
-F 2 "" H 8650 2550 50  0001 C CNN
-F 3 "" H 8650 2550 50  0001 C CNN
-	1    8650 2550
+P 8650 2650
+F 0 "#PWR07" H 8650 2400 50  0001 C CNN
+F 1 "GND" H 8800 2600 50  0000 C CNN
+F 2 "" H 8650 2650 50  0001 C CNN
+F 3 "" H 8650 2650 50  0001 C CNN
+	1    8650 2650
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -267,10 +267,10 @@ F 3 "" H 6450 2300 50  0001 C CNN
 	1    6450 2300
 	1    0    0    -1  
 $EndComp
-NoConn ~ 8250 1750
 NoConn ~ 8250 1850
 NoConn ~ 8250 1950
-NoConn ~ 8250 2150
+NoConn ~ 8250 2050
+NoConn ~ 8250 2250
 $Comp
 L power:GND #PWR03
 U 1 1 5C893BFC
@@ -337,17 +337,15 @@ F 3 "" H 1800 4600 50  0001 C CNN
 $EndComp
 Text Label 5650 2050 0    50   ~ 0
 3_3V
-Text Label 8800 1050 0    50   ~ 0
-5V
 Text Label 5650 1950 0    50   ~ 0
 D8
-Text Label 9200 1750 0    50   ~ 0
+Text Label 9200 1850 0    50   ~ 0
 D8
-Text Label 9200 1250 0    50   ~ 0
+Text Label 9200 1350 0    50   ~ 0
 D7
 Text Label 5650 1850 0    50   ~ 0
 D7
-Text Label 9200 1450 0    50   ~ 0
+Text Label 9200 1550 0    50   ~ 0
 D5
 Text Label 5650 1650 0    50   ~ 0
 D5
@@ -413,32 +411,28 @@ Wire Wire Line
 Wire Wire Line
 	6450 1700 6800 1700
 Wire Wire Line
-	9050 1250 9200 1250
+	9050 1350 9200 1350
 Wire Wire Line
-	9050 1450 9200 1450
+	9050 1550 9200 1550
 Wire Wire Line
-	9050 1750 9200 1750
-Wire Wire Line
-	8650 1050 8800 1050
+	9050 1850 9200 1850
 $Comp
 L power:PWR_FLAG #FLG02
 U 1 1 5C8B6759
-P 8650 2350
-F 0 "#FLG02" H 8650 2425 50  0001 C CNN
-F 1 "PWR_FLAG" V 8650 2650 50  0000 C CNN
-F 2 "" H 8650 2350 50  0001 C CNN
-F 3 "~" H 8650 2350 50  0001 C CNN
-	1    8650 2350
+P 8650 2450
+F 0 "#FLG02" H 8650 2525 50  0001 C CNN
+F 1 "PWR_FLAG" V 8650 2750 50  0000 C CNN
+F 2 "" H 8650 2450 50  0001 C CNN
+F 3 "~" H 8650 2450 50  0001 C CNN
+	1    8650 2450
 	0    -1   -1   0   
 $EndComp
 Wire Wire Line
 	7300 1100 7450 1100
-Text Label 8000 1250 2    50   ~ 0
+Text Label 8000 1350 2    50   ~ 0
 QA
 Text Label 7450 1100 2    50   ~ 0
 QA
-Entry Wire Line
-	7750 1150 7850 1250
 Entry Wire Line
 	7750 1250 7850 1350
 Entry Wire Line
@@ -447,13 +441,15 @@ Entry Wire Line
 	7750 1450 7850 1550
 Entry Wire Line
 	7750 1550 7850 1650
-Text Label 8000 1350 2    50   ~ 0
-QB
+Entry Wire Line
+	7750 1650 7850 1750
 Text Label 8000 1450 2    50   ~ 0
-QC
+QB
 Text Label 8000 1550 2    50   ~ 0
-QD
+QC
 Text Label 8000 1650 2    50   ~ 0
+QD
+Text Label 8000 1750 2    50   ~ 0
 QE
 Wire Wire Line
 	7300 1400 7450 1400
@@ -508,10 +504,6 @@ Wire Notes Line
 	8550 3150 8550 3700
 Text Notes 6450 2850 0    50   ~ 0
 Humidity values are displayed in the LEDs.
-Wire Notes Line
-	6300 900  9350 900 
-Wire Wire Line
-	7850 1250 8250 1250
 Wire Wire Line
 	7850 1350 8250 1350
 Wire Wire Line
@@ -520,6 +512,8 @@ Wire Wire Line
 	7850 1550 8250 1550
 Wire Wire Line
 	7850 1650 8250 1650
+Wire Wire Line
+	7850 1750 8250 1750
 NoConn ~ 1100 1700
 NoConn ~ 1100 1800
 NoConn ~ 1100 2000
@@ -606,25 +600,17 @@ Wire Wire Line
 Text Label 2050 3450 0    50   ~ 0
 5V
 Wire Wire Line
-	9050 1850 9150 1850
-Connection ~ 8650 2350
-Wire Notes Line
-	6300 3000 9350 3000
+	9050 1950 9150 1950
+Connection ~ 8650 2450
 Wire Notes Line
 	6300 900  6300 3000
-Wire Notes Line
-	9350 900  9350 3000
-Wire Wire Line
-	9050 1550 9200 1550
-Text Label 9200 1550 0    50   ~ 0
-5V
 Wire Wire Line
 	4100 2000 3950 2000
 Text Label 3950 2000 2    50   ~ 0
 EN
 Wire Wire Line
-	8650 2350 8650 2550
-Text Label 9150 1850 0    50   ~ 0
+	8650 2450 8650 2650
+Text Label 9150 1950 0    50   ~ 0
 EN
 $Comp
 L Device:R_Small R9
@@ -658,8 +644,29 @@ Wire Notes Line
 	900  5050 3200 5050
 Wire Notes Line
 	900  3350 3200 3350
+Text Label 8950 1000 0    50   ~ 0
+5V
+Wire Wire Line
+	9350 1150 9350 1650
+Wire Wire Line
+	8650 1150 8800 1150
+Wire Wire Line
+	9050 1650 9350 1650
+Wire Notes Line
+	9450 3000 9450 900 
+Wire Notes Line
+	6300 900  9450 900 
+Wire Notes Line
+	6300 3000 9450 3000
+Wire Wire Line
+	8800 1150 8800 1000
+Connection ~ 8800 1150
+Wire Wire Line
+	8800 1150 9350 1150
+Wire Wire Line
+	8800 1000 8950 1000
 Wire Bus Line
 	7550 1050 7550 2400
 Wire Bus Line
-	7750 1050 7750 1550
+	7750 1050 7750 1650
 $EndSCHEMATC
