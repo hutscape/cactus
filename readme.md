@@ -1,4 +1,4 @@
-# ariel
+# Cactus
 
 > Measure humidity and temperature periodically or on button press
 

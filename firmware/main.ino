@@ -17,9 +17,9 @@ const int httpsPort = 443;
 const int sleepTime = 10; // 10 seconds
 const int displayTime = 10; // 10 seconds
 
-String AP_NamePrefix = "Ariel ";
+String AP_NamePrefix = "Cactus ";
 const char WiFiAPPSK[] = "underthesea";
-const char* DomainName = "ariel";
+const char* DomainName = "cactus";
 char ssid [50] = "";
 char password [50] = "";
 String key = "";
@@ -68,7 +68,7 @@ void loop() {
   if (!hasWiFiCredentials()) {
     blink(200);
     Serial.println("[INFO] WiFi is not configured!");
-    Serial.println("[INFO] Connect to 'Ariel XXX' WiFi and visit http://ariel.local/");
+    Serial.println("[INFO] Connect to 'Cactus XXX' WiFi and visit http://cactus.local/");
     server.handleClient();
   } else {
     blink(2000);
