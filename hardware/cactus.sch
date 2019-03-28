@@ -539,7 +539,7 @@ NoConn ~ 1100 2300
 Wire Notes Line
 	900  900  3300 900 
 $Comp
-L wemos_mini:WeMos_D1_mini U2
+L cactus-rescue:WeMos_D1_mini-wemos_mini U2
 U 1 1 5C9440E1
 P 4800 1700
 F 0 "U2" H 5250 2250 60  0000 C CNN
@@ -558,7 +558,7 @@ Wire Wire Line
 Connection ~ 1800 1250
 Connection ~ 1800 1300
 $Comp
-L wemos_mini:WeMos_Battery_Shield U1
+L cactus-rescue:WeMos_Battery_Shield-wemos_mini U1
 U 1 1 5C954F32
 P 1800 2000
 F 0 "U1" H 2200 2550 60  0000 C CNN
@@ -583,7 +583,7 @@ Wire Notes Line
 Wire Notes Line
 	6000 900  6000 3000
 $Comp
-L Si7021_breakout_board:Si7021_breakout U4
+L cactus-rescue:Si7021_breakout-Si7021_breakout_board U4
 U 1 1 5C97D9C5
 P 1800 4100
 F 0 "U4" H 1500 4550 50  0000 L CNN
