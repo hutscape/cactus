@@ -1,5 +1,10 @@
 # Mechanical
 
+## PCB Size
+
+- Length `76mm`
+- Breadth `38mm`
+
 ## Project components
 
 | Item | Length | Breadth | Height | Weight |
@@ -12,14 +17,16 @@
 ## LiPo Batteries
 
 | | `500mAh` | `2000mAh` | `2500mAh` |
-| ------ | ------ | ------ | ------ |
+| ------ | ------ | ------ | ------ | ------ |
 | Weight | `10.5g` | `34g` | `52g`
-| Length | `36mm` | `60mm` | `65mm`
+| Length | `36mm` | `60mm` | `65mm` |
 | Breadth | `29mm` | `36mm` | `51mm`
 | Height | `4.75mm` | `7mm` | `8mm`
 | Source | [Adafruit](https://www.adafruit.com/product/1578) | [Adafruit](https://www.adafruit.com/product/2011) | [Adafruit](https://www.adafruit.com/product/328)
+| PCB Fit? | ✅ | ✅ | ⛔️
 | Weight |
 | Length | `43mm` | `80mm`
 | Breadth | `25mm` | `70mm`
 | Height | `8mm` | `4mm`
 | Source | [AliExpress](https://www.aliexpress.com/item/3-7V-500mAh-Lipo-Battery-For-Syma-X5C-X5SW-M68-Cheerson-CX-30-H5C-Quadrocopter-3/32918919539.html) | [AliExpress](https://www.aliexpress.com/item/3-7V-2000-mAh-Polymer-Lithium-Battery-LiPo-For-GPS-Tablet-PC-407080/2055208577.html)
+| PCB Fit? | ✅ | ⛔️ | ⛔️
