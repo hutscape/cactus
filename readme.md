@@ -17,6 +17,32 @@ Run `make install` to add git-secrets and git pre-commit hooks.
     ![](images/serial-2.png)
 1. Ensure the bar LEDs are lit accordingly
 
+## Hardware
+
+### Schematic
+
+![](hardware/images/schematic.png)
+
+### Footprint
+
+Front
+
+![](hardware/images/footprint-front.png)
+
+Back
+
+![](hardware/images/footprint-back.png)
+
+### 3D View
+
+Front
+
+![](hardware/images/3dview-front.png)
+
+Back
+
+![](hardware/images/3dview-back.png)
+
 ## References 📚
 
 ### Similar projects
