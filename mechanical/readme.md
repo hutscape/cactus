@@ -5,7 +5,7 @@
 - Length `76mm`
 - Breadth `38mm`
 
-![../hardware/images/footprint-front.png]()
+![](../hardware/images/footprint-front.png)
 
 ## Project components
 
