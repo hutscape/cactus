@@ -78,6 +78,8 @@ Mechanical tasks:
 - **Manufacturing and BOM Order Date:**
 - **Manufacturing and BOM receive Date:**
 
+Manufacturing tasks:
+
 1. Order parts online
 1. Order PCB manufacturing online
 1. Note the cost per unit
@@ -103,4 +105,4 @@ Testing tasks:
 
 Deployment tasks:
 
-- Start logging to monitor power consumption 
+- Start logging to monitor power consumption
