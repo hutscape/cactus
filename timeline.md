@@ -10,6 +10,9 @@
 - **Ideation Duration:** *Not tracked*
 - **Ideation Start Date:** *Not tracked*
 - **Ideation End Date:** *Not tracked*
+- **Prototype Parts Lead Time:** *Not tracked*
+- **Order prototype parts date:** *Not tracked*
+- **Receive prototype parts date:** *Not tracked*
 
 Ideation tasks:
 
@@ -18,15 +21,7 @@ Ideation tasks:
 1. Research for datasheets
 1. Settle on a project name
 1. Research on power
-
-## Ordering
-
-- **Prototype Parts Lead Time:** *Not tracked*
-- **Order prototype parts date:** *Not tracked*
-- **Receive prototype parts date:** *Not tracked*
-
-Ordering tasks:
-
+1. Order modules, parts, power required for component testing
 1. Note the prices for prototype items
 1. Note the time taken to receive all the parts
 
@@ -85,19 +80,20 @@ Manufacturing tasks:
 1. Note the cost per unit
 1. Note other charges
 
-## Testing
+## System Integration
 
-- **Testing Duration:**
-- **Testing Start Date:**
-- **Testing End Date:**
+- **Integration Duration:**
+- **Integration Start Date:**
+- **Integration End Date:**
 
-Testing tasks:
+System Integration tasks:
 
 1. Solder 2 units
 1. Ensure continuity check for `GND` and `Vcc` points
 1. Do a power test
 1. Do a hello world firmware test
-1. Run a full test
+1. Run the test firmware
+1. Run the full firmware
 
 ## Deployment
 
