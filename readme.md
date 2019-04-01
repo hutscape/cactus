@@ -2,6 +2,17 @@
 
 > Measure humidity and temperature periodically or on button press
 
+- **Wireless:**	WiFi
+- **Sensors:**	Si7021
+- **Power:**	3.7V LiPo 1200mAh via Battery shield
+- **Processor:**	ESP8266 with WeMos D1 Mini
+- **Firmware:**	Arduino ESP8266
+- **OTA?**	No
+- **Works without Internet?**	Yes
+- **BOM Total Items:**	20
+- **BOM Unique Items:** 6
+- **Manufacturer Name:**	JLCPCB
+
 ## Development
 
 Run `make install` to add git-secrets and git pre-commit hooks.
@@ -42,6 +53,16 @@ Front
 Back
 
 ![](hardware/images/3dview-back.png)
+
+## Lessons Learnt
+
+> Good practices to continue for future projects
+
+- Always buy electronics modules for first time use
+- Do a power tree analysis before schematic design
+- Test out paper mockups for mechanical dimensions
+- Do a mechanical consideration before laying out the footprint
+- Ensure BOM stocks are available from vendors before laying out the footprint
 
 ## References 📚
 
