@@ -562,7 +562,7 @@ P 1800 2000
 F 0 "U1" H 2200 2550 60  0000 C CNN
 F 1 "WeMos_Battery_Shield" H 2300 1400 60  0000 C CNN
 F 2 "WeMos:Battery_shield" H 2200 1300 60  0001 C CNN
-F 3 "http://www.wemos.cc/Products/d1_mini.html" H 1800 2794 60  0001 C CNN
+F 3 "https://wiki.wemos.cc/products:d1_mini_shields:battery_shield" H 1800 2794 60  0001 C CNN
 	1    1800 2000
 	1    0    0    -1  
 $EndComp
@@ -660,7 +660,7 @@ Wire Wire Line
 Wire Wire Line
 	6000 3500 6150 3500
 $Bitmap
-Pos 7300 1800
+Pos 7250 1700
 Scale 1.000000
 Data
 89 50 4E 47 0D 0A 1A 0A 00 00 00 0D 49 48 44 52 00 00 03 16 00 00 01 3B 08 02 00 00 00 CF 71 80 
