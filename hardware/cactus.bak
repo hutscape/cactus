@@ -486,8 +486,8 @@ Wire Notes Line
 	900  3400 900  5100
 Text Notes 900  3350 0    79   ~ 0
 Sensor circuit
-Text Notes 9000 2250 0    50   ~ 0
-On button press, ESP8266 will wake up and \ndisplay the humidity values in the LEDs.
+Text Notes 9000 2350 0    50   ~ 0
+Long press the button and ESP8266 will \nwake up to display the humidity values \non the LEDs.
 Text Notes 2150 1200 0    50   ~ 0
 WeMos Battery shield is \nconnected to a LiPo battery.
 Text Notes 3750 2900 0    50   ~ 0
@@ -664,8 +664,8 @@ Pos 7250 1700
 Scale 1.000000
 Data
 89 50 4E 47 0D 0A 1A 0A 00 00 00 0D 49 48 44 52 00 00 03 16 00 00 01 3B 08 02 00 00 00 CF 71 80 
-31 00 00 00 03 73 42 49 54 08 08 08 DB E1 4F E0 00 00 00 09 70 48 59 73 00 00 0B 12 00 00 0B 12 
-01 D2 DD 7E FC 00 00 20 00 49 44 41 54 78 9C EC BD 77 90 5D F7 75 E7 79 CE F9 85 7B EF 4B 1D D0 
+31 00 00 00 03 73 42 49 54 08 08 08 DB E1 4F E0 00 00 00 09 70 48 59 73 00 00 0A F0 00 00 0A F0 
+01 42 AC 34 98 00 00 20 00 49 44 41 54 78 9C EC BD 77 90 5D F7 75 E7 79 CE F9 85 7B EF 4B 1D D0 
 68 44 12 04 01 30 80 60 A6 44 52 96 44 89 22 4D C9 4A 36 6D 39 CD D8 3B F6 1F BB B5 EB 5D 57 B9 
 CA B5 B3 6B CF EE D8 35 3B F6 CE 78 CA BB F6 DA 9E B1 E5 72 92 AD 91 35 B2 9C 94 49 5B 94 68 E6 
 2C 42 24 40 00 24 72 E8 DC 2F DC F4 FB FD CE D9 3F EE EB 46 93 EA 26 09 0A 34 83 EE A7 5E A1 1E 
