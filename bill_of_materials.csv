@@ -1,3 +1,4 @@
+"Component Count:","20"
 "Ref","Qnty","Value","Cmp name","Footprint","Description","Vendor"
 "C1, ","1","10u","C_Small","Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder","Unpolarized capacitor, small symbol",""
 "D1, D2, D3, D4, D5, ","5","LED","LED","LED_SMD:LED_0805_2012Metric_Pad1.15x1.40mm_HandSolder","Light emitting diode",""
