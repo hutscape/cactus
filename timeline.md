@@ -73,7 +73,7 @@ Mechanical tasks:
 - **BOM Order Date:** 4 April, 2019
 - **BOM receive Date:**
 - **Manufacturing Duration:**
-- **Manufacturing Order Date:**
+- **Manufacturing Order Date:** 5 April, 2019
 - **Manufacturing receive Date:**
 
 Manufacturing tasks:
