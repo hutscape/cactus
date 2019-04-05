@@ -69,13 +69,16 @@ Mechanical tasks:
 
 ## Manufacturing
 
+- **BOM receive Duration:**
+- **BOM Order Date:** 4 April, 2019
+- **BOM receive Date:**
 - **Manufacturing Duration:**
-- **Manufacturing and BOM Order Date:**
-- **Manufacturing and BOM receive Date:**
+- **Manufacturing Order Date:**
+- **Manufacturing receive Date:**
 
 Manufacturing tasks:
 
-1. Order parts online
+1. Order BOM parts online
 1. Order PCB manufacturing online
 1. Note the cost per unit
 1. Note other charges
