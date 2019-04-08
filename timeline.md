@@ -69,12 +69,12 @@ Mechanical tasks:
 
 ## Manufacturing
 
-- **BOM receive Duration:**
+- **BOM receive Duration:** 4 days
 - **BOM Order Date:** 4 April, 2019
-- **BOM receive Date:**
-- **Manufacturing Duration:**
+- **BOM receive Date:** 8 April, 2019
+- **Manufacturing Duration:** *Pending*
 - **Manufacturing Order Date:** 5 April, 2019
-- **Manufacturing receive Date:**
+- **Manufacturing receive Date:** *Pending*
 
 Manufacturing tasks:
 
@@ -85,9 +85,9 @@ Manufacturing tasks:
 
 ## System Integration
 
-- **Integration Duration:**
-- **Integration Start Date:**
-- **Integration End Date:**
+- **Integration Duration:** *Pending*
+- **Integration Start Date:** *Pending*
+- **Integration End Date:** *Pending*
 
 System Integration tasks:
 
@@ -100,7 +100,7 @@ System Integration tasks:
 
 ## Deployment
 
-- **Start logging:**
+- **Start logging:** *Pending*
 
 Deployment tasks:
 

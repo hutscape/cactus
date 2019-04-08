@@ -3,7 +3,7 @@
 > Measure humidity and temperature periodically or on button press
 
 - **Wireless:**	WiFi
-- **Sensors:**	Si7021
+- **Sensors:**	1 (Si7021)
 - **Power:**	3.7V LiPo 1200mAh via Battery shield
 - **Processor:**	ESP8266 with WeMos D1 Mini
 - **Firmware:**	Arduino ESP8266
@@ -12,6 +12,8 @@
 - **BOM Total Items:**	20
 - **BOM Unique Items:** 6
 - **Manufacturer Name:**	JLCPCB
+- **BOM vendor:** Mouser
+- **Total units:** 1
 
 ## Development
 
