@@ -307,17 +307,6 @@ Text Label 5650 1450 0    50   ~ 0
 A0
 Text Label 5650 1550 0    50   ~ 0
 D0
-$Comp
-L power:PWR_FLAG #FLG01
-U 1 1 5C86A0B5
-P 1800 1250
-F 0 "#FLG01" H 1800 1325 50  0001 C CNN
-F 1 "PWR_FLAG" V 1800 1550 50  0000 C CNN
-F 2 "" H 1800 1250 50  0001 C CNN
-F 3 "~" H 1800 1250 50  0001 C CNN
-	1    1800 1250
-	0    -1   -1   0   
-$EndComp
 Text Notes 900  850  0    79   ~ 0
 WeMos Battery Shield 
 Text Label 1250 4150 2    50   ~ 0
@@ -548,12 +537,7 @@ F 3 "http://www.wemos.cc/Products/d1_mini.html" H 4800 2494 60  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	1800 1200 1800 1250
-Wire Wire Line
 	1800 1300 1950 1300
-Wire Wire Line
-	1800 1250 1800 1300
-Connection ~ 1800 1250
 Connection ~ 1800 1300
 $Comp
 L cactus-rescue:WeMos_Battery_Shield-wemos_mini U1
@@ -7490,7 +7474,23 @@ Wire Notes Line
 Wire Notes Line
 	3600 3000 8650 3000
 Wire Bus Line
-	4750 3550 4750 4900
-Wire Bus Line
 	4950 3550 4950 4150
+Wire Bus Line
+	4750 3550 4750 4900
+Connection ~ 1800 1250
+Wire Wire Line
+	1800 1250 1800 1300
+Wire Wire Line
+	1800 1200 1800 1250
+$Comp
+L power:PWR_FLAG #FLG01
+U 1 1 5C86A0B5
+P 1800 1250
+F 0 "#FLG01" H 1800 1325 50  0001 C CNN
+F 1 "PWR_FLAG" V 1800 1550 50  0000 C CNN
+F 2 "" H 1800 1250 50  0001 C CNN
+F 3 "~" H 1800 1250 50  0001 C CNN
+	1    1800 1250
+	0    -1   -1   0   
+$EndComp
 $EndSCHEMATC

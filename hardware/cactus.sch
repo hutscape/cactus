@@ -1,6 +1,6 @@
 EESchema Schematic File Version 4
 LIBS:cactus-cache
-EELAYER 26 0
+EELAYER 29 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
@@ -32,7 +32,7 @@ P 9600 1150
 F 0 "R6" H 9450 1150 50  0000 L CNN
 F 1 "470" H 9650 1150 50  0000 L CNN
 F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 9600 1150 50  0001 C CNN
-F 3 "~" H 9600 1150 50  0001 C CNN
+F 3 "https://www.mouser.sg/datasheet/2/427/crcwce3-1223726.pdf" H 9600 1150 50  0001 C CNN
 	1    9600 1150
 	1    0    0    -1  
 $EndComp
@@ -54,7 +54,7 @@ P 9450 1750
 F 0 "R8" V 9350 1750 50  0000 C CNN
 F 1 "10k" V 9550 1750 50  0000 C CNN
 F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 9450 1750 50  0001 C CNN
-F 3 "~" H 9450 1750 50  0001 C CNN
+F 3 "https://www.mouser.sg/datasheet/2/427/crcwce3-1223726.pdf" H 9450 1750 50  0001 C CNN
 	1    9450 1750
 	0    1    1    0   
 $EndComp
@@ -65,7 +65,7 @@ P 9900 1750
 F 0 "C1" V 9800 1700 50  0000 L CNN
 F 1 "10u" V 10000 1700 50  0000 L CNN
 F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 9900 1750 50  0001 C CNN
-F 3 "~" H 9900 1750 50  0001 C CNN
+F 3 "https://www.mouser.sg/datasheet/2/396/taiyo_yuden_12132018_mlcc11_hq_e-1510082.pdf" H 9900 1750 50  0001 C CNN
 	1    9900 1750
 	0    1    1    0   
 $EndComp
@@ -142,7 +142,7 @@ P 4150 3600
 F 0 "D1" H 4150 3700 50  0000 C CNN
 F 1 "LED" H 4150 3500 50  0000 C CNN
 F 2 "LED_SMD:LED_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 4150 3600 50  0001 C CNN
-F 3 "~" H 4150 3600 50  0001 C CNN
+F 3 "https://www.mouser.sg/datasheet/2/445/150080RS75000-368622.pdf" H 4150 3600 50  0001 C CNN
 	1    4150 3600
 	1    0    0    -1  
 $EndComp
@@ -153,7 +153,7 @@ P 4150 3900
 F 0 "D2" H 4150 4000 50  0000 C CNN
 F 1 "LED" H 4150 3800 50  0000 C CNN
 F 2 "LED_SMD:LED_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 4150 3900 50  0001 C CNN
-F 3 "~" H 4150 3900 50  0001 C CNN
+F 3 "https://www.mouser.sg/datasheet/2/445/150080RS75000-368622.pdf" H 4150 3900 50  0001 C CNN
 	1    4150 3900
 	1    0    0    -1  
 $EndComp
@@ -164,7 +164,7 @@ P 4150 4200
 F 0 "D3" H 4150 4300 50  0000 C CNN
 F 1 "LED" H 4150 4100 50  0000 C CNN
 F 2 "LED_SMD:LED_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 4150 4200 50  0001 C CNN
-F 3 "~" H 4150 4200 50  0001 C CNN
+F 3 "https://www.mouser.sg/datasheet/2/445/150080RS75000-368622.pdf" H 4150 4200 50  0001 C CNN
 	1    4150 4200
 	1    0    0    -1  
 $EndComp
@@ -175,7 +175,7 @@ P 4150 4500
 F 0 "D4" H 4150 4600 50  0000 C CNN
 F 1 "LED" H 4150 4400 50  0000 C CNN
 F 2 "LED_SMD:LED_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 4150 4500 50  0001 C CNN
-F 3 "~" H 4150 4500 50  0001 C CNN
+F 3 "https://www.mouser.sg/datasheet/2/445/150080RS75000-368622.pdf" H 4150 4500 50  0001 C CNN
 	1    4150 4500
 	1    0    0    -1  
 $EndComp
@@ -186,7 +186,7 @@ P 4150 4800
 F 0 "D5" H 4150 4900 50  0000 C CNN
 F 1 "LED" H 4150 4700 50  0000 C CNN
 F 2 "LED_SMD:LED_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 4150 4800 50  0001 C CNN
-F 3 "~" H 4150 4800 50  0001 C CNN
+F 3 "https://www.mouser.sg/datasheet/2/445/150080RS75000-368622.pdf" H 4150 4800 50  0001 C CNN
 	1    4150 4800
 	1    0    0    -1  
 $EndComp
@@ -7473,10 +7473,6 @@ Wire Notes Line
 	3600 900  8650 900 
 Wire Notes Line
 	3600 3000 8650 3000
-Wire Bus Line
-	4950 3550 4950 4150
-Wire Bus Line
-	4750 3550 4750 4900
 Connection ~ 1800 1250
 Wire Wire Line
 	1800 1250 1800 1300
@@ -7493,4 +7489,8 @@ F 3 "~" H 1800 1250 50  0001 C CNN
 	1    1800 1250
 	0    -1   -1   0   
 $EndComp
+Wire Bus Line
+	4950 3550 4950 4150
+Wire Bus Line
+	4750 3550 4750 4900
 $EndSCHEMATC
