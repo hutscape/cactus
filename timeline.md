@@ -72,9 +72,9 @@ Mechanical tasks:
 - **BOM receive Duration:** 4 days
 - **BOM Order Date:** 4 April, 2019
 - **BOM receive Date:** 8 April, 2019
-- **Manufacturing Duration:** *Pending*
-- **Manufacturing Order Date:** 5 April, 2019
-- **Manufacturing receive Date:** *Pending*
+- **Manufacturing PCB Duration:** 7 days
+- **Manufacturing PCB Order Date:** 5 April, 2019
+- **Manufacturing PCB Receive Date:** 12 April, 2019
 
 Manufacturing tasks:
 
