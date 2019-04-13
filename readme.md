@@ -6,13 +6,15 @@
 - **Sensors:**	1 (Si7021)
 - **Power:**	3.7V LiPo 1200mAh via Battery shield
 - **Processor:**	ESP8266 with WeMos D1 Mini
+- **Modules:** 3 (MCU, power shield, sensor)
 - **Firmware:**	Arduino ESP8266
 - **OTA?**	No
 - **Works without Internet?**	Yes
 - **BOM Total Items:**	20
 - **BOM Unique Items:** 6
-- **Manufacturer Name:**	JLCPCB
-- **BOM vendor:** Mouser
+- **PCB Manufacturing vendor:**	JLCPCB
+- **BOM vendor:** Mouser, AliExpress, 12Geeks
+- **Total vendors:** 4 (PCB, BOM, battery, power shield)
 - **Total units:** 1
 
 ## Development
