@@ -68,6 +68,7 @@ Back
 - Test out paper mockups for mechanical dimensions
 - Do a mechanical consideration before laying out the footprint
 - Check pin, pitch, manufacturer part number, function before buying BOM parts
+- Design a power on/off switch to start/stop using the battery
 
 ## References 📚
 
