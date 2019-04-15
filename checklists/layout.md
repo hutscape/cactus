@@ -1,6 +1,16 @@
 # Layout
 
-- [ ] Export gerber format and check layer by layer
+## Before layout
+
+- [ ] Check manufacturer capabilities on via size E.g. [OSHPark](https://docs.oshpark.com/submitting-orders/drill-specs/), [JLCPCB](https://jlcpcb.com/capabilities/Capabilities)
+- [ ] Check manufacturer capabilities on track width
+- [ ] No sharp edge on edge cuts layer
+
+## After layout
+
+- [ ] Export layers `F.Cu`, `B.Cu`, `F.SilkS`, `B.SilkS`, `F.Mask`, `B.Mask`, `Edge.Cuts`
+- [ ] Export drill files `NPTH.drl`, `PTH.drl`
+- [ ] Check Gerber format layer by layer
 - [ ] Eyeball 3D view
 - [ ] Check copper layers
 - [ ] Check paste layers
