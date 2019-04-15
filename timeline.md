@@ -86,16 +86,16 @@ Manufacturing tasks:
 ## System Integration
 
 - **Integration Duration:** *Pending*
-- **Integration Start Date:** *Pending*
+- **Integration Start Date:** 15 April, 2019
 - **Integration End Date:** *Pending*
 
 System Integration tasks:
 
-1. Solder 2 units
-1. Ensure continuity check for `GND` and `Vcc` points
-1. Do a power test
-1. Do a hello world firmware test
+1. Solder 1 unit
+1. Ensure continuity check for all power pins
+1. Do a power on test
 1. Run the test firmware
+1. Do a hello world firmware test
 1. Run the full firmware
 
 ## Deployment

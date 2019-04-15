@@ -62,11 +62,12 @@ Back
 
 > Good practices to continue for future projects
 
-- Always buy electronics modules for first time use
-- Do a power tree analysis before schematic design
+- Always buy electronics modules for `V1.0`
+- Ensure main BOM components are available from vendors before schematic or layout
+- Do a power tree analysis starting with power source before the schematic design
 - Test out paper mockups for mechanical dimensions
 - Do a mechanical consideration before laying out the footprint
-- Ensure BOM stocks are available from vendors before laying out the footprint
+- Check pin, pitch, manufacturer part number, function before buying BOM parts
 
 ## References 📚
 

@@ -28,6 +28,7 @@ On silkscreen
 
 - `1mm` by `1mm` for optimum legibility size
 - `0.8mm` by `0.8mm` for minimum legibility size
+- `0.15mm` text thickness
 
 ## Mechanical
 

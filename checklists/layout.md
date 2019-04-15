@@ -8,6 +8,8 @@
 
 ## After layout
 
+- [ ] Run `b` to refill all zones on all layers in KiCad
+- [ ] Ensure ERC and DRC are passing
 - [ ] Export layers `F.Cu`, `B.Cu`, `F.SilkS`, `B.SilkS`, `F.Mask`, `B.Mask`, `Edge.Cuts`
 - [ ] Export drill files `NPTH.drl`, `PTH.drl`
 - [ ] Check Gerber format layer by layer
