@@ -10,6 +10,10 @@
 - [ ] Type of packages available
 - [ ] Example projects
 - [ ] Mechanical dimensions
+- [ ] Pitch size
+- [ ] Number of pins
+- [ ] Manufacturer number
+- [ ] Link to datasheet
 - [ ] Are the firmware tools supported on macOSX?
 
 ## MCU
@@ -21,5 +25,15 @@
 - [ ] Manufacturer
 - [ ] Memory and RAM
 - [ ] Resolution
+- [ ] Package type
+- [ ] Link to datasheet
 - [ ] Example projects
 - [ ] Mechanical dimensions
+
+## Modules / breakout boards
+
+- [ ] Firmware
+- [ ] Pinouts
+- [ ] Main components
+- [ ] Main component parts can be traced individually for future use
+- [ ] Open schematic
