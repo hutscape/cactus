@@ -1,4 +1,4 @@
-# Experiments
+# Components
 
 ## Main components
 
