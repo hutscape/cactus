@@ -13,8 +13,8 @@
 - **BOM Total Items:**	20
 - **BOM Unique Items:** 6
 - **PCB Manufacturing vendor:**	JLCPCB
-- **BOM vendor:** Mouser, AliExpress, 12Geeks
-- **Total vendors:** 4 (PCB, BOM, battery, power shield)
+- **BOM vendor:** Mouser, AliExpress, 12Geeks, RS Components
+- **Total vendors:** 5 
 - **Total units:** 1
 
 ## Development

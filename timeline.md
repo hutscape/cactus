@@ -69,9 +69,10 @@ Mechanical tasks:
 
 ## Manufacturing
 
-- **BOM receive Duration:** 4 days
+- **BOM receive Duration:** 13 days
 - **BOM Order Date:** 4 April, 2019
-- **BOM receive Date:** 8 April, 2019
+- **BOM receive Date:** 17 April, 2019
+- **BOM vendors:** 4 (Mouser, RS, AliExpress, 12Geeks)
 - **Manufacturing PCB Duration:** 7 days
 - **Manufacturing PCB Order Date:** 5 April, 2019
 - **Manufacturing PCB Receive Date:** 12 April, 2019
