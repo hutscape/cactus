@@ -1,6 +1,8 @@
+#include <ESP8266WiFi.h>
 #include "Adafruit_Si7021.h"
 
 #define EN 2 // GPIO02 on ESP-01 module, D4 on nodeMCU WeMos
+#define USERBUTTON 12 // GPIO012 on ESP or D6 on WeMos
 
 int dataPin = 13; // pin D7 `GPIO13` on NodeMCU boards
 int clockPin = 14; // pin D5 `GPIO14` on NodeMCU boards
@@ -10,6 +12,17 @@ Adafruit_Si7021 sensor = Adafruit_Si7021();
 
 void setup() {
   Serial.begin(115200);
+  Serial.setTimeout(2000);
+  while(!Serial) { }
+
+  int userButtonValue = digitalRead(USERBUTTON);
+
+  Serial.println("\nI'm awake !!");
+
+  if (userButtonValue == 0) {
+    Serial.println("User long pressed button!");
+  }
+
   initShiftRegister();
   initTempHumiditySensor();
 
@@ -37,6 +50,14 @@ void loop() {
   // Test Si7021 Temperature and humidity sensor
   displayHumidity();
   delay(1000);
+
+  Serial.println("Going into deep sleep for 10s, unless button pressed...");
+
+  // Disable LEDs and shift register
+  digitalWrite(EN, LOW);
+  displayLED(0);
+
+  ESP.deepSleep(10e6);
 }
 
 void initShiftRegister() {
