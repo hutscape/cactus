@@ -11,3 +11,7 @@ Firmware contains parts of the circuit prototyped and tested separately.
 - CPU Frequency: `80MHz`
 - Upload speed: `115200`
 - Port: `/dev/cu.wchusbserial1410`
+
+## Test
+
+Run [`test.ino`](test.ino) to ensure PCB works!

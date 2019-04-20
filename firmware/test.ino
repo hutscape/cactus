@@ -17,10 +17,10 @@ void setup() {
 
   int userButtonValue = digitalRead(USERBUTTON);
 
-  Serial.println("\nI'm awake !!");
+  Serial.println("\nTest 1: It expects to wake up periodically");
 
   if (userButtonValue == 0) {
-    Serial.println("User long pressed button!");
+    Serial.println("Test 8: It expects to wake up on user long press");
   }
 
   initShiftRegister();
@@ -30,33 +30,34 @@ void setup() {
   displayLED(0);
   delay(500);
 
+  Serial.println("Test 2: It expects to make LED 1 ON");
   displayLED(1);
   delay(500);
 
+  Serial.println("Test 3: It expects to make LED 1, LED 2 ON");
   displayLED(3);
   delay(500);
 
+  Serial.println("Test 4: It expects to make LED 1, LED 2, LED 3 ON");
   displayLED(7);
   delay(500);
 
+  Serial.println("Test 5: It expects to make LED 1, LED 2, LED 3, LED 4 ON");
   displayLED(15);
   delay(500);
 
+  Serial.println("Test 6: It expects to make LED 1, LED 2, LED 3, LED 4, LED 5 ON");
   displayLED(31);
   delay(500);
 }
 
 void loop() {
-  // Test Si7021 Temperature and humidity sensor
-  displayHumidity();
-  delay(1000);
+  Serial.println("Test 7: It expects to read the current temperature and humidity");
+  displayTempHumidity();
+
+  disableLEDs();
 
   Serial.println("Going into deep sleep for 10s, unless button pressed...");
-
-  // Disable LEDs and shift register
-  digitalWrite(EN, LOW);
-  displayLED(0);
-
   ESP.deepSleep(10e6);
 }
 
@@ -81,18 +82,23 @@ void displayLED(int lednumber) {
   digitalWrite(latchPin, LOW);
   shiftOut(dataPin, clockPin, MSBFIRST, lednumber);
   digitalWrite(latchPin, HIGH);
-  Serial.println(lednumber);
 }
 
-void displayHumidity(void) {
-  Serial.print("Temperature: ");
+void displayTempHumidity(void) {
+  Serial.print("\tTemperature: ");
   Serial.print(sensor.readTemperature());
-  Serial.print("\tHumidity:    ");
+  Serial.print(" °C\tHumidity: ");
   Serial.print(sensor.readHumidity());
+  Serial.print(" RH%");
 
   int barHumidity = sensor.readHumidity()/20 + 1;
-  String sBar = "\tGraph: " + String(barHumidity) + " bars";
+  String sBar = "\tGraph: " + String(barHumidity) + " LEDs";
   Serial.println(sBar);
 
   displayLED(pow(2, barHumidity) -1);
+}
+
+void disableLEDs(void) {
+  digitalWrite(EN, LOW);
+  displayLED(0);
 }
