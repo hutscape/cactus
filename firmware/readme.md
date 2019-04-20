@@ -15,3 +15,5 @@ Firmware contains parts of the circuit prototyped and tested separately.
 ## Test
 
 Run [`test.ino`](test.ino) to ensure PCB works!
+
+![](test-console.png)
