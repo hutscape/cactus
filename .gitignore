@@ -1,2 +1,6 @@
+# Temporary
+*.kicad_pcb-bak
+*.bak
+
 datasheets
 .pretty
