@@ -14,23 +14,17 @@
 - **BOM Unique Items:** 6
 - **PCB Manufacturing vendor:**	JLCPCB
 - **BOM vendor:** Mouser, AliExpress, 12Geeks, RS Components
-- **Total vendors:** 5 
+- **Total vendors:** 5
 - **Total units:** 1
 
-## Development
-
-Run `make install` to add git-secrets and git pre-commit hooks.
+![](hardware/images/prototype.jpg)
 
 ## Getting started
 
-1. Connect the hardware according to the instructions in the [firmware](firmware/03-display-humidity-with-led.ino)
+1. Connect the hardware with the LiPo and modules
+1. Flash the [test firmware](firmware/test.ino) with the Arduino IDE
 
-    ![](images/protoype-2.JPG)
-1. Flash the [firmware](firmware/03-display-humidity-with-led.ino) with the Arduino IDE
-1. View the temperature and humidity values on the Arduino serial monitor with baud rate `115200`
-
-    ![](images/serial-2.png)
-1. Ensure the bar LEDs are lit accordingly
+    ![](firmware/test-console.png)
 
 ## Hardware
 

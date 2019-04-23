@@ -33,10 +33,10 @@ Ideation tasks:
 
 Prototyping tasks:
 
-1. Ensure various components work with both hardware modules and firmware
-1. Finalize the power tree
-1. Make a theoretical power consumption calculation
-1. Make a mechanical and physical layout of the PCB housing
+- [x] Ensure various components work with both hardware modules and firmware
+- [x] Finalize the power tree
+- [x] Make a theoretical power consumption calculation
+- [x] Make a mechanical and physical layout of the PCB housing
 
 ## Schematic
 
@@ -46,8 +46,8 @@ Prototyping tasks:
 
 Schematic tasks:
 
-1. Create new components
-1. Ensure DRC passes
+- [x] Create new components
+- [x] Ensure DRC passes
 
 ## Mechanical
 
@@ -57,21 +57,21 @@ Schematic tasks:
 
 Mechanical tasks:
 
-1. Create a BOM list
-1. Ensure vendors have the stock
-1. Ensure edge cuts can house all the components
-1. Note all the dimensions of major components
-1. Note all connectors to external links
-1. Layout the PCB footprint
-1. Ensure ERC passes
-1. Add version, name, year, logos on the silkscreen
-1. Add mounting holes
+- [x] Create a BOM list
+- [x] Ensure vendors have the stock
+- [x] Ensure edge cuts can house all the components
+- [x] Note all the dimensions of major components
+- [x] Note all connectors to external links
+- [x] Layout the PCB footprint
+- [x] Ensure ERC passes
+- [x] Add version, name, year, logos on the silkscreen
+- [x] Add mounting holes
 
 ## Manufacturing
 
-- **BOM receive Duration:** 13 days
+- **BOM receive Duration:** 16 days
 - **BOM Order Date:** 4 April, 2019
-- **BOM receive Date:** 17 April, 2019
+- **BOM receive Date:** 22 April, 2019
 - **BOM vendors:** 4 (Mouser, RS, AliExpress, 12Geeks)
 - **Manufacturing PCB Duration:** 7 days
 - **Manufacturing PCB Order Date:** 5 April, 2019
@@ -79,10 +79,10 @@ Mechanical tasks:
 
 Manufacturing tasks:
 
-1. Order BOM parts online
-1. Order PCB manufacturing online
-1. Note the cost per unit
-1. Note other charges
+- [x] Order BOM parts online
+- [x] Order PCB manufacturing online
+- [ ] Note the cost per unit
+- [ ] Note other charges
 
 ## System Integration
 
@@ -92,12 +92,11 @@ Manufacturing tasks:
 
 System Integration tasks:
 
-1. Solder 1 unit
-1. Ensure continuity check for all power pins
-1. Do a power on test
-1. Run the test firmware
-1. Do a hello world firmware test
-1. Run the full firmware
+- [x] Solder 1 unit
+- [x] Ensure continuity check for all power pins
+- [x] Do a power on test
+- [x] Run the test firmware
+- [ ] Run the full firmware
 
 ## Deployment
 
