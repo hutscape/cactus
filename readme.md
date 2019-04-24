@@ -10,12 +10,13 @@
 - **Firmware:**	Arduino ESP8266
 - **OTA?**	No
 - **Works without Internet?**	Yes
-- **BOM Total Items:**	20
-- **BOM Unique Items:** 6
+- **BOM Total Items:**	35
+- **BOM Unique Items:** 16
 - **PCB Manufacturing vendor:**	JLCPCB
 - **BOM vendor:** Mouser, AliExpress, 12Geeks, RS Components
 - **Total vendors:** 5
 - **Total units:** 1
+- **Total cost:** USD 35.41
 
 ![](hardware/images/prototype.jpg)
 
