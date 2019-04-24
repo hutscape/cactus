@@ -24,9 +24,9 @@ Run [`test.ino`](test.ino) to ensure PCB works!
 - [x] Display humidity values in the LEDs
 - [ ] Wakeup every 4 hours
 - [ ] Wakeup on long button press
-- [ ] Check for stored WiFi credentials
-- [ ] Connect to WiFi with the stored credentials
-- [ ] Setup an AP mode if WiFi cannot be connected
+- [x] Check for stored WiFi credentials
+- [x] Connect to WiFi with the stored credentials
+- [x] Setup an AP mode if WiFi cannot be connected
 - [ ] Send sensor and battery values to IFTTT if WiFi is connected
 - [ ] Wait for 5 minutes in AP mode is WiFi is not connected
 - [ ] Sleep after sending data to IFTTT
