@@ -1,4 +1,4 @@
-# Calculations
+# Battery
 
 ## Main components
 
@@ -10,7 +10,10 @@
 | **Total consumption** | | | **170.23mA** | **11.06uA** |
 | **Total duration** | | | **30s.** | **4h.** |
 
+## Calculation
+
 `30/14400 * 170.21m + 14370/14400 * 11.06u = 0.3656mA`
 
 - `2000mAh` battery will last for `5470h ≃ 7.59 months`
 - `500mAh` battery will last for `1402h ≃ 60 days`
+- `1200mAh` battery will last for `3282h ≃ 4.5 months`

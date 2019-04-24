@@ -1,5 +1,14 @@
 # Hardware
 
+## Components
+
+1. PCB (1x)
+1. WeMos D1 Mini (1x)
+1. WeMos Battery shield (1x)
+1. LiPo (1x)
+1. M2 nuts (4x)
+1. M2 spacers 15mm height (4x)
+
 ## Schematic
 
 ![](images/schematic.png)
