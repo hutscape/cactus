@@ -17,10 +17,10 @@ void setup() {
 
   int userButtonValue = digitalRead(USERBUTTON);
 
-  Serial.println("\nTest 1: It expects to wake up periodically");
+  Serial.println("\nTest 1/9: It expects to wake up periodically");
 
   if (userButtonValue == 0) {
-    Serial.println("Test 8: It expects to wake up on user long press");
+    Serial.println("Test 9/9: It expects to wake up on user long press");
   }
 
   initShiftRegister();
@@ -30,34 +30,35 @@ void setup() {
   displayLED(0);
   delay(500);
 
-  Serial.println("Test 2: It expects to make LED 1 ON");
+  Serial.println("Test 2/9: It expects to make LED 1 ON");
   displayLED(1);
   delay(500);
 
-  Serial.println("Test 3: It expects to make LED 1, LED 2 ON");
+  Serial.println("Test 3/9: It expects to make LED 1, LED 2 ON");
   displayLED(3);
   delay(500);
 
-  Serial.println("Test 4: It expects to make LED 1, LED 2, LED 3 ON");
+  Serial.println("Test 4/9: It expects to make LED 1, LED 2, LED 3 ON");
   displayLED(7);
   delay(500);
 
-  Serial.println("Test 5: It expects to make LED 1, LED 2, LED 3, LED 4 ON");
+  Serial.println("Test 5/9: It expects to make LED 1, LED 2, LED 3, LED 4 ON");
   displayLED(15);
   delay(500);
 
-  Serial.println("Test 6: It expects to make LED 1, LED 2, LED 3, LED 4, LED 5 ON");
+  Serial.println("Test 6/9: It expects to make LED 1, LED 2, LED 3, LED 4, LED 5 ON");
   displayLED(31);
   delay(500);
 }
 
 void loop() {
-  Serial.println("Test 7: It expects to read the current temperature and humidity");
+  Serial.println("Test 7/9: It expects to read the current temperature and humidity");
   displayTempHumidity();
 
   disableLEDs();
 
-  Serial.println("Going into deep sleep for 10s, unless button pressed...");
+  Serial.println("Test 8/9: It expects to go to sleep");
+  Serial.println("\tGoing to sleep for 10 seconds");
   ESP.deepSleep(10e6);
 }
 
