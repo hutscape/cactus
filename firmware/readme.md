@@ -16,6 +16,8 @@ Firmware contains parts of the circuit prototyped and tested separately.
 
 Run [`test.ino`](test.ino) to ensure PCB works!
 
+![](test-console.png)
+
 ## Main function
 
 - [x] Read humidity from the sensor
@@ -32,4 +34,11 @@ Run [`test.ino`](test.ino) to ensure PCB works!
 - [ ] Sleep after sending data to IFTTT
 - [ ] Sleep after waiting for 5 minutes in AP mode
 
-![](test-console.png)
+1. Flash the [main firmware](main.ino)
+1. Connect to the access point
+
+    ![](access_point.png)
+1. Go to the web page
+
+    ![](webpage.png)
+1. Key in the WiFi `SSID` and `password` to connect to

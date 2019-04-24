@@ -40,7 +40,10 @@ void loop() {
 
   if (!hasWiFiCredentials()) {
     Serial.println("[INFO] WiFi is not configured!");
-    Serial.println("[INFO] Connect to CactusXXX and go to http://cactus.local/");
+    Serial.println("[INFO] Connect to SSID 'Cactus NNNN');
+    // FIXME: Fix startMDNS();
+    // Serial.println("Go to http://cactus.local/");
+    Serial.println("Go to http://192.168.4.1/");
     server.handleClient();
 
   } else {
@@ -66,6 +69,28 @@ void initTempHumiditySensor() {
     while (true)
       ;
   }
+}
+
+void initAccessPoint() {
+  Serial.print("[TRACE] Configuring access point");
+  WiFi.mode(WIFI_AP);
+
+  String AP_NameString = getAPName();
+
+  // convert String to char array
+  char AP_NameChar[AP_NameString.length() + 1];
+  memset(AP_NameChar, 0, AP_NameString.length() + 1);
+
+  for (int i=0; i<AP_NameString.length(); i++)
+    AP_NameChar[i] = AP_NameString.charAt(i);
+
+  WiFi.softAP(AP_NameChar, WiFiAPPSK);
+
+  // FIXME: Uncomment below to fix error message
+  // startMDNS();
+  startServer();
+  Serial.print("[INFO] Started access point at IP ");
+  Serial.println(WiFi.softAPIP());
 }
 
 void displayLED(int lednumber) {
@@ -105,46 +130,6 @@ bool hasWiFiCredentials() {
   }
 
   return true;
-}
-
-void initAccessPoint() {
-  Serial.print("[TRACE] Configuring access point");
-  WiFi.mode(WIFI_AP);
-
-  String AP_NameString = getAPName();
-
-  // convert String to char array
-  char AP_NameChar[AP_NameString.length() + 1];
-  memset(AP_NameChar, 0, AP_NameString.length() + 1);
-
-  for (int i=0; i<AP_NameString.length(); i++)
-    AP_NameChar[i] = AP_NameString.charAt(i);
-
-  WiFi.softAP(AP_NameChar, WiFiAPPSK);
-
-  startMDNS();
-  startServer();
-  Serial.println("[INFO] Started access point!");
-}
-
-void setupAP() {
-  Serial.print("[TRACE] Configuring access point");
-  WiFi.mode(WIFI_AP);
-
-  String AP_NameString = getAPName();
-
-  // convert String to char array
-  char AP_NameChar[AP_NameString.length() + 1];
-  memset(AP_NameChar, 0, AP_NameString.length() + 1);
-
-  for (int i=0; i<AP_NameString.length(); i++)
-    AP_NameChar[i] = AP_NameString.charAt(i);
-
-  WiFi.softAP(AP_NameChar, WiFiAPPSK);
-
-  startMDNS();
-  startServer();
-  Serial.println("[INFO] Started access point!");
 }
 
 String getAPName() {
@@ -204,7 +189,7 @@ void handleRoot() {
       if (count > 120) {
         Serial.println("[ERROR] Could not connect to WiFi. Please try again.");
         WiFi.disconnect();
-        setupAP();
+        initAccessPoint();
         break;
       }
     }

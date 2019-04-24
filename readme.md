@@ -27,6 +27,15 @@
 1. Flash the [test firmware](firmware/test.ino) with the Arduino IDE
 
     ![](firmware/test-console.png)
+1. Verify that the design is working
+1. Flash the [main firmware](firmware/main.ino)
+1. Connect to the access point
+
+    ![](firmware/access_point.png)
+1. Go to the web page
+
+    ![](firmware/webpage.png)
+1. Key in the WiFi `SSID` and `password` to connect to
 
 ## Hardware
 
