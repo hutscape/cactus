@@ -7,6 +7,8 @@
 
 #define EN 2 // GPIO02 on ESP-01 module, D4 on nodeMCU WeMos, or on-board LED
 #define LED 2
+#define SLEEP_DURATION 10e6
+#define SLEEP_DURATION_ENGLISH "10 seconds"
 
 int dataPin = 13; // pin D7 `GPIO13` on NodeMCU boards
 int clockPin = 14; // pin D5 `GPIO14` on NodeMCU boards
@@ -18,19 +20,15 @@ const char* DomainName = "cactus"; // set domain name domain.local
 char ssid [50] = "";
 char password [50] = "";
 
-String key = "";
-// IFTTT key from https://ifttt.com/services/maker_webhooks/settings
-// https://maker.ifttt.com/use/{key}
-
 const char* host = "maker.ifttt.com";
 const int httpsPort = 443;
+const int httpPort = 80;
 
 ESP8266WebServer server(80);
 
 Adafruit_Si7021 sensor = Adafruit_Si7021();
 
 void setup() {
-  WiFi.disconnect();
   EEPROM.begin(512);
   Serial.begin(115200);
   while(!Serial) { }
@@ -56,7 +54,7 @@ void loop() {
     // Serial.println("Go to http://cactus.local/");
     Serial.println("Go to http://192.168.4.1/");
     server.handleClient();
-    blink(30); // Give the user (30*2) 60 seconds to put in the WiFi creds
+    delay(5000);
   } else {
     if (connectToWiFi() == true) {
       Serial.print("[INFO] WiFi is connected: ");
@@ -66,9 +64,8 @@ void loop() {
       Serial.print("[ERROR] WiFi is not connected: ");
     }
     delay(30000); // display the humidity values on-board for 30 seconds
+    goToSleep();
   }
-
-  goToSleep();
 }
 
 void initShiftRegister() {
@@ -226,7 +223,7 @@ void handleRoot() {
     Serial.println(server.arg("ssid"));
     server.arg("ssid").toCharArray(ssid, 50);
 
-    Serial.print("[INFO] Password received");
+    Serial.println("[INFO] Password received");
     server.arg("password").toCharArray(password, 50);
 
     Serial.println("[INFO] IFTTT key received!");
@@ -275,20 +272,25 @@ void handleRoot() {
   content += "WiFi Password:<input type='password' name='password' placeholder='secret'><br>";
 
   content += "IFTTT Key:<input type='text' name='key' placeholder='IFTTT Key'><br>";
-  // Get the "secret" from https://ifttt.com/services/maker_webhooks/settings
+  // IFTTT key from https://ifttt.com/services/maker_webhooks/settings
+  // https://maker.ifttt.com/use/{key}
+
 
   content += "<input type='submit' name='submit' value='Submit'></form></body></html>";
   server.send(200, "text/html", content);
 }
 
 void goToSleep() {
-  Serial.println("");
+  Serial.println();
+  Serial.println("[INFO] Going to sleep for " + String(SLEEP_DURATION_ENGLISH));
+  Serial.println("[INFO] Sleeping in 3");
+  delay(1000);
   Serial.println("[INFO] Sleeping in 2");
-  delay(100);
+  delay(1000);
   Serial.println("[INFO] Sleeping in 1");
-  delay(100);
+  delay(1000);
 
-  ESP.deepSleep(0, WAKE_RF_DEFAULT);
+  ESP.deepSleep(SLEEP_DURATION, WAKE_RF_DEFAULT);
 }
 
 void writeKey(String writeStr) {
@@ -305,7 +307,6 @@ String readKey() {
   String readStr;
   char readChar;
 
-  // TODO: Store length of key
   for (int i = 0; i < 22; ++i) {
     readChar = char(EEPROM.read(i));
     readStr += readChar;
@@ -316,24 +317,39 @@ String readKey() {
 
 void sendToIFTTT() {
   Serial.println("[INFO] Sending IFTTT notification...");
-  WiFiClientSecure client;
+  // FIXME: Why does WiFiClientSecure with httpsPort not work?
+  // WiFiClientSecure client;
+  WiFiClient client;
 
-  if (!client.connect(host, httpsPort)) {
+  // FXME: Use httpsPort instead of httpPort
+  if (!client.connect(host, httpPort)) {
     Serial.println("[ERROR] Connection failed");
     return;
   }
 
-  String url = "/trigger/cactus_values/with/key/";
-  key = readKey();
+  Serial.println("[INFO] Client connected");
 
-  client.print(String("POST ") + url + key + " HTTP/1.1\r\n" +
-               "Host: " + host + "\r\n" +
-               "User-Agent: ESP8266\r\n" +
-               "Connection: close\r\n\r\n");
+  String url = "/trigger/cactus_values/with/key/";
+  url += readKey();
+  char data[] = "value1=10&value2=20&value3=30";
+
+  Serial.print("Requesting URL: ");
+  Serial.println(url);
+
+  client.println(String("POST ") + url + " HTTP/1.1");
+  client.println(String("Host: ") + host);
+  client.println(String("Content-Type: application/x-www-form-urlencoded"));
+  client.print(String("Content-Length: "));
+  client.println(sizeof(data));
+  client.println();
+  client.println(data);
+  client.stop();
+
+  Serial.println("[INFO] Client posted");
 
   unsigned long timeout = millis();
   while (client.available() == 0) {
-    if (millis() - timeout > 5000) {
+    if (millis() - timeout > 20000) {
       Serial.println("[ERROR] Client Timeout!");
       client.stop();
       return;
