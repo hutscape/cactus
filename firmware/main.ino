@@ -3,6 +3,7 @@
 #include <WiFiClient.h>
 #include <ESP8266WebServer.h>
 #include <ESP8266mDNS.h>
+#include <EEPROM.h>
 
 #define EN 2 // GPIO02 on ESP-01 module, D4 on nodeMCU WeMos, or on-board LED
 
@@ -15,12 +16,16 @@ const char WiFiAPPSK[] = "hutscape";
 const char* DomainName = "cactus"; // set domain name domain.local
 char ssid [50] = "";
 char password [50] = "";
+String key = "";
+const char* host = "maker.ifttt.com";
+const int httpsPort = 443;
 
 ESP8266WebServer server(80);
 
 Adafruit_Si7021 sensor = Adafruit_Si7021();
 
 void setup() {
+  EEPROM.begin(512);
   Serial.begin(115200);
   while(!Serial) { }
 
@@ -31,8 +36,6 @@ void setup() {
 
   if (!hasWiFiCredentials()) {
     initAccessPoint();
-  } else {
-    
   }
 }
 
@@ -49,11 +52,15 @@ void loop() {
     server.handleClient();
     blink();
   } else {
-    Serial.print("[INFO] WiFi is connected: ");
-    Serial.println(WiFi.SSID());
+    if (connectToWiFi() == true) {
+      Serial.print("[INFO] WiFi is connected: ");
+      Serial.println(WiFi.SSID());
+      sendToIFTTT();
+    }
   }
 
   delay(1000);
+  goToSleep();
 }
 
 void initShiftRegister() {
@@ -93,6 +100,26 @@ void initAccessPoint() {
   startServer();
   Serial.print("[INFO] Started access point at IP ");
   Serial.println(WiFi.softAPIP());
+}
+
+bool connectToWiFi() {
+  int count = 0;
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+    count++;
+
+    if (count % 10 == 0) {
+      Serial.println("");
+    }
+
+    if (count > 120) {
+      Serial.println("[ERROR] Could not connect to WiFi. Please try again.");
+      return false;
+    }
+  }
+
+  return true;
 }
 
 void blink(void) {
@@ -171,13 +198,16 @@ void startServer() {
 }
 
 void handleRoot() {
-  if (server.hasArg("ssid") && server.hasArg("password")){
-    Serial.print("[INFO] SSID:");
+  if (server.hasArg("ssid") && server.hasArg("password") && server.hasArg("key")){
+    Serial.print("[INFO] SSID received: ");
     Serial.println(server.arg("ssid"));
     server.arg("ssid").toCharArray(ssid, 50);
 
-    Serial.print("[INFO] Password received!");
+    Serial.print("[INFO] Password received");
     server.arg("password").toCharArray(password, 50);
+
+    Serial.println("[INFO] IFTTT key received!");
+    writeKey(server.arg("key"));
 
     WiFi.begin(ssid, password);
     WiFi.persistent(true);
@@ -219,7 +249,75 @@ void handleRoot() {
   String content = "<html><body><form action='/' method='post'>";
   content += "WiFi SSID: <input type='text' name='ssid' placeholder='ssid'><br>";
   content += "WiFi Password:<input type='password' name='password' placeholder='secret'><br>";
-  // content += "IFTTT Key:<input type='text' name='key' placeholder='IFTTT Key'><br>";
+  content += "IFTTT Key:<input type='text' name='key' placeholder='IFTTT Key'><br>";
   content += "<input type='submit' name='submit' value='Submit'></form></body></html>";
   server.send(200, "text/html", content);
+}
+
+void goToSleep() {
+  Serial.println("");
+  Serial.println("[INFO] Sleeping in 2");
+  delay(100);
+  Serial.println("[INFO] Sleeping in 1");
+  delay(100);
+
+  ESP.deepSleep(0, WAKE_RF_DEFAULT);
+}
+
+void writeKey(String writeStr) {
+  delay(10);
+
+  for (int i = 0; i < writeStr.length(); ++i) {
+    EEPROM.write(i, writeStr[i]);
+  }
+
+  EEPROM.commit();
+}
+
+String readKey() {
+  String readStr;
+  char readChar;
+
+  // TODO: Store length of key
+  for (int i = 0; i < 22; ++i) {
+    readChar = char(EEPROM.read(i));
+    readStr += readChar;
+  }
+
+  return readStr;
+}
+
+void sendToIFTTT() {
+  Serial.println("[INFO] Sending IFTTT notification...");
+  WiFiClientSecure client;
+
+  if (!client.connect(host, httpsPort)) {
+    Serial.println("[ERROR] Connection failed");
+    return;
+  }
+
+  // Get the "secret" from https://ifttt.com/services/maker_webhooks/settings
+  String url = "/trigger/bell_pressed/with/key/";
+  key = readKey();
+
+  client.print(String("GET ") + url + key + " HTTP/1.1\r\n" +
+               "Host: " + host + "\r\n" +
+               "User-Agent: ESP8266\r\n" +
+               "Connection: close\r\n\r\n");
+
+  unsigned long timeout = millis();
+  while (client.available() == 0) {
+    if (millis() - timeout > 5000) {
+      Serial.println("[ERROR] Client Timeout!");
+      client.stop();
+      return;
+    }
+  }
+
+  while(client.available()){
+    String line = client.readStringUntil('\r');
+    Serial.print(line);
+  }
+
+  return;
 }
