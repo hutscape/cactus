@@ -6,6 +6,7 @@
 #include <EEPROM.h>
 
 #define EN 2 // GPIO02 on ESP-01 module, D4 on nodeMCU WeMos, or on-board LED
+#define LED 2
 
 int dataPin = 13; // pin D7 `GPIO13` on NodeMCU boards
 int clockPin = 14; // pin D5 `GPIO14` on NodeMCU boards
@@ -16,7 +17,11 @@ const char WiFiAPPSK[] = "hutscape";
 const char* DomainName = "cactus"; // set domain name domain.local
 char ssid [50] = "";
 char password [50] = "";
+
 String key = "";
+// IFTTT key from https://ifttt.com/services/maker_webhooks/settings
+// https://maker.ifttt.com/use/{key}
+
 const char* host = "maker.ifttt.com";
 const int httpsPort = 443;
 
@@ -25,6 +30,7 @@ ESP8266WebServer server(80);
 Adafruit_Si7021 sensor = Adafruit_Si7021();
 
 void setup() {
+  WiFi.disconnect();
   EEPROM.begin(512);
   Serial.begin(115200);
   while(!Serial) { }
@@ -50,16 +56,18 @@ void loop() {
     // Serial.println("Go to http://cactus.local/");
     Serial.println("Go to http://192.168.4.1/");
     server.handleClient();
-    blink();
+    blink(30); // Give the user (30*2) 60 seconds to put in the WiFi creds
   } else {
     if (connectToWiFi() == true) {
       Serial.print("[INFO] WiFi is connected: ");
       Serial.println(WiFi.SSID());
       sendToIFTTT();
+    } else {
+      Serial.print("[ERROR] WiFi is not connected: ");
     }
+    delay(30000); // display the humidity values on-board for 30 seconds
   }
 
-  delay(1000);
   goToSleep();
 }
 
@@ -122,10 +130,25 @@ bool connectToWiFi() {
   return true;
 }
 
-void blink(void) {
-  digitalWrite(2, HIGH);
-  delay(1000);
-  digitalWrite(2, LOW);
+void blink(int times) {
+  Serial.print("[INFO] Wait for ");
+  Serial.print(times/30);
+  Serial.println(" minutes");
+
+  int count = 0;
+
+  while (count < times) {
+    digitalWrite(LED, HIGH);
+    delay(1000);
+    digitalWrite(LED, LOW);
+    delay(1000);
+
+    Serial.print("[INFO] ");
+    Serial.print(2*count);
+    Serial.println(" seconds");
+
+    count++;
+  }
 }
 
 void displayLED(int lednumber) {
@@ -247,9 +270,13 @@ void handleRoot() {
   }
 
   String content = "<html><body><form action='/' method='post'>";
+
   content += "WiFi SSID: <input type='text' name='ssid' placeholder='ssid'><br>";
   content += "WiFi Password:<input type='password' name='password' placeholder='secret'><br>";
+
   content += "IFTTT Key:<input type='text' name='key' placeholder='IFTTT Key'><br>";
+  // Get the "secret" from https://ifttt.com/services/maker_webhooks/settings
+
   content += "<input type='submit' name='submit' value='Submit'></form></body></html>";
   server.send(200, "text/html", content);
 }
@@ -296,11 +323,10 @@ void sendToIFTTT() {
     return;
   }
 
-  // Get the "secret" from https://ifttt.com/services/maker_webhooks/settings
-  String url = "/trigger/bell_pressed/with/key/";
+  String url = "/trigger/cactus_values/with/key/";
   key = readKey();
 
-  client.print(String("GET ") + url + key + " HTTP/1.1\r\n" +
+  client.print(String("POST ") + url + key + " HTTP/1.1\r\n" +
                "Host: " + host + "\r\n" +
                "User-Agent: ESP8266\r\n" +
                "Connection: close\r\n\r\n");
