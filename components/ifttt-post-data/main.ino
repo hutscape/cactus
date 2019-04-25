@@ -45,7 +45,7 @@ void setup() {
 
   String url = "/trigger/cactus_values/with/key/";
   url += apiKey;
-  char data[] = "{""value1"": 1, ""value2"": 2, ""value3"": 3}";
+  char data[] = "value1=10&value2=20&value3=30";
 
   Serial.print("Requesting URL: ");
   Serial.println(url);
@@ -53,12 +53,11 @@ void setup() {
   client.println(String("POST ") + url + " HTTP/1.1");
   client.println(String("Host: ") + host);
   client.println(String("Content-Type: application/x-www-form-urlencoded"));
-  client.println(String("Content-Length: 13"));
+  client.print(String("Content-Length: "));
+  client.println(sizeof(data));
   client.println();
-  client.println(String("value1=4234&value2=2000&value3=3000"));
+  client.println(data);
   client.stop();
-
-  Serial.println("[INFO] Client posted");
 
   Serial.println("[INFO] Client posted");
   return;
