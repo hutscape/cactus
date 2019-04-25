@@ -52,9 +52,10 @@ void setup() {
 
   client.println(String("POST ") + url + " HTTP/1.1");
   client.println(String("Host: ") + host);
-  client.print(String("Content-Type: application/x-www-form-urlencoded\r\n") +
-    String("Content-Length: 13\r\n\r\n") +
-    String("value1=421&value2=2000&value3=3000\r\n"));
+  client.println(String("Content-Type: application/x-www-form-urlencoded"));
+  client.println(String("Content-Length: 13"));
+  client.println();
+  client.println(String("value1=4234&value2=2000&value3=3000"));
   client.stop();
 
   Serial.println("[INFO] Client posted");
