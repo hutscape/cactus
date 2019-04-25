@@ -74,6 +74,7 @@ Back
 - Do a mechanical consideration before laying out the footprint
 - Check pin, pitch, manufacturer part number, function before buying BOM parts
 - Design a power on/off switch to start/stop using the battery
+- Leave out the module's on-board LED as a possible separate indicator E.g. Not linking `GPIO02` to `EN` for the shift register
 
 ## References 📚
 

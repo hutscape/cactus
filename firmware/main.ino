@@ -4,7 +4,7 @@
 #include <ESP8266WebServer.h>
 #include <ESP8266mDNS.h>
 
-#define EN 2 // GPIO02 on ESP-01 module, D4 on nodeMCU WeMos
+#define EN 2 // GPIO02 on ESP-01 module, D4 on nodeMCU WeMos, or on-board LED
 
 int dataPin = 13; // pin D7 `GPIO13` on NodeMCU boards
 int clockPin = 14; // pin D5 `GPIO14` on NodeMCU boards
@@ -31,6 +31,8 @@ void setup() {
 
   if (!hasWiFiCredentials()) {
     initAccessPoint();
+  } else {
+    
   }
 }
 
@@ -40,18 +42,18 @@ void loop() {
 
   if (!hasWiFiCredentials()) {
     Serial.println("[INFO] WiFi is not configured!");
-    Serial.println("[INFO] Connect to SSID 'Cactus NNNN');
+    Serial.println("[INFO] Connect to SSID 'Cactus NNNN'");
     // FIXME: Fix startMDNS();
     // Serial.println("Go to http://cactus.local/");
     Serial.println("Go to http://192.168.4.1/");
     server.handleClient();
-
+    blink();
   } else {
     Serial.print("[INFO] WiFi is connected: ");
     Serial.println(WiFi.SSID());
   }
 
-  delay(2000);
+  delay(1000);
 }
 
 void initShiftRegister() {
@@ -91,6 +93,12 @@ void initAccessPoint() {
   startServer();
   Serial.print("[INFO] Started access point at IP ");
   Serial.println(WiFi.softAPIP());
+}
+
+void blink(void) {
+  digitalWrite(2, HIGH);
+  delay(1000);
+  digitalWrite(2, LOW);
 }
 
 void displayLED(int lednumber) {
