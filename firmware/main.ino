@@ -288,6 +288,7 @@ void handleRoot() {
 
   String content = "<html><body><form action='/' method='post'>";
 
+  content += "<h1>Welcome to Cactus@Hutscape</h1><br><br>";
   content += "WiFi SSID: <input type='text' name='ssid' placeholder='ssid'><br>";
   content += "WiFi Password:<input type='password' name='password' placeholder='secret'><br>";
 
