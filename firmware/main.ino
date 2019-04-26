@@ -262,8 +262,10 @@ void handleRoot() {
         Serial.println("");
       }
 
-      if (count > 120) {
+      if (count > 120) { // Will try to connect to the WiFI for 120 seconds
         Serial.println("[ERROR] Could not connect to WiFi. Please try again.");
+        // TODO: What happens if the WiFi credentials are not correct?
+        // TODO: What happens if user wants to use it without the Internet?
         WiFi.disconnect();
         initAccessPoint();
         break;
@@ -293,6 +295,8 @@ void handleRoot() {
   // IFTTT key from https://ifttt.com/services/maker_webhooks/settings
   // https://maker.ifttt.com/use/{key}
 
+  // TODO: A checkbox to use with / without the Internet
+  // TODO: Wakeup when button pressed to read the humidity values on-board
 
   content += "<input type='submit' name='submit' value='Submit'></form></body></html>";
   server.send(200, "text/html", content);
