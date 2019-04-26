@@ -133,6 +133,11 @@ bool connectToWiFi() {
   return true;
 }
 
+void eraseWiFiCredentials() {
+  WiFi.disconnect();
+  Serial.println("[INFO] WiFi credentials are erased.");
+}
+
 void blink(int times) {
   Serial.print("[INFO] Wait for ");
   Serial.print(times/30);
@@ -367,6 +372,7 @@ void sendToIFTTT(SensorValues s) {
 
   Serial.println("[INFO] Client posted");
 
+  // FIXME: Client is being timed out
   unsigned long timeout = millis();
   while (client.available() == 0) {
     if (millis() - timeout > 20000) {

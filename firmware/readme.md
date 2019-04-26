@@ -25,20 +25,24 @@ Run [`test.ino`](test.ino) to ensure PCB works!
 - [?] Read battery levels
 - [x] Display humidity values in the LEDs
 - [ ] Wakeup every 4 hours
-- [ ] Wakeup on long button press
+- [x] Wakeup on long button press
 - [x] Check for stored WiFi credentials
 - [x] Connect to WiFi with the stored credentials
 - [x] Setup an AP mode if WiFi cannot be connected
-- [ ] Send sensor and battery values to IFTTT if WiFi is connected
+- [x] Send sensor and battery values to IFTTT if WiFi is connected
 - [ ] Wait for 5 minutes in AP mode is WiFi is not connected
-- [ ] Sleep after sending data to IFTTT
+- [x] Sleep after sending data to IFTTT
 - [ ] Sleep after waiting for 5 minutes in AP mode
 
 1. Flash the [main firmware](main.ino)
 1. Connect to the access point
 
     ![](access_point.png)
-1. Go to the web page
+1. Go to the web page `http://192.168.4.1`
 
     ![](webpage.png)
-1. Key in the WiFi `SSID` and `password` to connect to
+1. Key in the WiFi `SSID`, WiFi `password` and [IFTTT webhook key](https://ifttt.com/services/maker_webhooks/settings)
+1. Wait for the [Google Sheet](https://docs.google.com/spreadsheets/d/1qedLXiCeU6vCwEvv3JqwrVWjrriB8L3DA9Xp-g01Jk0/edit?usp=sharing) to update with a new row
+
+    ![](google-sheets.png)
+    ![](console.png)

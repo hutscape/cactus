@@ -23,19 +23,22 @@
 
 ## Getting started
 
-1. Connect the [hardware](hardware) components
-1. Flash the [test firmware](firmware/test.ino) with the Arduino IDE
+1. Setup an [IFTTT webhook](https://ifttt.com/services/maker_webhooks) to get a POST request and add a row to a Google Spreadsheet
 
-    ![](firmware/test-console.png)
-1. Verify that the design is working
+    ![](firmware/ifttt.png)
+1. Connect the [hardware](hardware) components
 1. Flash the [main firmware](firmware/main.ino)
 1. Connect to the access point
 
     ![](firmware/access_point.png)
-1. Go to the web page
+1. Go to the web page `http://192.168.4.1`
 
     ![](firmware/webpage.png)
-1. Key in the WiFi `SSID` and `password` to connect to
+1. Key in the WiFi `SSID`, WiFi `password` and [IFTTT webhook key](https://ifttt.com/services/maker_webhooks/settings)
+1. Wait for the [Google Sheet](https://docs.google.com/spreadsheets/d/1qedLXiCeU6vCwEvv3JqwrVWjrriB8L3DA9Xp-g01Jk0/edit?usp=sharing) to update with a new row
+
+    ![](firmware/google-sheets.png)
+    ![](firmware/console.png)
 
 ## Hardware
 
