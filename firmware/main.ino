@@ -1,3 +1,4 @@
+#include <math.h>
 #include "Adafruit_Si7021.h"
 #include <ESP8266WiFi.h>
 #include <WiFiClient.h>
@@ -24,6 +25,11 @@ const char* host = "maker.ifttt.com";
 const int httpsPort = 443;
 const int httpPort = 80;
 
+struct SensorValues {
+  float temperature;
+  float humidity;
+};
+
 ESP8266WebServer server(80);
 
 Adafruit_Si7021 sensor = Adafruit_Si7021();
@@ -44,7 +50,7 @@ void setup() {
 }
 
 void loop() {
-  displayTempHumidity();
+  SensorValues s = displayTempHumidity();
   displayBattery();
 
   if (!hasWiFiCredentials()) {
@@ -59,7 +65,7 @@ void loop() {
     if (connectToWiFi() == true) {
       Serial.print("[INFO] WiFi is connected: ");
       Serial.println(WiFi.SSID());
-      sendToIFTTT();
+      sendToIFTTT(s);
     } else {
       Serial.print("[ERROR] WiFi is not connected: ");
     }
@@ -154,18 +160,25 @@ void displayLED(int lednumber) {
   digitalWrite(latchPin, HIGH);
 }
 
-void displayTempHumidity(void) {
+SensorValues displayTempHumidity(void) {
+  SensorValues sensorValues = {
+    sensor.readTemperature(),
+    sensor.readHumidity()
+  };
+
   Serial.print("[INFO] Temperature: ");
-  Serial.print(sensor.readTemperature());
+  Serial.print(sensorValues.temperature);
   Serial.print(" °C\tHumidity: ");
-  Serial.print(sensor.readHumidity());
+  Serial.print(sensorValues.humidity);
   Serial.print(" RH%");
 
-  int barHumidity = sensor.readHumidity()/20 + 1;
+  int barHumidity = sensorValues.humidity/20 + 1;
   String sBar = "\tGraph: " + String(barHumidity) + " LEDs";
   Serial.println(sBar);
 
   displayLED(pow(2, barHumidity) -1);
+
+  return sensorValues;
 }
 
 void displayBattery(void) {
@@ -315,7 +328,7 @@ String readKey() {
   return readStr;
 }
 
-void sendToIFTTT() {
+void sendToIFTTT(SensorValues s) {
   Serial.println("[INFO] Sending IFTTT notification...");
   // FIXME: Why does WiFiClientSecure with httpsPort not work?
   // WiFiClientSecure client;
@@ -331,10 +344,17 @@ void sendToIFTTT() {
 
   String url = "/trigger/cactus_values/with/key/";
   url += readKey();
-  char data[] = "value1=10&value2=20&value3=30";
+
+  char data[33];
+  // TODO: Replace 30 with battery level
+  sprintf(data, "value1=%03d&value2=%03d&value3=%03d", (int)round(s.temperature), (int)round(s.humidity), 30);
 
   Serial.print("Requesting URL: ");
   Serial.println(url);
+  Serial.print("[INFO] Data sent: ");
+  Serial.println(data);
+  Serial.print("[INFO] Data size: ");
+  Serial.println(sizeof(data));
 
   client.println(String("POST ") + url + " HTTP/1.1");
   client.println(String("Host: ") + host);
