@@ -107,6 +107,7 @@ Back
 1. [Power usage of WeMos and battery shield](http://harald.studiokubota.com/wordpress/index.php/2016/08/20/power-usage-of-wemos-d1-mini-ws2812b-rgb-shield/)
 1. [Battery shield docs and schematic](https://wiki.wemos.cc/products:d1_mini_shields:battery_shield)
 1. [WeMos lithium battery shield](https://www.youtube.com/watch?v=z6Vgy1cY0XU)
+1. [Monitoring LiPo battery voltage with Wemos D1 minibattery shield and Thingspeak](https://arduinodiy.wordpress.com/2016/12/25/monitoring-lipo-battery-voltage-with-wemos-d1-minibattery-shield-and-thingspeak/)
 
 ### Programming
 
