@@ -8,4 +8,4 @@ Display LED as a bar graph going from 1 LED ON to all 5 LEDs ON
 
 ## Firmware
 
-[Arduino code](main.ino)
+[Arduino code](shift-register.ino)
