@@ -8,7 +8,7 @@ Display humidity in a bar graph LED
 
 ## Firmware
 
-With [Arduino code](main.ino)
+With [Arduino code](display-humidity-with-led.ino)
 
 ## Reference
 
