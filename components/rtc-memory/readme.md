@@ -2,7 +2,7 @@
 
 Use RTC memory, instead of EEPROM, in ESP8266 because it survives deep sleep mode to reduce power consumption even further
 
-## Firmware [[link](main.ino)]
+## Firmware [[link](rtc-memory.ino)]
 
 Write a simple number to RTC Memory, deep sleep it and then wake it up again to read the same number! Use the number of count, when to turn on the radio to process something.
 
