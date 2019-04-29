@@ -25,7 +25,8 @@ void loop() {
   Serial.println(raw);
 
   Serial.print("[INFO] Current voltage is ");
-  Serial.println(volt);
+  Serial.print(volt);
+  Serial.println("V");
 
   server.handleClient();
 }
