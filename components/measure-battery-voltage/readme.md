@@ -2,10 +2,16 @@
 
 > Measure the LiPo battery voltage
 
-## Getting started
+## Hardware
 
 1. Connect `100k` resistor from `A0` to JST connector's positive terminal
-1. Flash the [firmware](measure-battery-level.ino)
+
+## Firmware
+
+Flash the [firmware](measure-battery-voltage.ino)
+
+## Instructions
+
 1. Connect to access point `Cactus XXXX` with password `hutscape`
 1. Get the current battery voltage by accessing `192.168.4.1`
 
