@@ -14,7 +14,7 @@ Hardware: nodeMCU with DHT22 (with square holes facing you)
 
 ## Firmware
 
-With [Arduino code](main.ino)
+With [Arduino code](DHT22-sensor.ino)
 
 ## Reference
 
