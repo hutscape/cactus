@@ -6,7 +6,7 @@ Wake up periodically after a specified time
 
 Short `RST` and `GPIO012` on ESP (or `D6` on WeMos)
 
-## Firmware [[link](main.ino)]
+## Firmware [[link](wakeup-periodically.ino)]
 
 ## Arduino settings
 
