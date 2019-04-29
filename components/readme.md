@@ -24,22 +24,34 @@
 1. Wake up after deep sleep with no radio to save power
 1. Wake up on button press
 
-## Component experiments
+## Components
 
-Hardware and firmware components to build up to the entire project
+### Sensors
 
 1. [Sensor Si7921](sensor-si7021): Display humidity and temperature every frequency with `Si7921` sensor
 1. [Shift register](shift-register): Display LED as a bar graph going from 1 LED ON to all 5 LEDs ON
 1. [Display humidity with LED](display-humidity-with-led): Display humidity in a bar graph LED
+1. [DHT22 sensor](DHT22-sensor): Display humidity and temperature every second with `DHT22` sensor
+1. [D flip-flop](d-flip-flop): Test `SN74HC174` Hex D-Type Flip-Flop with Arduino code
+
+## Memeory
+
 1. [RTC Memory](rtc-memory): Use RTC memory in ESP8266 because it survives deep sleep mode to reduce power consumption even further
-1. [IFTTT](ifttt-get): Display humidity in a bar graph LED and send to IFTTT periodically
+
+## Sleep and wakeup
+
 1. [Wake up with no radio](wakeup-with-no-radio): Wakeup with no radio connectivity to save power consumption
 1. [Wake up periodically](wakeup-periodically): Wake up periodically after a specified time
 1. [Wake up periodically or on button press](wakeup-periodically-or-button-press): Display and send sensor data to cloud periodically on wake up after deep sleep or by pressing the button on-board
-
-## Parallel experiments
-
-1. [DHT22 sensor](DHT22-sensor): Display humidity and temperature every second with `DHT22` sensor
-1. [D flip-flop](d-flip-flop): Test `SN74HC174` Hex D-Type Flip-Flop with Arduino code
 1. [Long sleep](long-sleep): Sleep for more than 1 hour using EEPROM
 1. [Wakeup after long sleep or on button press](long-sleep-or-button-press)
+
+## WiFi
+
+1. [IFTTT GET](ifttt-get): Display humidity in a bar graph LED and send to IFTTT periodically
+1. [IFTTT POST data](ifttt-post-data): Send a post request with data to IFTTT cloud
+1. [mDNS with access point](mdns-access-point): Start `http://cactus.local` after connecting to an access point on the MCU
+
+## Power
+
+1. [Measure battery voltage](measure-battery-voltage)
