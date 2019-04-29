@@ -9,7 +9,7 @@
 1. [`WAKE_NO_RFCAL`] `deepsleepsetoption(2)`: No radio calibration after deep-sleep wake up; this reduces the current consumption.
 1. [`WAKE_RF_DISABLED`] `deepsleepsetoption(4)`: Disable RF after deep-sleep wake up, just like modem sleep; this has the least current consumption; the device is not able to transmit or receive data after wake up.
 
-## Firmware [[link](main.ino)]
+## Firmware [[link](wakeup-with-no-radio.ino)]
 
 Wakeup from deep sleep with various options to turn on / off the radio.
 

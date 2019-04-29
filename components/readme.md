@@ -51,6 +51,7 @@
 1. [IFTTT GET](ifttt-get): Display humidity in a bar graph LED and send to IFTTT periodically
 1. [IFTTT POST data](ifttt-post-data): Send a post request with data to IFTTT cloud
 1. [mDNS with access point](mdns-access-point): Start `http://cactus.local` after connecting to an access point on the MCU
+1. [Connect to a client securely](wifi-client-secure) via a fingerprint and TLS 
 
 ## Power
 

@@ -16,7 +16,7 @@ Display and send sensor data to cloud periodically on wake up after deep sleep o
 
 On WeMos board , the pin `REST` to `10kΩ` pulled up to `+3V3` is already there [[Reference](../references/wemos-d1-mini-shematics.jpg)]. Remember to include it back with the ESP8266 module.
 
-## Firmware [[link](main.ino)]
+## Firmware [[link](wakeup-periodically-or-button-press.ino)]
 
 ### Features
 
