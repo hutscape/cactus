@@ -1,9 +1,3 @@
-// INFO: Sleep for more than 1 hour using EEPROM
-
-// Hardware: nodeMCU to button for interrupt
-// Short pin D0 to pin RST
-// Note: Un-short the 2 pins above during uploading firmware
-
 #include <EEPROM.h>
 
 extern "C" {
