@@ -8,4 +8,4 @@ Display humidity and temperature values with sensor `Si7021`
 
 ## Firmware
 
-[Arduino code](main.ino)
+[Arduino code](sensor-si7021.ino)
