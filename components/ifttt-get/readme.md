@@ -8,4 +8,4 @@ Display humidity in a bar graph LED and send to IFTTT periodically
 
 ## Firmware
 
-[Arduino code](main.ino)
+[Arduino code](ifttt-get.ino)

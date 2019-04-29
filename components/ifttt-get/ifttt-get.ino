@@ -1,5 +1,3 @@
-// INFO: Display humidity in a bar graph LED and send to IFTTT periodically
-
 #include <SI7021.h>
 #include <ESP8266WiFi.h>
 
