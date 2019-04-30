@@ -1,4 +1,4 @@
-# Battery
+# Power
 
 ## Main components
 

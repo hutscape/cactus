@@ -1,4 +1,4 @@
-# Timeline
+# Schedule
 
 ## Total duration
 
