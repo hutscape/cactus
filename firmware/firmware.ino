@@ -9,8 +9,8 @@
 #define EN 2 // GPIO02 on ESP-01 module, D4 on nodeMCU WeMos, or on-board LED
 #define LED 2
 #define BATTERY_VOLT A0
-#define SLEEP_DURATION 10e6
-#define SLEEP_DURATION_ENGLISH "10 seconds"
+#define SLEEP_DURATION  1440e6
+#define SLEEP_DURATION_ENGLISH "1 hour"
 
 int dataPin = 13; // pin D7 `GPIO13` on NodeMCU boards
 int clockPin = 14; // pin D5 `GPIO14` on NodeMCU boards
