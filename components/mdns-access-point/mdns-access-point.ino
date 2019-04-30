@@ -23,8 +23,6 @@ void initAccessPoint() {
   WiFi.mode(WIFI_AP);
 
   String AP_NameString = getAPName();
-
-  // convert String to char array
   char AP_NameChar[AP_NameString.length() + 1];
   memset(AP_NameChar, 0, AP_NameString.length() + 1);
 
@@ -35,7 +33,7 @@ void initAccessPoint() {
 
   // FIXME: Ensure http://cactus.local is accessible on AP mode
   // http://cactus.local is not accessible
-  // http://192.168.4.1 is accessible 
+  // http://192.168.4.1 is accessible
   startMDNS();
   startServer();
   MDNS.addService("http", "tcp", 80);
