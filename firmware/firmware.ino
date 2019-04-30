@@ -377,7 +377,7 @@ void sendToIFTTT(SensorValues sensorValues, float batteryVoltage) {
   url += readKey();
 
   char data[34];
-  sprintf(data, "value1=%03d&value2=%03d&value3=%03d", formatFloatToInt(sensorValues.temperature), formatFloatToInt(sensorValues.humidity), formatFloatToInt(batteryVoltage));
+  sprintf(data, "value1=%03d&value2=%03d&value3=%2.1f", formatFloatToInt(sensorValues.temperature), formatFloatToInt(sensorValues.humidity), batteryVoltage);
 
   Serial.print("[INFO] Data sent: ");
   Serial.println(data);
