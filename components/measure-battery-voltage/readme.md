@@ -14,6 +14,7 @@ Flash the [firmware](measure-battery-voltage.ino)
 
 ## Instructions
 
+1. Power via LiPo through the JST connector on the WeMos battery shield and not via the USB power on the WeMos
 1. Connect to access point `Cactus XXXX` with password `hutscape`
 1. Get the current battery voltage by accessing `192.168.4.1`
 
