@@ -30,11 +30,9 @@
 1. Connect to the access point
 
     ![](firmware/access_point.png)
-1. Go to the web page `http://192.168.4.1`
+1. Go to the web page `http://192.168.4.1` to fill in the WiFi credentials and [IFTTT webhook key](https://ifttt.com/services/maker_webhooks/settings)
 
     ![](firmware/webpage.png)
-1. Key in the WiFi `SSID`, WiFi `password` and [IFTTT webhook key](https://ifttt.com/services/maker_webhooks/settings)
-1. Switch back to your original WiFi access point with Internet
 1. Wait for the [Google Sheet](https://docs.google.com/spreadsheets/d/1qedLXiCeU6vCwEvv3JqwrVWjrriB8L3DA9Xp-g01Jk0/edit?usp=sharing) to update with a new row
 
     ![](firmware/google-sheet.png)
