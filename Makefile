@@ -5,3 +5,5 @@ install:
 	cat scripts/git-secrets >> .git/config
 	echo "Installing pre-commit hook"
 	touch .git/hooks/pre-commit || exit
+	echo "Making pre-commit hook executable"
+	chmod u+x .git/hooks/pre-commit
