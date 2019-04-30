@@ -72,9 +72,9 @@ void startServer() {
 
 void handleRoot() {
   String content = "<h1>Welcome to Cactus@Hutscape</h1>";
-  content += "<p>";
+  content += "<p>Battery voltage: ";
   content += String(volt);
-  content += "</p>";
+  content += "V</p>";
 
   server.send(200, "text/html", content);
   Serial.println("[INFO] Called /GET 200");

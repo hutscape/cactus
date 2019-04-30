@@ -11,7 +11,7 @@
 
 Connect pins `A0` and positive `+` terminal of the LiPo JST connector on the battery shield with a `100k ohm` resistor.
 
-![](battery-shield.jpg)
+![](images/battery-shield.jpg)
 
 ## Prototype
 
