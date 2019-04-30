@@ -27,8 +27,6 @@
 1. Setup an [IFTTT webhook](https://ifttt.com/services/maker_webhooks) to receive a POST request with data and add a row to a Google Spreadsheet
 
     ![](firmware/ifttt.png)
-1. Connect the [hardware](hardware) components
-1. Flash the [main firmware](firmware/firmware.ino)
 1. Connect to the access point
 
     ![](firmware/access_point.png)
@@ -40,7 +38,6 @@
 1. Wait for the [Google Sheet](https://docs.google.com/spreadsheets/d/1qedLXiCeU6vCwEvv3JqwrVWjrriB8L3DA9Xp-g01Jk0/edit?usp=sharing) to update with a new row
 
     ![](firmware/google-sheet.png)
-    ![](firmware/console.png)
 
 ## Others
 
