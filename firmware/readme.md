@@ -12,12 +12,6 @@ Firmware contains parts of the circuit prototyped and tested separately.
 - Upload speed: `115200`
 - Port: `/dev/cu.wchusbserial1410`
 
-## Design verification test
-
-Run [`test.ino`](test.ino) to ensure PCB works!
-
-![](test-console.png)
-
 ## Main function
 
 - [x] Read humidity from the sensor
