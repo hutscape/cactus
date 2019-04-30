@@ -4,7 +4,7 @@
 
 ## Firmware
 
-[main.ino](wifi-client-secure.ino)
+[wifi-client-secure.ino](wifi-client-secure.ino)
 
 - Connect to `maker.ifttt.com` using TLS
 - Make a POST request with data

@@ -28,7 +28,7 @@
 
     ![](firmware/ifttt.png)
 1. Connect the [hardware](hardware) components
-1. Flash the [main firmware](firmware/main.ino)
+1. Flash the [main firmware](firmware/firmware.ino)
 1. Connect to the access point
 
     ![](firmware/access_point.png)

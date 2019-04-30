@@ -34,7 +34,7 @@ Run [`test.ino`](test.ino) to ensure PCB works!
 - [x] Sleep after sending data to IFTTT
 - [ ] Sleep after waiting for 5 minutes in AP mode
 
-1. Flash the [main firmware](main.ino)
+1. Flash the [main firmware](firmware.ino)
 1. Connect to the access point
 
     ![](access_point.png)
