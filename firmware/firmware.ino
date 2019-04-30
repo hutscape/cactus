@@ -8,6 +8,7 @@
 
 #define EN 2 // GPIO02 on ESP-01 module, D4 on nodeMCU WeMos, or on-board LED
 #define LED 2
+#define BATTERY_VOLT A0
 #define SLEEP_DURATION 10e6
 #define SLEEP_DURATION_ENGLISH "10 seconds"
 
@@ -25,6 +26,10 @@ const char* host = "maker.ifttt.com";
 const int httpsPort = 443;
 const int httpPort = 80;
 
+// Get fingerprint of maker.ifttt.com
+// echo | openssl s_client -connect maker.ifttt.com:443 |& openssl x509 -fingerprint -noout
+const char fingerprint[] PROGMEM = "AA:75:CB:41:2E:D5:F9:97:FF:5D:A0:8B:7D:AC:12:21:08:4B:00:8C";
+
 struct SensorValues {
   float temperature;
   float humidity;
@@ -39,8 +44,7 @@ void setup() {
   Serial.begin(115200);
   while(!Serial) { }
 
-  pinMode(A0, INPUT); // read battery levels
-
+  initReadingBatteryVoltage();
   initShiftRegister();
   initTempHumiditySensor();
 
@@ -50,28 +54,34 @@ void setup() {
 }
 
 void loop() {
+  Serial.println();
   SensorValues s = displayTempHumidity();
-  displayBattery();
 
   if (!hasWiFiCredentials()) {
     Serial.println("[INFO] WiFi is not configured!");
     Serial.println("[INFO] Connect to SSID 'Cactus NNNN'");
     // FIXME: Fix startMDNS();
     // Serial.println("Go to http://cactus.local/");
-    Serial.println("Go to http://192.168.4.1/");
+    Serial.println("[INFO] Go to http://192.168.4.1/");
     server.handleClient();
     delay(5000);
-  } else {
-    if (connectToWiFi() == true) {
-      Serial.print("[INFO] WiFi is connected: ");
-      Serial.println(WiFi.SSID());
-      sendToIFTTT(s);
-    } else {
-      Serial.print("[ERROR] WiFi is not connected: ");
-    }
-    delay(30000); // display the humidity values on-board for 30 seconds
-    goToSleep();
+    return;
   }
+
+  if (!connectToWiFi()) {
+    Serial.print("[ERROR] WiFi cannot be connected with SSID ");
+    Serial.println(WiFi.SSID());
+    eraseWiFiCredentials();
+    Serial.println("[INFO] Connect to SSID 'Cactus NNNN' to re-configure WiFI.");
+    delay(5000);
+    return;
+  }
+
+  Serial.print("[INFO] WiFi is connected: ");
+  Serial.println(WiFi.SSID());
+  sendToIFTTT(s, getBatteryVoltage());
+  delay(10000); // display the humidity LEDs on-board for 10 seconds
+  goToSleep();
 }
 
 void initShiftRegister() {
@@ -81,6 +91,10 @@ void initShiftRegister() {
 
   pinMode(EN, OUTPUT);
   digitalWrite(EN, LOW);
+}
+
+void initReadingBatteryVoltage() {
+  pinMode(BATTERY_VOLT, INPUT);
 }
 
 void initTempHumiditySensor() {
@@ -134,8 +148,11 @@ bool connectToWiFi() {
 }
 
 void eraseWiFiCredentials() {
-  WiFi.disconnect();
+  WiFi.disconnect(true);
+  ESP.eraseConfig();
   Serial.println("[INFO] WiFi credentials are erased.");
+  Serial.print("[INFO] Read WiFi SSID (should be empty): ");
+  Serial.println(WiFi.SSID());
 }
 
 void blink(int times) {
@@ -157,6 +174,18 @@ void blink(int times) {
 
     count++;
   }
+}
+
+float getBatteryVoltage() {
+  unsigned int raw = analogRead(A0);
+  float volt = raw / 1023.0;
+  volt *= 4.2;
+
+  Serial.print("[INFO] Current voltage is ");
+  Serial.print(volt);
+  Serial.println("V");
+
+  return volt;
 }
 
 void displayLED(int lednumber) {
@@ -184,17 +213,6 @@ SensorValues displayTempHumidity(void) {
   displayLED(pow(2, barHumidity) -1);
 
   return sensorValues;
-}
-
-void displayBattery(void) {
-  Serial.print("[INFO] Battery: ");
-
-  unsigned int raw = analogRead(A0);
-  float volt = raw / 1023.0;
-  volt = volt * 4.2;
-
-  String v = String(volt);
-  Serial.println(raw);
 }
 
 bool hasWiFiCredentials() {
@@ -237,11 +255,11 @@ void startServer() {
 
 void handleRoot() {
   if (server.hasArg("ssid") && server.hasArg("password") && server.hasArg("key")){
-    Serial.print("[INFO] SSID received: ");
+    Serial.print("[INFO] WiFi SSID received: ");
     Serial.println(server.arg("ssid"));
     server.arg("ssid").toCharArray(ssid, 50);
 
-    Serial.println("[INFO] Password received");
+    Serial.println("[INFO] WiFi password received");
     server.arg("password").toCharArray(password, 50);
 
     Serial.println("[INFO] IFTTT key received!");
@@ -288,11 +306,11 @@ void handleRoot() {
 
   String content = "<html><body><form action='/' method='post'>";
 
-  content += "<h1>Welcome to Cactus@Hutscape</h1><br><br>";
-  content += "WiFi SSID: <input type='text' name='ssid' placeholder='ssid'><br>";
-  content += "WiFi Password:<input type='password' name='password' placeholder='secret'><br>";
+  content += "<h1>Welcome to Cactus@Hutscape</h1>";
+  content += "<p>WiFi SSID: <input type='text' name='ssid' placeholder='ssid'></p>";
+  content += "<p>WiFi Password:<input type='password' name='password' placeholder='secret'></p>";
 
-  content += "IFTTT Key:<input type='text' name='key' placeholder='IFTTT Key'><br>";
+  content += "<p>IFTTT Key:<input type='text' name='key' placeholder='IFTTT Key'></p>";
   // IFTTT key from https://ifttt.com/services/maker_webhooks/settings
   // https://maker.ifttt.com/use/{key}
 
@@ -338,14 +356,17 @@ String readKey() {
   return readStr;
 }
 
-void sendToIFTTT(SensorValues s) {
-  Serial.println("[INFO] Sending IFTTT notification...");
-  // FIXME: Why does WiFiClientSecure with httpsPort not work?
-  // WiFiClientSecure client;
-  WiFiClient client;
+int formatFloatToInt(float value) {
+  return (int)round(value);
+}
 
-  // FXME: Use httpsPort instead of httpPort
-  if (!client.connect(host, httpPort)) {
+void sendToIFTTT(SensorValues sensorValues, float batteryVoltage) {
+  Serial.println("[INFO] Sending IFTTT notification...");
+
+  WiFiClientSecure client;
+  client.setFingerprint(fingerprint);
+
+  if (!client.connect(host, httpsPort)) {
     Serial.println("[ERROR] Connection failed");
     return;
   }
@@ -355,12 +376,9 @@ void sendToIFTTT(SensorValues s) {
   String url = "/trigger/cactus_values/with/key/";
   url += readKey();
 
-  char data[33];
-  // TODO: Replace 30 with battery level
-  sprintf(data, "value1=%03d&value2=%03d&value3=%03d", (int)round(s.temperature), (int)round(s.humidity), 30);
+  char data[34];
+  sprintf(data, "value1=%03d&value2=%03d&value3=%03d", formatFloatToInt(sensorValues.temperature), formatFloatToInt(sensorValues.humidity), formatFloatToInt(batteryVoltage));
 
-  Serial.print("Requesting URL: ");
-  Serial.println(url);
   Serial.print("[INFO] Data sent: ");
   Serial.println(data);
   Serial.print("[INFO] Data size: ");
@@ -373,11 +391,9 @@ void sendToIFTTT(SensorValues s) {
   client.println(sizeof(data));
   client.println();
   client.println(data);
-  client.stop();
 
   Serial.println("[INFO] Client posted");
 
-  // FIXME: Client is being timed out
   unsigned long timeout = millis();
   while (client.available() == 0) {
     if (millis() - timeout > 20000) {
@@ -387,10 +403,12 @@ void sendToIFTTT(SensorValues s) {
     }
   }
 
+  Serial.println("[INFO] Reply from client:");
   while(client.available()){
     String line = client.readStringUntil('\r');
     Serial.print(line);
   }
 
+  client.stop();
   return;
 }
