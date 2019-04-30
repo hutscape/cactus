@@ -28,6 +28,8 @@ Firmware contains parts of the circuit prototyped and tested separately.
 - [x] Sleep after sending data to IFTTT
 - [ ] Sleep after waiting for 5 minutes in AP mode
 
+## Steps
+
 1. Flash the [main firmware](firmware.ino)
 1. Connect to the access point
 
