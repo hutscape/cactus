@@ -213,6 +213,7 @@ String readKey() {
 
 // WiFi
 void initAccessPoint() {
+  // TODO: Blink LED to indicate that user has to put in the credentials in AP mode
   Serial.print("[TRACE] Configuring access point");
   WiFi.mode(WIFI_AP);
 
