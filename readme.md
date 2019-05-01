@@ -7,11 +7,11 @@
 - **Power:**	3.7V LiPo `1200mAh`
 - **Processor:**	ESP8266 with WeMos D1 Mini
 - **Modules:** 3 (MCU, power shield, sensor)
-- **Firmware:**	Arduino ESP8266
+- **Firmware:**	[Arduino ESP8266 commit hash `0da69064`](https://github.com/esp8266/Arduino/tree/0da6906499aaa9977f7b456c6ec32c090b117cef)
 - **OTA?**	No
 - **Works without Internet?**	Yes
 - **BOM Total Items:**	[35](bill_of_materials.csv)
-- **BOM Unique Items:** 16
+- **BOM Unique Items:** [16]((bill_of_materials.csv))
 - **PCB Manufacturing vendor:**	JLCPCB
 - **BOM vendor:** Mouser, AliExpress, 12Geeks, RS Components
 - **Total vendors:** 5
