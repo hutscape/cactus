@@ -31,9 +31,6 @@ void initAccessPoint() {
 
   WiFi.softAP(AP_NameChar, WiFiAPPSK);
 
-  // FIXME: Ensure http://cactus.local is accessible on AP mode
-  // http://cactus.local is not accessible
-  // http://192.168.4.1 is accessible
   startMDNS();
   startServer();
   MDNS.addService("http", "tcp", 80);

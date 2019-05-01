@@ -5,7 +5,3 @@
 ## Firmware
 
 [mDNS](mdns-access-point.ino)
-
-```
-// FIXME: Line 36
-```
