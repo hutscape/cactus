@@ -40,6 +40,8 @@ ESP8266WebServer server(80);
 Adafruit_Si7021 sensor = Adafruit_Si7021();
 
 void setup() {
+  // TODO: Wakeup without radio and check if 4 hours is up
+  // if not increase counter and sleep
   EEPROM.begin(512);
   Serial.begin(115200);
   while(!Serial) { }
@@ -177,6 +179,7 @@ void blink(int times) {
 }
 
 float getBatteryVoltage() {
+  // TODO: Return an average reading of 10 values
   unsigned int raw = analogRead(A0);
   float volt = raw / 1023.0;
   volt *= 4.2;
@@ -195,6 +198,7 @@ void displayLED(int lednumber) {
 }
 
 SensorValues displayTempHumidity(void) {
+  // TODO: Return an average reading of 10 values
   SensorValues sensorValues = {
     sensor.readTemperature(),
     sensor.readHumidity()
@@ -206,6 +210,8 @@ SensorValues displayTempHumidity(void) {
   Serial.print(sensorValues.humidity);
   Serial.print(" RH%");
 
+  // TODO: Don't turn on LED display if wakeup is periodic
+  // TODO: Turn on LED display only if wakeup is by user pressing the button
   int barHumidity = sensorValues.humidity/20 + 1;
   String sBar = "\tGraph: " + String(barHumidity) + " LEDs";
   Serial.println(sBar);
