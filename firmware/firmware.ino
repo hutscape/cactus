@@ -86,6 +86,7 @@ void loop() {
   goToSleep();
 }
 
+// Sensors
 void initShiftRegister() {
   pinMode(latchPin, OUTPUT);
   pinMode(clockPin, OUTPUT);
@@ -107,6 +108,110 @@ void initTempHumiditySensor() {
   }
 }
 
+SensorValues displayTempHumidity(void) {
+  // TODO: Return an average reading of 10 values
+  SensorValues sensorValues = {
+    sensor.readTemperature(),
+    sensor.readHumidity()
+  };
+
+  Serial.print("[INFO] Temperature: ");
+  Serial.print(sensorValues.temperature);
+  Serial.print(" °C\tHumidity: ");
+  Serial.print(sensorValues.humidity);
+  Serial.print(" RH%");
+
+  // TODO: Don't turn on LED display if wakeup is periodic
+  // TODO: Turn on LED display only if wakeup is by user pressing the button
+  int barHumidity = sensorValues.humidity/20 + 1;
+  String sBar = "\tGraph: " + String(barHumidity) + " LEDs";
+  Serial.println(sBar);
+
+  displayLED(pow(2, barHumidity) -1);
+
+  return sensorValues;
+}
+
+// LED
+void displayLED(int lednumber) {
+  digitalWrite(latchPin, LOW);
+  shiftOut(dataPin, clockPin, MSBFIRST, lednumber);
+  digitalWrite(latchPin, HIGH);
+}
+
+void blink(int times) {
+  Serial.print("[INFO] Wait for ");
+  Serial.print(times/30);
+  Serial.println(" minutes");
+
+  int count = 0;
+
+  while (count < times) {
+    digitalWrite(LED, HIGH);
+    delay(1000);
+    digitalWrite(LED, LOW);
+    delay(1000);
+
+    Serial.print("[INFO] ");
+    Serial.print(2*count);
+    Serial.println(" seconds");
+
+    count++;
+  }
+}
+
+// Battery
+float getBatteryVoltage() {
+  // TODO: Return an average reading of 10 values
+  unsigned int raw = analogRead(A0);
+  float volt = raw / 1023.0;
+  volt *= 4.2;
+
+  Serial.print("[INFO] Current voltage is ");
+  Serial.print(volt);
+  Serial.println("V");
+
+  return volt;
+}
+
+// Wakeup and sleep
+void goToSleep() {
+  Serial.println();
+  Serial.println("[INFO] Going to sleep for " + String(SLEEP_DURATION_ENGLISH));
+  Serial.println("[INFO] Sleeping in 3");
+  delay(1000);
+  Serial.println("[INFO] Sleeping in 2");
+  delay(1000);
+  Serial.println("[INFO] Sleeping in 1");
+  delay(1000);
+
+  ESP.deepSleep(SLEEP_DURATION, WAKE_RF_DEFAULT);
+}
+
+// EEPROM
+void writeKey(String writeStr) {
+  delay(10);
+
+  for (int i = 0; i < writeStr.length(); ++i) {
+    EEPROM.write(i, writeStr[i]);
+  }
+
+  EEPROM.commit();
+}
+
+String readKey() {
+  String readStr;
+  char readChar;
+
+  for (int i = 0; i < 22; ++i) {
+    readChar = char(EEPROM.read(i));
+    readStr += readChar;
+  }
+
+  return readStr;
+}
+
+// WiFi
 void initAccessPoint() {
   Serial.print("[TRACE] Configuring access point");
   WiFi.mode(WIFI_AP);
@@ -155,70 +260,6 @@ void eraseWiFiCredentials() {
   Serial.println("[INFO] WiFi credentials are erased.");
   Serial.print("[INFO] Read WiFi SSID (should be empty): ");
   Serial.println(WiFi.SSID());
-}
-
-void blink(int times) {
-  Serial.print("[INFO] Wait for ");
-  Serial.print(times/30);
-  Serial.println(" minutes");
-
-  int count = 0;
-
-  while (count < times) {
-    digitalWrite(LED, HIGH);
-    delay(1000);
-    digitalWrite(LED, LOW);
-    delay(1000);
-
-    Serial.print("[INFO] ");
-    Serial.print(2*count);
-    Serial.println(" seconds");
-
-    count++;
-  }
-}
-
-float getBatteryVoltage() {
-  // TODO: Return an average reading of 10 values
-  unsigned int raw = analogRead(A0);
-  float volt = raw / 1023.0;
-  volt *= 4.2;
-
-  Serial.print("[INFO] Current voltage is ");
-  Serial.print(volt);
-  Serial.println("V");
-
-  return volt;
-}
-
-void displayLED(int lednumber) {
-  digitalWrite(latchPin, LOW);
-  shiftOut(dataPin, clockPin, MSBFIRST, lednumber);
-  digitalWrite(latchPin, HIGH);
-}
-
-SensorValues displayTempHumidity(void) {
-  // TODO: Return an average reading of 10 values
-  SensorValues sensorValues = {
-    sensor.readTemperature(),
-    sensor.readHumidity()
-  };
-
-  Serial.print("[INFO] Temperature: ");
-  Serial.print(sensorValues.temperature);
-  Serial.print(" °C\tHumidity: ");
-  Serial.print(sensorValues.humidity);
-  Serial.print(" RH%");
-
-  // TODO: Don't turn on LED display if wakeup is periodic
-  // TODO: Turn on LED display only if wakeup is by user pressing the button
-  int barHumidity = sensorValues.humidity/20 + 1;
-  String sBar = "\tGraph: " + String(barHumidity) + " LEDs";
-  Serial.println(sBar);
-
-  displayLED(pow(2, barHumidity) -1);
-
-  return sensorValues;
 }
 
 bool hasWiFiCredentials() {
@@ -327,45 +368,7 @@ void handleRoot() {
   server.send(200, "text/html", content);
 }
 
-void goToSleep() {
-  Serial.println();
-  Serial.println("[INFO] Going to sleep for " + String(SLEEP_DURATION_ENGLISH));
-  Serial.println("[INFO] Sleeping in 3");
-  delay(1000);
-  Serial.println("[INFO] Sleeping in 2");
-  delay(1000);
-  Serial.println("[INFO] Sleeping in 1");
-  delay(1000);
-
-  ESP.deepSleep(SLEEP_DURATION, WAKE_RF_DEFAULT);
-}
-
-void writeKey(String writeStr) {
-  delay(10);
-
-  for (int i = 0; i < writeStr.length(); ++i) {
-    EEPROM.write(i, writeStr[i]);
-  }
-
-  EEPROM.commit();
-}
-
-String readKey() {
-  String readStr;
-  char readChar;
-
-  for (int i = 0; i < 22; ++i) {
-    readChar = char(EEPROM.read(i));
-    readStr += readChar;
-  }
-
-  return readStr;
-}
-
-int formatFloatToInt(float value) {
-  return (int)round(value);
-}
-
+// Cloud
 void sendToIFTTT(SensorValues sensorValues, float batteryVoltage) {
   Serial.println("[INFO] Sending IFTTT notification...");
 
@@ -417,4 +420,9 @@ void sendToIFTTT(SensorValues sensorValues, float batteryVoltage) {
 
   client.stop();
   return;
+}
+
+// Others
+int formatFloatToInt(float value) {
+  return (int)round(value);
 }
