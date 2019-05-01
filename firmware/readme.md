@@ -34,7 +34,7 @@ Firmware contains parts of the circuit prototyped and tested separately.
 1. Connect to the access point
 
     ![](access_point.png)
-1. Go to the web page `http://192.168.4.1`
+1. Go to the web page `http://cactus.local`
 
     ![](webpage.png)
 1. Key in the WiFi `SSID`, WiFi `password` and [IFTTT webhook key](https://ifttt.com/services/maker_webhooks/settings)

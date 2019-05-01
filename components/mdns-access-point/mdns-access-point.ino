@@ -22,14 +22,7 @@ void initAccessPoint() {
   Serial.println("\n[INFO] Configuring access point");
   WiFi.mode(WIFI_AP);
 
-  String AP_NameString = getAPName();
-  char AP_NameChar[AP_NameString.length() + 1];
-  memset(AP_NameChar, 0, AP_NameString.length() + 1);
-
-  for (int i=0; i<AP_NameString.length(); i++)
-    AP_NameChar[i] = AP_NameString.charAt(i);
-
-  WiFi.softAP(AP_NameChar, WiFiAPPSK);
+  WiFi.softAP(getAPName().c_str(), WiFiAPPSK);
 
   startMDNS();
   startServer();

@@ -62,9 +62,8 @@ void loop() {
   if (!hasWiFiCredentials()) {
     Serial.println("[INFO] WiFi is not configured!");
     Serial.println("[INFO] Connect to SSID 'Cactus NNNN'");
-    // FIXME: Fix startMDNS();
-    // Serial.println("Go to http://cactus.local/");
-    Serial.println("[INFO] Go to http://192.168.4.1/");
+
+    Serial.println("[INFO] Go to http://cactus.local");
     server.handleClient();
     delay(5000);
     return;
@@ -228,8 +227,7 @@ void initAccessPoint() {
 
   WiFi.softAP(AP_NameChar, WiFiAPPSK);
 
-  // FIXME: Uncomment below to fix error message
-  // startMDNS();
+  startMDNS();
   startServer();
   Serial.print("[INFO] Started access point at IP ");
   Serial.println(WiFi.softAPIP());
