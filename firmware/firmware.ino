@@ -9,8 +9,9 @@
 #define EN 2 // GPIO02 on ESP-01 module, D4 on nodeMCU WeMos, or on-board LED
 #define LED 2
 #define BATTERY_VOLT A0
-#define SLEEP_DURATION  1440e6
-#define SLEEP_DURATION_ENGLISH "1 hour"
+#define USERBUTTON 12 // GPIO012 on ESP or D6 on WeMos
+#define SLEEP_DURATION  10e6
+#define SLEEP_DURATION_ENGLISH "10 seconds"
 
 int dataPin = 13; // pin D7 `GPIO13` on NodeMCU boards
 int clockPin = 14; // pin D5 `GPIO14` on NodeMCU boards
@@ -25,7 +26,7 @@ char password [50] = "";
 const char* host = "maker.ifttt.com";
 const int httpsPort = 443;
 const int httpPort = 80;
-
+int userButtonValue;
 // Get fingerprint of maker.ifttt.com
 // echo | openssl s_client -connect maker.ifttt.com:443 |& openssl x509 -fingerprint -noout
 const char fingerprint[] PROGMEM = "AA:75:CB:41:2E:D5:F9:97:FF:5D:A0:8B:7D:AC:12:21:08:4B:00:8C";
@@ -42,12 +43,20 @@ Adafruit_Si7021 sensor = Adafruit_Si7021();
 void setup() {
   // TODO: Wakeup without radio and check if 4 hours is up
   // if not increase counter and sleep
+
+  userButtonValue = digitalRead(USERBUTTON);
+
   EEPROM.begin(512);
   Serial.begin(115200);
   while(!Serial) { }
 
+  // NOTE: If the user presses the button,
+  // then the humidity level will be displayed in the LEDs
+  if (hasUserPressedButton(userButtonValue)) {
+    initShiftRegister();
+  }
+
   initReadingBatteryVoltage();
-  initShiftRegister();
   initTempHumiditySensor();
 
   if (!hasWiFiCredentials()) {
@@ -57,7 +66,11 @@ void setup() {
 
 void loop() {
   Serial.println();
-  SensorValues s = displayTempHumidity();
+  SensorValues s = readTempHumidity();
+
+  if (hasUserPressedButton(userButtonValue)) {
+    displayHumidity(s.humidity);
+  }
 
   if (!hasWiFiCredentials()) {
     Serial.println("[INFO] WiFi is not configured!");
@@ -81,11 +94,19 @@ void loop() {
   Serial.print("[INFO] WiFi is connected: ");
   Serial.println(WiFi.SSID());
   sendToIFTTT(s, getBatteryVoltage());
-  delay(10000); // display the humidity LEDs on-board for 10 seconds
+
   goToSleep();
 }
 
 // Sensors
+bool hasUserPressedButton(int userButtonValue) {
+  if (userButtonValue == 0) {
+    return true;
+  }
+
+  return false;
+}
+
 void initShiftRegister() {
   pinMode(latchPin, OUTPUT);
   pinMode(clockPin, OUTPUT);
@@ -107,7 +128,7 @@ void initTempHumiditySensor() {
   }
 }
 
-SensorValues displayTempHumidity(void) {
+SensorValues readTempHumidity(void) {
   // TODO: Return an average reading of 10 values
   SensorValues sensorValues = {
     sensor.readTemperature(),
@@ -118,17 +139,19 @@ SensorValues displayTempHumidity(void) {
   Serial.print(sensorValues.temperature);
   Serial.print(" °C\tHumidity: ");
   Serial.print(sensorValues.humidity);
-  Serial.print(" RH%");
+  Serial.println(" RH%");
 
-  // TODO: Don't turn on LED display if wakeup is periodic
-  // TODO: Turn on LED display only if wakeup is by user pressing the button
-  int barHumidity = sensorValues.humidity/20 + 1;
-  String sBar = "\tGraph: " + String(barHumidity) + " LEDs";
+  return sensorValues;
+}
+
+void displayHumidity(float humidity) {
+  int barHumidity = humidity/20 + 1;
+  String sBar = "[INFO] Display Humidity in LED: " + String(barHumidity) + " LEDs";
   Serial.println(sBar);
 
   displayLED(pow(2, barHumidity) -1);
 
-  return sensorValues;
+  delay(10000); // display the humidity LEDs on-board for 10 seconds
 }
 
 // LED

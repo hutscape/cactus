@@ -8,10 +8,13 @@ void setup() {
 
   while(!Serial) { }
 
-  Serial.println("\nI'm awake !!");
+  Serial.println("Wake up!");
+  
+  Serial.print("User button value: ");
+  Serial.println(userButtonValue);
 
   if (userButtonValue == 0) {
-    Serial.println("User long pressed button!");
+    Serial.print("User long pressed button: ");
   }
 
   Serial.println("Do task");
