@@ -66,10 +66,10 @@ void setup() {
 
 void loop() {
   Serial.println();
-  SensorValues s = readTempHumidity();
+  SensorValues sensorValues = readTempHumidity();
 
   if (hasUserPressedButton(userButtonValue)) {
-    displayHumidity(s.humidity);
+    displayHumidity(sensorValues.humidity);
   }
 
   if (!hasWiFiCredentials()) {
@@ -93,7 +93,7 @@ void loop() {
 
   Serial.print("[INFO] WiFi is connected: ");
   Serial.println(WiFi.SSID());
-  sendToIFTTT(s, getBatteryVoltage());
+  sendToIFTTT(sensorValues, getBatteryVoltage());
 
   goToSleep();
 }
@@ -129,11 +129,16 @@ void initTempHumiditySensor() {
 }
 
 SensorValues readTempHumidity(void) {
-  // TODO: Return an average reading of 10 values
-  SensorValues sensorValues = {
-    sensor.readTemperature(),
-    sensor.readHumidity()
-  };
+  SensorValues sensorValues = { 0.0, 0.0 };
+
+  // NOTE: Get 10 sensor values and smoothen it
+  for (int count = 0; count < 10; count++) {
+    sensorValues.temperature += sensor.readTemperature();
+    sensorValues.humidity += sensor.readHumidity();
+  }
+
+  sensorValues.temperature /= 10;
+  sensorValues.humidity /= 10;
 
   Serial.print("[INFO] Temperature: ");
   Serial.print(sensorValues.temperature);
@@ -184,13 +189,23 @@ void blink(int times) {
 
 // Battery
 float getBatteryVoltage() {
-  // TODO: Return an average reading of 10 values
-  unsigned int raw = analogRead(A0);
-  float volt = raw / 1023.0;
-  volt *= 4.2;
+  unsigned int raw = 0;
+  float volt = 0.0;
+  float batteryVoltage = 0.0;
+
+  // NOTE: Get 10 analog values and smoothen it
+  for (int count = 0; count < 10; count++) {
+    raw = analogRead(A0);
+    volt = raw / 1023.0;
+    volt *= 4.2;
+
+    batteryVoltage += volt;
+  }
+
+  batteryVoltage /= 10;
 
   Serial.print("[INFO] Current voltage is ");
-  Serial.print(volt);
+  Serial.print(batteryVoltage);
   Serial.println("V");
 
   return volt;
