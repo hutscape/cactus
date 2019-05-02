@@ -6,6 +6,17 @@
 
 ![](power_tree.png)
 
+## State machine
+
+Via [mermaid.js](https://mermaidjs.github.io/)
+
+```
+mmdc -i state_machine.md -o state_machine.png
+mmdc -i state_machine.md -o state_machine.svg
+```
+
+![](state_machine.png)
+
 ## References
 
 - [Creating an FPGA Power Tree](https://www.intel.com/content/dam/www/programmable/us/en/pdfs/literature/an/an-721-creating-fpga-power-tree.pdf)
