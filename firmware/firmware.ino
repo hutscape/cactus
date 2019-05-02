@@ -12,11 +12,11 @@
 #define USERBUTTON 12 // GPIO012 on ESP or D6 on WeMos
 
 // Sleep
-#define SLEEP_DURATION  10e6 // 10 seconds
-#define FINAL_SLEEP_INTERVAL 3 // 3*10 seconds = 30 seconds
-#define SLEEP_DURATION_ENGLISH "30 seconds"
+#define SLEEP_INTERVAL_DURATION  1200e6 // 1200 seconds = 20 minutes
+#define FINAL_SLEEP_INTERVAL_COUNT 3 // 4*20 minutes = 1 hour
+#define SLEEP_DURATION_ENGLISH "1 hour"
 #define CURRENT_SLEEP_INTERVAL_ADDR 30 // EEPROM address to store sleep interval
-#define CURRENT_SLEEP_INTERVAL EEPROM.read(CURRENT_SLEEP_INTERVAL_ADDR)
+#define CURRENT_SLEEP_INTERVAL_COUNT EEPROM.read(CURRENT_SLEEP_INTERVAL_ADDR)
 
 // LEDs and shift register
 int dataPin = 13; // pin D7 `GPIO13` on NodeMCU boards
@@ -121,7 +121,7 @@ void loop() {
 
 // Wakeup and sleep
 bool isCurrentSleepIntervalOver() {
-  if (CURRENT_SLEEP_INTERVAL < FINAL_SLEEP_INTERVAL) {
+  if (CURRENT_SLEEP_INTERVAL_COUNT < FINAL_SLEEP_INTERVAL_COUNT) {
     return false;
   }
 
@@ -129,7 +129,7 @@ bool isCurrentSleepIntervalOver() {
 }
 
 bool isNextSleepIntervalOver() {
-  if (CURRENT_SLEEP_INTERVAL == FINAL_SLEEP_INTERVAL) {
+  if (CURRENT_SLEEP_INTERVAL_COUNT == FINAL_SLEEP_INTERVAL_COUNT) {
     return true;
   }
 
@@ -146,9 +146,9 @@ void goToSleep(bool hasWiFiWhenAwake) {
   delay(500);
 
   if (hasWiFiWhenAwake) {
-    ESP.deepSleep(SLEEP_DURATION, WAKE_RF_DEFAULT);
+    ESP.deepSleep(SLEEP_INTERVAL_DURATION, WAKE_RF_DEFAULT);
   } else {
-    ESP.deepSleep(SLEEP_DURATION, WAKE_RF_DISABLED);
+    ESP.deepSleep(SLEEP_INTERVAL_DURATION, WAKE_RF_DISABLED);
   }
 }
 
@@ -163,11 +163,11 @@ void resetSleepInterval() {
 
 void increaseSleepInterval() {
   Serial.print("[INFO] Current sleep interval: ");
-  Serial.print(CURRENT_SLEEP_INTERVAL);
+  Serial.print(CURRENT_SLEEP_INTERVAL_COUNT);
   Serial.print("/");
-  Serial.println(FINAL_SLEEP_INTERVAL);
+  Serial.println(FINAL_SLEEP_INTERVAL_COUNT);
 
-  EEPROM.write(CURRENT_SLEEP_INTERVAL_ADDR, CURRENT_SLEEP_INTERVAL + 1);
+  EEPROM.write(CURRENT_SLEEP_INTERVAL_ADDR, CURRENT_SLEEP_INTERVAL_COUNT + 1);
   EEPROM.commit();
 }
 
