@@ -12,9 +12,9 @@
 #define USERBUTTON 12 // GPIO012 on ESP or D6 on WeMos
 
 // Sleep
-#define SLEEP_INTERVAL_DURATION  1200e6 // 1200 seconds = 20 minutes
-#define FINAL_SLEEP_INTERVAL_COUNT 3 // 4*20 minutes = 1 hour
-#define SLEEP_DURATION_ENGLISH "1 hour"
+#define SLEEP_INTERVAL_DURATION  10e6 // 10 seconds
+#define FINAL_SLEEP_INTERVAL_COUNT 3 // 3*10 seconds = 30 seconds
+#define SLEEP_DURATION_ENGLISH "30 seconds"
 #define CURRENT_SLEEP_INTERVAL_ADDR 30 // EEPROM address to store sleep interval
 #define CURRENT_SLEEP_INTERVAL_COUNT EEPROM.read(CURRENT_SLEEP_INTERVAL_ADDR)
 
@@ -103,6 +103,7 @@ void loop() {
     return;
   }
 
+  // FIXME 2: Goes into this mode sometimes on user button press
   if (!connectToWiFi()) {
     Serial.print("[ERROR] WiFi cannot be connected with SSID ");
     Serial.println(WiFi.SSID());
@@ -114,7 +115,10 @@ void loop() {
 
   Serial.print("[INFO] WiFi is connected: ");
   Serial.println(WiFi.SSID());
-  sendToIFTTT(sensorValues, getBatteryVoltage());
+
+  // FIXME: Uncomment below after completing FIXME 2
+  Serial.println("[INFO] Sending to IFTTT");
+  // sendToIFTTT(sensorValues, getBatteryVoltage());
 
   goToSleep(false);
 }
@@ -153,6 +157,8 @@ void goToSleep(bool hasWiFiWhenAwake) {
 }
 
 void resetSleepInterval() {
+  printSleepInterval();
+
   Serial.print("[INFO] Reset sleep interval coz ");
   Serial.print(SLEEP_DURATION_ENGLISH);
   Serial.println(" is up or user pressed button!");
@@ -162,13 +168,17 @@ void resetSleepInterval() {
 }
 
 void increaseSleepInterval() {
+  printSleepInterval();
+
+  EEPROM.write(CURRENT_SLEEP_INTERVAL_ADDR, CURRENT_SLEEP_INTERVAL_COUNT + 1);
+  EEPROM.commit();
+}
+
+void printSleepInterval() {
   Serial.print("[INFO] Current sleep interval: ");
   Serial.print(CURRENT_SLEEP_INTERVAL_COUNT);
   Serial.print("/");
   Serial.println(FINAL_SLEEP_INTERVAL_COUNT);
-
-  EEPROM.write(CURRENT_SLEEP_INTERVAL_ADDR, CURRENT_SLEEP_INTERVAL_COUNT + 1);
-  EEPROM.commit();
 }
 
 // Sensors
@@ -180,9 +190,11 @@ void initSerial() {
 
 bool hasUserPressedButton(int userButtonValue) {
   if (userButtonValue == 0) {
+    Serial.println("[INFO] User pressed button!");
     return true;
   }
 
+  Serial.println("[INFO] Automatic wakeup!");
   return false;
 }
 
@@ -316,7 +328,7 @@ String readKey() {
 // WiFi
 void initAccessPoint() {
   // TODO: Blink LED to indicate that user has to put in the credentials in AP mode
-  Serial.print("[TRACE] Configuring access point");
+  Serial.println("[INFO] Configuring access point");
   WiFi.mode(WIFI_AP);
 
   String AP_NameString = getAPName();
