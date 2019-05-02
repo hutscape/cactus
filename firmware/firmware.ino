@@ -10,13 +10,20 @@
 #define LED 2
 #define BATTERY_VOLT A0
 #define USERBUTTON 12 // GPIO012 on ESP or D6 on WeMos
-#define SLEEP_DURATION  10e6
-#define SLEEP_DURATION_ENGLISH "10 seconds"
 
+// Sleep
+#define SLEEP_DURATION  10e6 // 10 seconds
+#define FINAL_SLEEP_INTERVAL 3 // 3*10 seconds = 30 seconds
+#define SLEEP_DURATION_ENGLISH "30 seconds"
+#define CURRENT_SLEEP_INTERVAL_ADDR 30 // EEPROM address to store sleep interval
+#define CURRENT_SLEEP_INTERVAL EEPROM.read(CURRENT_SLEEP_INTERVAL_ADDR)
+
+// LEDs and shift register
 int dataPin = 13; // pin D7 `GPIO13` on NodeMCU boards
 int clockPin = 14; // pin D5 `GPIO14` on NodeMCU boards
 int latchPin = 15; // pin D8 `GPIO15` on NodeMCU boards
 
+// WiFi
 String AP_NamePrefix = "Cactus ";
 const char WiFiAPPSK[] = "hutscape";
 const char* DomainName = "cactus"; // set domain name domain.local
@@ -26,7 +33,7 @@ char password [50] = "";
 const char* host = "maker.ifttt.com";
 const int httpsPort = 443;
 const int httpPort = 80;
-int userButtonValue;
+
 // Get fingerprint of maker.ifttt.com
 // echo | openssl s_client -connect maker.ifttt.com:443 |& openssl x509 -fingerprint -noout
 const char fingerprint[] PROGMEM = "AA:75:CB:41:2E:D5:F9:97:FF:5D:A0:8B:7D:AC:12:21:08:4B:00:8C";
@@ -35,6 +42,8 @@ struct SensorValues {
   float temperature;
   float humidity;
 };
+
+int userButtonValue;
 
 ESP8266WebServer server(80);
 
@@ -47,8 +56,19 @@ void setup() {
   userButtonValue = digitalRead(USERBUTTON);
 
   EEPROM.begin(512);
-  Serial.begin(115200);
-  while(!Serial) { }
+  initSerial();
+
+  // NOTE: If sleep interval is not up and user has not pressed button,
+  // Then increase the counter and go back to sleep
+  if (!isCurrentSleepIntervalOver() && !hasUserPressedButton(userButtonValue)) {
+    increaseSleepInterval();
+
+    if (isNextSleepIntervalOver()) {
+      goToSleep(true);
+    } else {
+      goToSleep(false);
+    }
+  }
 
   // NOTE: If the user presses the button,
   // then the humidity level will be displayed in the LEDs
@@ -58,6 +78,7 @@ void setup() {
 
   initReadingBatteryVoltage();
   initTempHumiditySensor();
+  resetSleepInterval();
 
   if (!hasWiFiCredentials()) {
     initAccessPoint();
@@ -95,10 +116,68 @@ void loop() {
   Serial.println(WiFi.SSID());
   sendToIFTTT(sensorValues, getBatteryVoltage());
 
-  goToSleep();
+  goToSleep(false);
+}
+
+// Wakeup and sleep
+bool isCurrentSleepIntervalOver() {
+  if (CURRENT_SLEEP_INTERVAL < FINAL_SLEEP_INTERVAL) {
+    return false;
+  }
+
+  return true;
+}
+
+bool isNextSleepIntervalOver() {
+  if (CURRENT_SLEEP_INTERVAL == FINAL_SLEEP_INTERVAL) {
+    return true;
+  }
+
+  return false;
+}
+
+void goToSleep(bool hasWiFiWhenAwake) {
+  Serial.println("[INFO] Going back to sleep to complete " + String(SLEEP_DURATION_ENGLISH));
+  Serial.println("[INFO] Sleeping in 3");
+  delay(500);
+  Serial.println("[INFO] Sleeping in 2");
+  delay(500);
+  Serial.println("[INFO] Sleeping in 1");
+  delay(500);
+
+  if (hasWiFiWhenAwake) {
+    ESP.deepSleep(SLEEP_DURATION, WAKE_RF_DEFAULT);
+  } else {
+    ESP.deepSleep(SLEEP_DURATION, WAKE_RF_DISABLED);
+  }
+}
+
+void resetSleepInterval() {
+  Serial.print("[INFO] Reset sleep interval coz ");
+  Serial.print(SLEEP_DURATION_ENGLISH);
+  Serial.println(" is up or user pressed button!");
+
+  EEPROM.write(CURRENT_SLEEP_INTERVAL_ADDR, 0);
+  EEPROM.commit();
+}
+
+void increaseSleepInterval() {
+  Serial.print("[INFO] Current sleep interval: ");
+  Serial.print(CURRENT_SLEEP_INTERVAL);
+  Serial.print("/");
+  Serial.println(FINAL_SLEEP_INTERVAL);
+
+  EEPROM.write(CURRENT_SLEEP_INTERVAL_ADDR, CURRENT_SLEEP_INTERVAL + 1);
+  EEPROM.commit();
 }
 
 // Sensors
+void initSerial() {
+  Serial.begin(115200);
+  while(!Serial) { }
+  Serial.println();
+}
+
 bool hasUserPressedButton(int userButtonValue) {
   if (userButtonValue == 0) {
     return true;
@@ -209,20 +288,6 @@ float getBatteryVoltage() {
   Serial.println("V");
 
   return volt;
-}
-
-// Wakeup and sleep
-void goToSleep() {
-  Serial.println();
-  Serial.println("[INFO] Going to sleep for " + String(SLEEP_DURATION_ENGLISH));
-  Serial.println("[INFO] Sleeping in 3");
-  delay(1000);
-  Serial.println("[INFO] Sleeping in 2");
-  delay(1000);
-  Serial.println("[INFO] Sleeping in 1");
-  delay(1000);
-
-  ESP.deepSleep(SLEEP_DURATION, WAKE_RF_DEFAULT);
 }
 
 // EEPROM
