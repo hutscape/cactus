@@ -104,6 +104,8 @@ void loop() {
   }
 
   // FIXME 2: Goes into this mode sometimes on user button press
+  // Does the MCU wake up with WiFi on first button press?
+  // How come the MCU wakes up with WiFi on second button press?
   if (!connectToWiFi()) {
     Serial.print("[ERROR] WiFi cannot be connected with SSID ");
     Serial.println(WiFi.SSID());
@@ -116,7 +118,7 @@ void loop() {
   Serial.print("[INFO] WiFi is connected: ");
   Serial.println(WiFi.SSID());
 
-  // FIXME: Uncomment below after completing FIXME 2
+  // FIXME: Uncomment below after completing #2
   Serial.println("[INFO] Sending to IFTTT");
   // sendToIFTTT(sensorValues, getBatteryVoltage());
 
