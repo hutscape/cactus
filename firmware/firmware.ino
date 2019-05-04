@@ -63,11 +63,7 @@ void setup() {
   if (!isCurrentSleepIntervalOver() && !hasUserPressedButton(userButtonValue)) {
     increaseSleepInterval();
 
-    if (isNextSleepIntervalOver()) {
-      goToSleep(true);
-    } else {
-      goToSleep(false);
-    }
+    goToSleep();
   }
 
   // NOTE: If the user presses the button,
@@ -122,7 +118,7 @@ void loop() {
   Serial.println("[INFO] Sending to IFTTT");
   // sendToIFTTT(sensorValues, getBatteryVoltage());
 
-  goToSleep(false);
+  goToSleep();
 }
 
 // Wakeup and sleep
@@ -134,15 +130,7 @@ bool isCurrentSleepIntervalOver() {
   return true;
 }
 
-bool isNextSleepIntervalOver() {
-  if (CURRENT_SLEEP_INTERVAL_COUNT == FINAL_SLEEP_INTERVAL_COUNT) {
-    return true;
-  }
-
-  return false;
-}
-
-void goToSleep(bool hasWiFiWhenAwake) {
+void goToSleep() {
   Serial.println("[INFO] Going back to sleep to complete " + String(SLEEP_DURATION_ENGLISH));
   Serial.println("[INFO] Sleeping in 3");
   delay(500);
@@ -151,11 +139,8 @@ void goToSleep(bool hasWiFiWhenAwake) {
   Serial.println("[INFO] Sleeping in 1");
   delay(500);
 
-  if (hasWiFiWhenAwake) {
-    ESP.deepSleep(SLEEP_INTERVAL_DURATION, WAKE_RF_DEFAULT);
-  } else {
-    ESP.deepSleep(SLEEP_INTERVAL_DURATION, WAKE_RF_DISABLED);
-  }
+  // TODO: remove hasWiFiWhenAwake
+  ESP.deepSleep(SLEEP_INTERVAL_DURATION, WAKE_RF_DISABLED);
 }
 
 void resetSleepInterval() {
