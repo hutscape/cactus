@@ -1,7 +1,7 @@
 #include <EEPROM.h>
 #include <ESP8266WiFi.h>
 
-#define DEBUG true
+#define DEBUG false
 
 #define USERBUTTON 12 // GPIO012 on ESP or D6 on WeMos
 #define SLEEP_INTERVAL_DURATION  10e6 // 10 seconds
