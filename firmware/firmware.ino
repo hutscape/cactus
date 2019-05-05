@@ -60,7 +60,11 @@ void setup() {
     initAccessPoint();
     debugPrintln("[INFO] Started access point at IP " + WiFi.softAPIP().toString());
 
-    startMDNS();
+    bool hasMDNSStarted = MDNS.begin(DomainName, WiFi.softAPIP());
+    if (!hasMDNSStarted) {
+      debugPrintln("[ERROR] mDNS has failed to start");
+    }
+
     startServer();
     debugPrintln("[INFO] WiFi is not configured!");
     debugPrintln("[INFO] Connect to SSID 'Cactus NNNN'");
@@ -69,6 +73,8 @@ void setup() {
 }
 
 void loop() {
+  // TODO: Erase Wifi Credentials via Serial commands
+
   if (isAPWebServerRunning) {
     MDNS.update();
     server.handleClient();
@@ -183,9 +189,6 @@ void initAccessPoint() {
   // TODO: Blink LED to indicate that user has to put in the credentials in AP mode
   WiFi.mode(WIFI_AP);
   WiFi.softAP(createAPName().c_str(), WiFiAPPSK);
-
-  // startMDNS();
-  // startServer();
 }
 
 String createAPName() {
@@ -239,7 +242,6 @@ void handleRoot() {
     delay(1);
 
     isAPWebServerRunning = false;
-    // server.close();
     return;
   }
 
@@ -257,20 +259,6 @@ void returnConfigPage() {
   // IFTTT key from https://ifttt.com/services/maker_webhooks/settings
   // https://maker.ifttt.com/use/{key}
 
-  // TODO: A checkbox to use with / without the Internet
-  // TODO: Wakeup when button pressed to read the humidity values on-board
-
   content += "<input type='submit' name='submit' value='Submit'></form></body></html>";
   server.send(200, "text/html", content);
-}
-
-void startMDNS() {
-  if (!MDNS.begin(DomainName, WiFi.softAPIP())) {
-    Serial.println("[ERROR] MDNS responder did not setup");
-    while(1) {
-      delay(1000);
-    }
-  } else {
-    Serial.println("[INFO] MDNS setup is successful!");
-  }
 }
