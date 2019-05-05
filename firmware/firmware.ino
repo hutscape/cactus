@@ -1,6 +1,7 @@
 #include <EEPROM.h>
 #include <ESP8266WiFi.h>
 #include <ESP8266WebServer.h>
+#include <ESP8266mDNS.h>
 
 #define DEBUG true
 
@@ -17,6 +18,8 @@ char ssid [50] = "secret";
 char password [50] = "secret";
 String AP_NamePrefix = "Cactus ";
 const char WiFiAPPSK[] = "hutscape";
+const char* DomainName = "cactus"; // set domain name domain.local
+
 int userButtonValue = 1;
 bool isAPWebServerRunning = false;
 int apLoopCount = 0;
@@ -57,6 +60,7 @@ void setup() {
     initAccessPoint();
     debugPrintln("[INFO] Started access point at IP " + WiFi.softAPIP().toString());
 
+    startMDNS();
     startServer();
     debugPrintln("[INFO] WiFi is not configured!");
     debugPrintln("[INFO] Connect to SSID 'Cactus NNNN'");
@@ -66,6 +70,7 @@ void setup() {
 
 void loop() {
   if (isAPWebServerRunning) {
+    MDNS.update();
     server.handleClient();
 
     if (++apLoopCount > MAX_AP_ON_MINUTES*600) {
@@ -257,4 +262,15 @@ void returnConfigPage() {
 
   content += "<input type='submit' name='submit' value='Submit'></form></body></html>";
   server.send(200, "text/html", content);
+}
+
+void startMDNS() {
+  if (!MDNS.begin(DomainName, WiFi.softAPIP())) {
+    Serial.println("[ERROR] MDNS responder did not setup");
+    while(1) {
+      delay(1000);
+    }
+  } else {
+    Serial.println("[INFO] MDNS setup is successful!");
+  }
 }
