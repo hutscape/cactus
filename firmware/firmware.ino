@@ -5,7 +5,7 @@
 
 #define USERBUTTON 12 // GPIO012 on ESP or D6 on WeMos
 #define SLEEP_INTERVAL_DURATION  10e6 // 10 seconds
-#define SLEEP_DURATION_ENGLISH "10 seconds"
+#define SLEEP_DURATION_ENGLISH String("10 seconds")
 #define CURRENT_SLEEP_COUNT EEPROM.read(CURRENT_SLEEP_INTERVAL_ADDR)
 #define MAX_SLEEP_COUNT 3 // 3*10 seconds = 30 seconds
 #define CURRENT_SLEEP_INTERVAL_ADDR 30 // EEPROM address to store sleep interval
@@ -13,6 +13,7 @@
 
 char ssid [50] = "secret";
 char password [50] = "secret";
+String AP_NamePrefix = "Cactus ";
 int userButtonValue = 1;
 
 void setup() {
@@ -23,16 +24,12 @@ void setup() {
   debugPrintln("");
   userButtonValue = digitalRead(USERBUTTON);
 
-  debugPrint("[INFO] Wakeup sleep count ");
-  debugPrint(String(CURRENT_SLEEP_COUNT));
-  debugPrint("/");
-  debugPrintln(String(MAX_SLEEP_COUNT));
+  debugPrintln("[INFO] Wakeup sleep count " + String(CURRENT_SLEEP_COUNT) + "/" + String(MAX_SLEEP_COUNT));
 
   if (!isCurrentSleepCountMax() && !hasUserPressedButton(userButtonValue)) {
     increaseSleepCount();
 
-    debugPrint("[INFO] Going into deep sleep for ");
-    debugPrintln(SLEEP_DURATION_ENGLISH);
+    debugPrintln("[INFO] Going into deep sleep for " + SLEEP_DURATION_ENGLISH);
     goToSleep();
     return;
   }
@@ -40,21 +37,22 @@ void setup() {
   resetSleepCount();
 
   if (hasUserPressedButton(userButtonValue)) {
-    debugPrintln("Wakeup on user button press!");
+    debugPrintln("[INFO] Wakeup on user button press!");
   }
 
   enableWiFi();
   bool isConnectedToWiFi = connectToWiFi();
   if (isConnectedToWiFi) {
-    debugPrint("[INFO] Connected succesfully to WiFi SSID ");
-    debugPrintln(WiFi.SSID());
+    debugPrintln("[INFO] Connected succesfully to WiFi SSID " + WiFi.SSID());
     doTask();
   } else {
     debugPrintln("[ERROR] Connection to WiFi failed.");
+    debugPrintln("[INFO] Configuring access point");
+    initAccessPoint();
+    debugPrintln("[INFO] Started access point at IP " + WiFi.softAPIP().toString());
   }
 
-  debugPrint("[INFO] Going into deep sleep for ");
-  debugPrintln(SLEEP_DURATION_ENGLISH);
+  debugPrintln("[INFO] Going into deep sleep for " + SLEEP_DURATION_ENGLISH);
   goToSleep();
 }
 
@@ -93,11 +91,12 @@ void resetSleepCount() {
   EEPROM.commit();
 }
 
-// Sensors
+// Sensor functions
 bool hasUserPressedButton(int userButtonValue) {
   return userButtonValue == 0;
 }
 
+// Sleep and Wakup functions
 void goToSleep() {
   WiFi.disconnect( true );
   delay(1);
@@ -105,7 +104,7 @@ void goToSleep() {
   ESP.deepSleep(SLEEP_INTERVAL_DURATION, WAKE_RF_DISABLED);
 }
 
-// WiFi
+// WiFi functions
 void enableWiFi() {
   WiFi.forceSleepWake(); // wakeup WiFi modem
   delay(1);
@@ -145,3 +144,30 @@ bool connectToWiFi() {
   WiFi.setAutoReconnect(true);
   return true;
 }
+
+void initAccessPoint() {
+  // TODO: Blink LED to indicate that user has to put in the credentials in AP mode
+  // WiFi.mode(WIFI_AP);
+  //
+  // String AP_NameString = createAPName();
+  //
+  // char AP_NameChar[AP_NameString.length() + 1];
+  // memset(AP_NameChar, 0, AP_NameString.length() + 1);
+  //
+  // for (int i=0; i<AP_NameString.length(); i++)
+  //   AP_NameChar[i] = AP_NameString.charAt(i);
+  //
+  // WiFi.softAP(AP_NameChar, WiFiAPPSK);
+  //
+  // // startMDNS();
+  // // startServer();
+}
+
+// String createAPName() {
+//   uint8_t mac[WL_MAC_ADDR_LENGTH];
+//   WiFi.softAPmacAddress(mac);
+//   String macID = String(mac[WL_MAC_ADDR_LENGTH - 2], HEX) +
+//                  String(mac[WL_MAC_ADDR_LENGTH - 1], HEX);
+//   macID.toUpperCase();
+//   return AP_NamePrefix + macID;
+// }
