@@ -11,13 +11,15 @@
 #define CURRENT_SLEEP_INTERVAL_ADDR 30 // EEPROM address to store sleep interval
 #define MAX_WIFI_RECONNECT_INTERVAL 20 // 20 seconds
 
-char ssid [50] = "Node.Chinee";
-char password [50] = "EnD#aUpB9#XeV@*2qVTe";
+char ssid [50] = "secret";
+char password [50] = "secret";
 int userButtonValue = 1;
 
 void setup() {
   EEPROM.begin(512);
   Serial.begin(115200);
+
+  disableWiFi();
   debugPrintln("");
   userButtonValue = digitalRead(USERBUTTON);
 
@@ -97,7 +99,9 @@ bool hasUserPressedButton(int userButtonValue) {
 }
 
 void goToSleep() {
-  disableWiFi();
+  WiFi.disconnect( true );
+  delay(1);
+
   ESP.deepSleep(SLEEP_INTERVAL_DURATION, WAKE_RF_DISABLED);
 }
 
@@ -108,9 +112,6 @@ void enableWiFi() {
 }
 
 void disableWiFi() {
-  WiFi.disconnect( true );
-  delay(1);
-
   WiFi.mode(WIFI_OFF);
   WiFi.forceSleepBegin();
   delay(1);
@@ -134,6 +135,10 @@ bool connectToWiFi() {
     if (count > MAX_WIFI_RECONNECT_INTERVAL) {
       return false;
     }
+  }
+
+  if (count % 10 != 0){
+    debugPrintln("");
   }
 
   WiFi.setAutoConnect(true);
