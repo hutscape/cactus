@@ -1,5 +1,6 @@
 #include <EEPROM.h>
 #include <ESP8266WiFi.h>
+#include <ESP8266WebServer.h>
 
 #define DEBUG true
 
@@ -10,12 +11,17 @@
 #define MAX_SLEEP_COUNT 3 // 3*10 seconds = 30 seconds
 #define CURRENT_SLEEP_INTERVAL_ADDR 30 // EEPROM address to store sleep interval
 #define MAX_WIFI_RECONNECT_INTERVAL 20 // 20 seconds
+#define MAX_AP_ON_MINUTES 1 // 1 minute
 
 char ssid [50] = "secret";
 char password [50] = "secret";
 String AP_NamePrefix = "Cactus ";
 const char WiFiAPPSK[] = "hutscape";
 int userButtonValue = 1;
+bool isAPWebServerRunning = false;
+int apLoopCount = 0;
+
+ESP8266WebServer server(80);
 
 void setup() {
   EEPROM.begin(512);
@@ -29,7 +35,6 @@ void setup() {
 
   if (!isCurrentSleepCountMax() && !hasUserPressedButton(userButtonValue)) {
     increaseSleepCount();
-
     debugPrintln("[INFO] Going into deep sleep for " + SLEEP_DURATION_ENGLISH);
     goToSleep();
     return;
@@ -45,19 +50,34 @@ void setup() {
   bool isConnectedToWiFi = connectToWiFi();
   if (isConnectedToWiFi) {
     debugPrintln("[INFO] Connected succesfully to WiFi SSID " + WiFi.SSID());
-    doTask();
+    debugPrintln("[INFO] WiFi connected! IP address: " + WiFi.localIP().toString());
   } else {
-    debugPrintln("[ERROR] Connection to WiFi failed.");
+    debugPrintln("[ERROR] Connection to WiFi failed");
     debugPrintln("[INFO] Configuring access point");
     initAccessPoint();
     debugPrintln("[INFO] Started access point at IP " + WiFi.softAPIP().toString());
-  }
 
-  // debugPrintln("[INFO] Going into deep sleep for " + SLEEP_DURATION_ENGLISH);
-  // goToSleep();
+    startServer();
+    debugPrintln("[INFO] WiFi is not configured!");
+    debugPrintln("[INFO] Connect to SSID 'Cactus NNNN'");
+    debugPrintln("[INFO] Go to http://192.168.4.1");
+  }
 }
 
 void loop() {
+  if (isAPWebServerRunning) {
+    server.handleClient();
+
+    if (++apLoopCount > MAX_AP_ON_MINUTES*600) {
+      debugPrintln("[INFO] Going into deep sleep for " + SLEEP_DURATION_ENGLISH);
+      goToSleep();
+    }
+    delay(100);
+  } else {
+    doTask();
+    debugPrintln("[INFO] Going into deep sleep after task for " + SLEEP_DURATION_ENGLISH);
+    goToSleep();
+  }
 }
 
 // Print functions
@@ -132,7 +152,10 @@ bool connectToWiFi() {
       debugPrint(".");
     }
 
-    if (count > MAX_WIFI_RECONNECT_INTERVAL) {
+    if (count >= MAX_WIFI_RECONNECT_INTERVAL) {
+      if (count % 10 != 0){
+        debugPrintln("");
+      }
       return false;
     }
   }
@@ -162,4 +185,71 @@ String createAPName() {
                  String(mac[WL_MAC_ADDR_LENGTH - 1], HEX);
   macID.toUpperCase();
   return AP_NamePrefix + macID;
+}
+
+void startServer() {
+  server.on("/", handleRoot);
+
+  const char * headerkeys[] = {"User-Agent","Cookie"} ;
+  size_t headerkeyssize = sizeof(headerkeys)/sizeof(char*);
+
+  server.collectHeaders(headerkeys, headerkeyssize );
+  server.begin();
+
+  isAPWebServerRunning = true;
+}
+
+void handleRoot() {
+  if (server.hasArg("ssid") && server.hasArg("password") && server.hasArg("key")){
+    String receivedSSID = server.arg("ssid");
+
+    debugPrintln("[INFO] WiFi SSID received: " + receivedSSID);
+    receivedSSID.toCharArray(ssid, 50);
+
+    debugPrintln("[INFO] WiFi password received");
+    server.arg("password").toCharArray(password, 50);
+
+    debugPrintln("[INFO] IFTTT key received!");
+    // writeKey(server.arg("key"));
+
+    bool hasConectedToWifi = connectToWiFi();
+
+    if (!hasConectedToWifi) {
+      Serial.println("[ERROR] Cannot connect to WiFi after AP mode!");
+      server.sendHeader("Location","/");
+      server.sendHeader("Cache-Control","no-cache");
+      server.sendHeader("Set-Cookie","ESPSESSIONID=1");
+      server.send(301);
+      return;
+    }
+
+    debugPrintln("[INFO] Connected to WiFi after AP mode!");
+    // TODO: Redirect to a success page
+    server.send(200);
+    delay(1);
+
+    isAPWebServerRunning = false;
+    // server.close();
+    return;
+  }
+
+  returnConfigPage();
+}
+
+void returnConfigPage() {
+  String content = "<html><body><form action='/' method='post'>";
+
+  content += "<h1>Welcome to Cactus@Hutscape</h1>";
+  content += "<p>WiFi SSID: <input type='text' name='ssid' placeholder='ssid'></p>";
+  content += "<p>WiFi Password:<input type='password' name='password' placeholder='secret'></p>";
+
+  content += "<p>IFTTT Key:<input type='text' name='key' placeholder='IFTTT Key'></p>";
+  // IFTTT key from https://ifttt.com/services/maker_webhooks/settings
+  // https://maker.ifttt.com/use/{key}
+
+  // TODO: A checkbox to use with / without the Internet
+  // TODO: Wakeup when button pressed to read the humidity values on-board
+
+  content += "<input type='submit' name='submit' value='Submit'></form></body></html>";
+  server.send(200, "text/html", content);
 }
