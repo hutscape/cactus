@@ -47,7 +47,7 @@ void setup() {
   }
 
   enableWiFi();
-  bool isConnectedToWiFi = connectToWiFi();
+  bool isConnectedToWiFi = connectToWiFi(true);
   if (isConnectedToWiFi) {
     debugPrintln("[INFO] Connected succesfully to WiFi SSID " + WiFi.SSID());
     debugPrintln("[INFO] WiFi connected! IP address: " + WiFi.localIP().toString());
@@ -119,8 +119,8 @@ bool hasUserPressedButton(int userButtonValue) {
 
 // Sleep and Wakup functions
 void goToSleep() {
-  WiFi.disconnect( true );
-  delay(1);
+  // WiFi.disconnect( true );
+  // delay(1);
 
   ESP.deepSleep(SLEEP_INTERVAL_DURATION, WAKE_RF_DISABLED);
 }
@@ -137,10 +137,15 @@ void disableWiFi() {
   delay(1);
 }
 
-bool connectToWiFi() {
-  WiFi.persistent(true); // last used Wi-Fi info in flash
-  WiFi.mode(WIFI_STA);
-  WiFi.begin(ssid, password);
+bool connectToWiFi(bool useCredsFromFlash) {
+
+  if (useCredsFromFlash){
+    WiFi.begin();
+  } else{
+    WiFi.mode(WIFI_STA);
+    WiFi.begin(ssid, password);
+  }
+
 
   int count = 0;
   while (WiFi.status() != WL_CONNECTED) {
@@ -212,7 +217,7 @@ void handleRoot() {
     debugPrintln("[INFO] IFTTT key received!");
     // writeKey(server.arg("key"));
 
-    bool hasConectedToWifi = connectToWiFi();
+    bool hasConectedToWifi = connectToWiFi(false);
 
     if (!hasConectedToWifi) {
       Serial.println("[ERROR] Cannot connect to WiFi after AP mode!");
