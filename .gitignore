@@ -1,6 +1,8 @@
 # Temporary
 *.kicad_pcb-bak
 *.bak
+*.bin
+*.elf
 
 datasheets
 .pretty
