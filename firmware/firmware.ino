@@ -1,31 +1,55 @@
 #include <EEPROM.h>
 #include <ESP8266WiFi.h>
 
+#define DEBUG true
+
 #define USERBUTTON 12 // GPIO012 on ESP or D6 on WeMos
 #define SLEEP_INTERVAL_DURATION  10e6 // 10 seconds
 #define SLEEP_DURATION_ENGLISH "10 seconds"
 #define CURRENT_SLEEP_COUNT EEPROM.read(CURRENT_SLEEP_INTERVAL_ADDR)
 #define MAX_SLEEP_COUNT 3 // 3*10 seconds = 30 seconds
 #define CURRENT_SLEEP_INTERVAL_ADDR 30 // EEPROM address to store sleep interval
-#define DEBUG true
+#define MAX_WIFI_RECONNECT_INTERVAL 20 // 20 seconds
 
+char ssid [50] = "Node.Chinee";
+char password [50] = "EnD#aUpB9#XeV@*2qVTe";
 int userButtonValue = 1;
 
 void setup() {
-  Serial.begin(115200);
   EEPROM.begin(512);
+  Serial.begin(115200);
+  debugPrintln("");
   userButtonValue = digitalRead(USERBUTTON);
 
-  debugPrintln("[INFO] Wakeup!");
+  debugPrint("[INFO] Wakeup sleep count ");
+  debugPrint(String(CURRENT_SLEEP_COUNT));
+  debugPrint("/");
+  debugPrintln(String(MAX_SLEEP_COUNT));
 
   if (!isCurrentSleepCountMax() && !hasUserPressedButton(userButtonValue)) {
     increaseSleepCount();
+
+    debugPrint("[INFO] Going into deep sleep for ");
+    debugPrintln(SLEEP_DURATION_ENGLISH);
     goToSleep();
     return;
   }
 
   resetSleepCount();
-  doTask();
+
+  if (hasUserPressedButton(userButtonValue)) {
+    debugPrintln("Wakeup on user button press!");
+  }
+
+  enableWiFi();
+  bool isConnectedToWiFi = connectToWiFi();
+  if (isConnectedToWiFi) {
+    debugPrint("[INFO] Connected succesfully to WiFi SSID ");
+    debugPrintln(WiFi.SSID());
+    doTask();
+  } else {
+    debugPrintln("[ERROR] Connection to WiFi failed.");
+  }
 
   debugPrint("[INFO] Going into deep sleep for ");
   debugPrintln(SLEEP_DURATION_ENGLISH);
@@ -73,7 +97,46 @@ bool hasUserPressedButton(int userButtonValue) {
 }
 
 void goToSleep() {
+  disableWiFi();
+  ESP.deepSleep(SLEEP_INTERVAL_DURATION, WAKE_RF_DISABLED);
+}
+
+// WiFi
+void enableWiFi() {
+  WiFi.forceSleepWake(); // wakeup WiFi modem
+  delay(1);
+}
+
+void disableWiFi() {
   WiFi.disconnect( true );
   delay(1);
-  ESP.deepSleep(SLEEP_INTERVAL_DURATION, WAKE_RF_DISABLED);
+
+  WiFi.mode(WIFI_OFF);
+  WiFi.forceSleepBegin();
+  delay(1);
+}
+
+bool connectToWiFi() {
+  WiFi.persistent(true); // last used Wi-Fi info in flash
+  WiFi.mode(WIFI_STA);
+  WiFi.begin(ssid, password);
+
+  int count = 0;
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+
+    if (++count % 10 == 0) {
+      debugPrintln(".");
+    } else {
+      debugPrint(".");
+    }
+
+    if (count > MAX_WIFI_RECONNECT_INTERVAL) {
+      return false;
+    }
+  }
+
+  WiFi.setAutoConnect(true);
+  WiFi.setAutoReconnect(true);
+  return true;
 }
