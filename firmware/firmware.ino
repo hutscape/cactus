@@ -14,6 +14,7 @@
 char ssid [50] = "secret";
 char password [50] = "secret";
 String AP_NamePrefix = "Cactus ";
+const char WiFiAPPSK[] = "hutscape";
 int userButtonValue = 1;
 
 void setup() {
@@ -52,8 +53,8 @@ void setup() {
     debugPrintln("[INFO] Started access point at IP " + WiFi.softAPIP().toString());
   }
 
-  debugPrintln("[INFO] Going into deep sleep for " + SLEEP_DURATION_ENGLISH);
-  goToSleep();
+  // debugPrintln("[INFO] Going into deep sleep for " + SLEEP_DURATION_ENGLISH);
+  // goToSleep();
 }
 
 void loop() {
@@ -147,27 +148,18 @@ bool connectToWiFi() {
 
 void initAccessPoint() {
   // TODO: Blink LED to indicate that user has to put in the credentials in AP mode
-  // WiFi.mode(WIFI_AP);
-  //
-  // String AP_NameString = createAPName();
-  //
-  // char AP_NameChar[AP_NameString.length() + 1];
-  // memset(AP_NameChar, 0, AP_NameString.length() + 1);
-  //
-  // for (int i=0; i<AP_NameString.length(); i++)
-  //   AP_NameChar[i] = AP_NameString.charAt(i);
-  //
-  // WiFi.softAP(AP_NameChar, WiFiAPPSK);
-  //
-  // // startMDNS();
-  // // startServer();
+  WiFi.mode(WIFI_AP);
+  WiFi.softAP(createAPName().c_str(), WiFiAPPSK);
+
+  // startMDNS();
+  // startServer();
 }
 
-// String createAPName() {
-//   uint8_t mac[WL_MAC_ADDR_LENGTH];
-//   WiFi.softAPmacAddress(mac);
-//   String macID = String(mac[WL_MAC_ADDR_LENGTH - 2], HEX) +
-//                  String(mac[WL_MAC_ADDR_LENGTH - 1], HEX);
-//   macID.toUpperCase();
-//   return AP_NamePrefix + macID;
-// }
+String createAPName() {
+  uint8_t mac[WL_MAC_ADDR_LENGTH];
+  WiFi.softAPmacAddress(mac);
+  String macID = String(mac[WL_MAC_ADDR_LENGTH - 2], HEX) +
+                 String(mac[WL_MAC_ADDR_LENGTH - 1], HEX);
+  macID.toUpperCase();
+  return AP_NamePrefix + macID;
+}
