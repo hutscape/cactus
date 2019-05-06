@@ -77,7 +77,7 @@ void setup() {
     startServer();
     debugPrintln("[INFO] WiFi is not configured!");
     debugPrintln("[INFO] Connect to SSID 'Cactus NNNN'");
-    debugPrintln("[INFO] Go to http://192.168.4.1");
+    debugPrintln("[INFO] Go to http://cactus.local");
 
     // Start blinking LED to indicate AP mode
     pinMode(LED_BUILTIN, OUTPUT);
@@ -250,6 +250,9 @@ void handleRoot() {
     debugPrintln("[INFO] IFTTT key received!");
     // writeKey(server.arg("key"));
 
+    returnSuccessPage();
+    delay(1000);
+
     bool hasConectedToWifi = connectToWiFi(false);
 
     if (!hasConectedToWifi) {
@@ -262,9 +265,6 @@ void handleRoot() {
     }
 
     debugPrintln("[INFO] Connected to WiFi after AP mode!");
-    // TODO: Redirect to a success page
-    server.send(200);
-    delay(1);
 
     isAPWebServerRunning = false;
     return;
@@ -286,4 +286,9 @@ void returnConfigPage() {
 
   content += "<input type='submit' name='submit' value='Submit'></form></body></html>";
   server.send(200, "text/html", content);
+}
+
+void returnSuccessPage() {
+  String content = "<html><body><h1>Received!</h1></body></html>";
+  server.send(301, "text/html", content);
 }
