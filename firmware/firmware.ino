@@ -6,16 +6,21 @@
 #include <math.h>
 #include "Adafruit_Si7021.h"
 
-#define DEBUG true
+// Things to input
+#define SLEEP_INTERVAL_DURATION  10e6 // 10 seconds
+#define SLEEP_DURATION_ENGLISH String("10 seconds")
+#define MAX_SLEEP_COUNT 3 // 3*10 seconds = 30 seconds
 
+// Options
+#define DEBUG true
+bool willEraseWiFiCredentials = false; // change to true if WiFi credentials need to be erased for reconnecting to a new SSID
+
+// Other constants
 #define EN 2 // GPIO02 on ESP-01 module, D4 on nodeMCU WeMos, or on-board LED
 #define LED 2
 #define BATTERY_VOLT A0
 #define USERBUTTON 12 // GPIO012 on ESP or D6 on WeMos
-#define SLEEP_INTERVAL_DURATION  10e6 // 10 seconds
-#define SLEEP_DURATION_ENGLISH String("10 seconds")
 #define CURRENT_SLEEP_COUNT EEPROM.read(CURRENT_SLEEP_INTERVAL_ADDR)
-#define MAX_SLEEP_COUNT 3 // 3*10 seconds = 30 seconds
 #define CURRENT_SLEEP_INTERVAL_ADDR 30 // EEPROM address to store sleep interval
 #define MAX_WIFI_RECONNECT_INTERVAL 20 // WiFi will try to connect for 20 seconds
 #define MAX_AP_ON_MINUTES 1 // The AP mode will be on for 1 minute
@@ -39,7 +44,6 @@ struct SensorValues {
 
 int userButtonValue = 1;
 bool isAPWebServerRunning = false;
-bool willEraseWiFiCredentials = false; // change to true if WiFi credentials need to be erased for reconnecting to a new SSID
 int apLoopCount = 0;
 Ticker ticker;
 SensorValues sensorValues;
