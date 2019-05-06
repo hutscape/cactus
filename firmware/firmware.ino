@@ -2,6 +2,7 @@
 #include <ESP8266WiFi.h>
 #include <ESP8266WebServer.h>
 #include <ESP8266mDNS.h>
+#include <Ticker.h>
 
 #define DEBUG true
 
@@ -11,8 +12,8 @@
 #define CURRENT_SLEEP_COUNT EEPROM.read(CURRENT_SLEEP_INTERVAL_ADDR)
 #define MAX_SLEEP_COUNT 3 // 3*10 seconds = 30 seconds
 #define CURRENT_SLEEP_INTERVAL_ADDR 30 // EEPROM address to store sleep interval
-#define MAX_WIFI_RECONNECT_INTERVAL 20 // 20 seconds
-#define MAX_AP_ON_MINUTES 1 // 1 minute
+#define MAX_WIFI_RECONNECT_INTERVAL 20 // WiFi will try to connect for 20 seconds
+#define MAX_AP_ON_MINUTES 1 // The AP mode will be on for 1 minute
 
 char ssid [50] = "secret";
 char password [50] = "secret";
@@ -24,6 +25,7 @@ int userButtonValue = 1;
 bool isAPWebServerRunning = false;
 bool willEraseWiFiCredentials = false; // change to true if WiFi credentials need to be erased for reconnecting to a new SSID
 int apLoopCount = 0;
+Ticker ticker;
 
 ESP8266WebServer server(80);
 
@@ -72,6 +74,10 @@ void setup() {
       debugPrintln("[ERROR] mDNS has failed to start");
     }
 
+    // Start blinking LED to indicate AP mode
+    pinMode(LED_BUILTIN, OUTPUT);
+    ticker.attach(1, blink);
+
     startServer();
     debugPrintln("[INFO] WiFi is not configured!");
     debugPrintln("[INFO] Connect to SSID 'Cactus NNNN'");
@@ -90,6 +96,9 @@ void loop() {
     }
     delay(100);
   } else {
+    ticker.detach();
+    ledOFF();
+
     doTask();
     debugPrintln("[INFO] Going into deep sleep after task for " + SLEEP_DURATION_ENGLISH);
     goToSleep();
@@ -131,6 +140,15 @@ void resetSleepCount() {
 // Sensor functions
 bool hasUserPressedButton(int userButtonValue) {
   return userButtonValue == 0;
+}
+
+void blink() {
+  int state = digitalRead(LED_BUILTIN);
+  digitalWrite(LED_BUILTIN, !state);
+}
+
+void ledOFF() {
+  digitalWrite(LED_BUILTIN, HIGH);
 }
 
 // Sleep and Wakup functions

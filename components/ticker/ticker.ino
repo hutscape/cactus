@@ -11,7 +11,7 @@ void setup() {
   Serial.begin(115200);
   Serial.println("Hello!");
 
-  ticker.attach(1, flip); // start the ticker
+  ticker.attach(1, blink); // start the ticker
   isLEDToggle = true;
 }
 
@@ -27,7 +27,7 @@ void loop() {
   delay(2000);
 }
 
-void flip() {
+void blink() {
   int state = digitalRead(LED_BUILTIN);
   if(isLEDToggle){
     digitalWrite(LED_BUILTIN, !state);
