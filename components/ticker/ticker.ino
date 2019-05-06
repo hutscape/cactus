@@ -18,8 +18,7 @@ void setup() {
 void loop() {
   if (count > 10) { // off the LED when not require
     ticker.detach();
-    digitalWrite(LED_BUILTIN, HIGH);
-    Serial.println("OFF LED");
+    ledOFF();
     isLEDToggle = false;
   }
 
@@ -33,4 +32,9 @@ void flip() {
   if(isLEDToggle){
     digitalWrite(LED_BUILTIN, !state);
   }
+}
+
+void ledOFF() {
+  digitalWrite(LED_BUILTIN, HIGH);
+  Serial.println("OFF LED");
 }
