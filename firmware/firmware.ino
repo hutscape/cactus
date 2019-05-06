@@ -268,7 +268,7 @@ SensorValues readTempHumidity(void) {
 }
 
 void displayHumidity(float humidity) {
-  int barHumidity = humidity/20 + 1;
+  int barHumidity = humidity/20;
   String sBar = "[INFO] Display Humidity in LED: " + String(barHumidity) + " LEDs";
   Serial.println(sBar);
 

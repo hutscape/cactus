@@ -481,16 +481,10 @@ Text Notes 2150 1200 0    50   ~ 0
 WeMos Battery shield is \nconnected to a LiPo battery.
 Text Notes 4450 2900 0    50   ~ 0
 WeMos remains in deep sleep for 6 hours and wakes \nup to sense the humidity value, display it in the LEDs \nand post the value to the cloud.
-Text Notes 6600 6250 0    50   Italic 0
-Humidity RH% | LED ON\n0 - 20       | D1\n21 - 40      | D1, D2\n41 - 60      | D1, D2, D3\n61 - 80      | D1, D2, D3, D4\n81 - 100     | D1, D2, D3, D4, D5
+Text Notes 6600 6350 0    50   Italic 0
+Humidity RH% | LED ON\n0 - 19       | all OFF\n20 - 39      | D1\n40 - 59      | D1, D2\n60 - 79      | D1, D2, D3\n80 - 99      | D1, D2, D3, D4\n> 100        | D1, D2, D3, D4, D5
 Wire Notes Line
 	6550 5750 8050 5750
-Wire Notes Line
-	8050 6300 6550 6300
-Wire Notes Line
-	6550 6300 6550 5750
-Wire Notes Line
-	8050 5750 8050 6300
 Text Notes 5950 5450 0    50   ~ 0
 Humidity values are displayed in the LEDs.
 Wire Wire Line
@@ -7490,8 +7484,8 @@ Pos 3300 2350
 Scale 0.200000
 Data
 89 50 4E 47 0D 0A 1A 0A 00 00 00 0D 49 48 44 52 00 00 03 60 00 00 03 61 08 02 00 00 00 0E AC 4F 
-56 00 00 00 03 73 42 49 54 08 08 08 DB E1 4F E0 00 00 00 09 70 48 59 73 00 00 0B 12 00 00 0B 12 
-01 D2 DD 7E FC 00 00 20 00 49 44 41 54 78 9C EC BD EB AF EC B8 B2 1F 56 0F 52 DD 6B ED C7 CC 9C 
+56 00 00 00 03 73 42 49 54 08 08 08 DB E1 4F E0 00 00 00 09 70 48 59 73 00 00 0A F0 00 00 0A F0 
+01 42 AC 34 98 00 00 20 00 49 44 41 54 78 9C EC BD EB AF EC B8 B2 1F 56 0F 52 DD 6B ED C7 CC 9C 
 E3 73 6E E0 9B 5C 03 86 F3 E1 E6 43 80 FC FF FF 40 F2 C5 30 90 38 31 90 D8 B8 B1 CF B5 73 66 CE 
 BC F6 63 75 B7 C8 AA CA 07 AA B5 D4 7A B5 D4 92 BA D5 6B F7 6F 80 41 6F 2D 8A 2C 92 C5 62 BD 48 
 E1 2F BF FD 0A 15 20 62 EB 3F CD AC 78 62 50 43 FA 53 ED C5 F2 B9 D5 1F 77 D7 DC A8 E1 9A E8 EA 
@@ -31382,6 +31376,12 @@ Wire Notes Line
 	900  900  3850 900 
 Wire Notes Line
 	900  3000 3850 3000
+Wire Notes Line
+	6550 6400 8050 6400
+Wire Notes Line
+	6550 5750 6550 6400
+Wire Notes Line
+	8050 5750 8050 6400
 Wire Bus Line
 	7250 3650 7250 4250
 Wire Bus Line
