@@ -74,14 +74,14 @@ void setup() {
       debugPrintln("[ERROR] mDNS has failed to start");
     }
 
-    // Start blinking LED to indicate AP mode
-    pinMode(LED_BUILTIN, OUTPUT);
-    ticker.attach(1, blink);
-
     startServer();
     debugPrintln("[INFO] WiFi is not configured!");
     debugPrintln("[INFO] Connect to SSID 'Cactus NNNN'");
     debugPrintln("[INFO] Go to http://192.168.4.1");
+
+    // Start blinking LED to indicate AP mode
+    pinMode(LED_BUILTIN, OUTPUT);
+    ticker.attach(1, blink);
   }
 }
 
