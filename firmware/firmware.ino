@@ -3,9 +3,14 @@
 #include <ESP8266WebServer.h>
 #include <ESP8266mDNS.h>
 #include <Ticker.h>
+#include <math.h>
+#include "Adafruit_Si7021.h"
 
 #define DEBUG true
 
+#define EN 2 // GPIO02 on ESP-01 module, D4 on nodeMCU WeMos, or on-board LED
+#define LED 2
+#define BATTERY_VOLT A0
 #define USERBUTTON 12 // GPIO012 on ESP or D6 on WeMos
 #define SLEEP_INTERVAL_DURATION  10e6 // 10 seconds
 #define SLEEP_DURATION_ENGLISH String("10 seconds")
@@ -15,19 +20,32 @@
 #define MAX_WIFI_RECONNECT_INTERVAL 20 // WiFi will try to connect for 20 seconds
 #define MAX_AP_ON_MINUTES 1 // The AP mode will be on for 1 minute
 
+// WiFi
 char ssid [50] = "secret";
 char password [50] = "secret";
 String AP_NamePrefix = "Cactus ";
 const char WiFiAPPSK[] = "hutscape";
 const char* DomainName = "cactus"; // set domain name domain.local
 
+// LEDs and shift register
+int dataPin = 13; // pin D7 `GPIO13` on NodeMCU boards
+int clockPin = 14; // pin D5 `GPIO14` on NodeMCU boards
+int latchPin = 15; // pin D8 `GPIO15` on NodeMCU boards
+
+struct SensorValues {
+  float temperature;
+  float humidity;
+};
+
 int userButtonValue = 1;
 bool isAPWebServerRunning = false;
 bool willEraseWiFiCredentials = false; // change to true if WiFi credentials need to be erased for reconnecting to a new SSID
 int apLoopCount = 0;
 Ticker ticker;
+SensorValues sensorValues;
 
 ESP8266WebServer server(80);
+Adafruit_Si7021 sensor = Adafruit_Si7021();
 
 void setup() {
   EEPROM.begin(512);
@@ -52,10 +70,15 @@ void setup() {
     return;
   }
 
+  initReadingBatteryVoltage();
+  initTempHumiditySensor();
   resetSleepCount();
+  sensorValues = readTempHumidity();
 
   if (hasUserPressedButton(userButtonValue)) {
     debugPrintln("[INFO] Wakeup on user button press!");
+    initShiftRegister();
+    displayHumidity(sensorValues.humidity);
   }
 
   enableWiFi();
@@ -97,7 +120,6 @@ void loop() {
     delay(100);
   } else {
     ticker.detach();
-    ledOFF();
 
     doTask();
     debugPrintln("[INFO] Going into deep sleep after task for " + SLEEP_DURATION_ENGLISH);
@@ -149,6 +171,64 @@ void blink() {
 
 void ledOFF() {
   digitalWrite(LED_BUILTIN, HIGH);
+}
+
+void initShiftRegister() {
+  pinMode(latchPin, OUTPUT);
+  pinMode(clockPin, OUTPUT);
+  pinMode(dataPin, OUTPUT);
+
+  pinMode(EN, OUTPUT);
+  digitalWrite(EN, LOW);
+}
+
+void initReadingBatteryVoltage() {
+  pinMode(BATTERY_VOLT, INPUT);
+}
+
+void initTempHumiditySensor() {
+  if (!sensor.begin()) {
+    Serial.println("[ERROR] Did not find Si7021 sensor!");
+    while (true)
+      ;
+  }
+}
+
+SensorValues readTempHumidity(void) {
+  SensorValues sensorValues = { 0.0, 0.0 };
+
+  // NOTE: Get 10 sensor values and smoothen it
+  for (int count = 0; count < 10; count++) {
+    sensorValues.temperature += sensor.readTemperature();
+    sensorValues.humidity += sensor.readHumidity();
+  }
+
+  sensorValues.temperature /= 10;
+  sensorValues.humidity /= 10;
+
+  Serial.print("[INFO] Temperature: ");
+  Serial.print(sensorValues.temperature);
+  Serial.print(" C, Humidity: ");
+  Serial.print(sensorValues.humidity);
+  Serial.println(" RH%");
+
+  return sensorValues;
+}
+
+void displayHumidity(float humidity) {
+  int barHumidity = humidity/20 + 1;
+  String sBar = "[INFO] Display Humidity in LED: " + String(barHumidity) + " LEDs";
+  Serial.println(sBar);
+
+  displayLED(pow(2, barHumidity) -1);
+
+  delay(10000); // display the humidity LEDs on-board for 10 seconds
+}
+
+void displayLED(int lednumber) {
+  digitalWrite(latchPin, LOW);
+  shiftOut(dataPin, clockPin, MSBFIRST, lednumber);
+  digitalWrite(latchPin, HIGH);
 }
 
 // Sleep and Wakup functions
