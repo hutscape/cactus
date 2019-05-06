@@ -44,6 +44,14 @@ int apLoopCount = 0;
 Ticker ticker;
 SensorValues sensorValues;
 
+const char* host = "maker.ifttt.com";
+const int httpsPort = 443;
+const int httpPort = 80;
+
+// Get fingerprint of maker.ifttt.com
+// echo | openssl s_client -connect maker.ifttt.com:443 |& openssl x509 -fingerprint -noout
+const char fingerprint[] PROGMEM = "AA:75:CB:41:2E:D5:F9:97:FF:5D:A0:8B:7D:AC:12:21:08:4B:00:8C";
+
 ESP8266WebServer server(80);
 Adafruit_Si7021 sensor = Adafruit_Si7021();
 
@@ -121,7 +129,8 @@ void loop() {
   } else {
     ticker.detach();
 
-    doTask();
+    sendToIFTTT(sensorValues, getBatteryVoltage());
+    debugPrintln("");
     debugPrintln("[INFO] Going into deep sleep after task for " + SLEEP_DURATION_ENGLISH);
     goToSleep();
   }
@@ -140,11 +149,7 @@ void debugPrint(String s) {
   }
 }
 
-void doTask() {
-  debugPrintln("[INFO] Do task");
-}
-
-// EEPROM functions
+// Sleep functions
 bool isCurrentSleepCountMax() {
   return CURRENT_SLEEP_COUNT >= MAX_SLEEP_COUNT;
 }
@@ -157,6 +162,53 @@ void increaseSleepCount() {
 void resetSleepCount() {
   EEPROM.write(CURRENT_SLEEP_INTERVAL_ADDR, 0);
   EEPROM.commit();
+}
+
+// EEPROM
+String readKey() {
+  String readStr;
+  char readChar;
+
+  for (int i = 0; i < 22; ++i) {
+    readChar = char(EEPROM.read(i));
+    readStr += readChar;
+  }
+
+  return readStr;
+}
+
+void writeKey(String writeStr) {
+  delay(10);
+
+  for (int i = 0; i < writeStr.length(); ++i) {
+    EEPROM.write(i, writeStr[i]);
+  }
+
+  EEPROM.commit();
+}
+
+// Battery
+float getBatteryVoltage() {
+  unsigned int raw = 0;
+  float volt = 0.0;
+  float batteryVoltage = 0.0;
+
+  // NOTE: Get 10 analog values and smoothen it
+  for (int count = 0; count < 10; count++) {
+    raw = analogRead(A0);
+    volt = raw / 1023.0;
+    volt *= 4.2;
+
+    batteryVoltage += volt;
+  }
+
+  batteryVoltage /= 10;
+
+  Serial.print("[INFO] Current voltage is ");
+  Serial.print(batteryVoltage);
+  Serial.println("V");
+
+  return volt;
 }
 
 // Sensor functions
@@ -328,7 +380,7 @@ void handleRoot() {
     server.arg("password").toCharArray(password, 50);
 
     debugPrintln("[INFO] IFTTT key received!");
-    // writeKey(server.arg("key"));
+    writeKey(server.arg("key"));
 
     returnSuccessPage();
     delay(1000);
@@ -371,4 +423,63 @@ void returnConfigPage() {
 void returnSuccessPage() {
   String content = "<html><body><h1>Received!</h1></body></html>";
   server.send(301, "text/html", content);
+}
+
+// Cloud
+void sendToIFTTT(SensorValues sensorValues, float batteryVoltage) {
+  Serial.println("[INFO] Sending IFTTT notification...");
+
+  WiFiClientSecure client;
+  client.setFingerprint(fingerprint);
+
+  if (!client.connect(host, httpsPort)) {
+    Serial.println("[ERROR] Connection failed");
+    return;
+  }
+
+  Serial.println("[INFO] Client connected");
+
+  String url = "/trigger/cactus_values/with/key/";
+  url += readKey();
+
+  char data[34];
+  sprintf(data, "value1=%03d&value2=%03d&value3=%2.1f", formatFloatToInt(sensorValues.temperature), formatFloatToInt(sensorValues.humidity), batteryVoltage);
+
+  Serial.print("[INFO] Data sent: ");
+  Serial.println(data);
+  Serial.print("[INFO] Data size: ");
+  Serial.println(sizeof(data));
+
+  client.println(String("POST ") + url + " HTTP/1.1");
+  client.println(String("Host: ") + host);
+  client.println(String("Content-Type: application/x-www-form-urlencoded"));
+  client.print(String("Content-Length: "));
+  client.println(sizeof(data));
+  client.println();
+  client.println(data);
+
+  Serial.println("[INFO] Client posted");
+
+  unsigned long timeout = millis();
+  while (client.available() == 0) {
+    if (millis() - timeout > 20000) {
+      Serial.println("[ERROR] Client Timeout!");
+      client.stop();
+      return;
+    }
+  }
+
+  Serial.println("[INFO] Reply from client:");
+  while(client.available()){
+    String line = client.readStringUntil('\r');
+    Serial.print(line);
+  }
+
+  client.stop();
+  return;
+}
+
+// Others
+int formatFloatToInt(float value) {
+  return (int)round(value);
 }
