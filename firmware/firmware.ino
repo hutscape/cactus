@@ -7,9 +7,9 @@
 #include "Adafruit_Si7021.h"
 
 // Things to input
-#define SLEEP_INTERVAL_DURATION  10e6 // 10 seconds
-#define SLEEP_DURATION_ENGLISH String("10 seconds")
-#define MAX_SLEEP_COUNT 3 // 3*10 seconds = 30 seconds
+#define SLEEP_INTERVAL_DURATION  1200e6 // 1200 seconds = 20 minutes
+#define SLEEP_DURATION_ENGLISH String("20 minutes")
+#define MAX_SLEEP_COUNT 12 // 12*20 minutes = 4 hours
 
 // Options
 #define DEBUG true
@@ -164,7 +164,7 @@ void increaseSleepCount() {
 }
 
 void resetSleepCount() {
-  EEPROM.write(CURRENT_SLEEP_INTERVAL_ADDR, 0);
+  EEPROM.write(CURRENT_SLEEP_INTERVAL_ADDR, 1);
   EEPROM.commit();
 }
 
