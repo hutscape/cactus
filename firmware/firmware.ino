@@ -22,6 +22,7 @@ const char* DomainName = "cactus"; // set domain name domain.local
 
 int userButtonValue = 1;
 bool isAPWebServerRunning = false;
+bool willEraseWiFiCredentials = false; // change to true if WiFi credentials need to be erased for reconnecting to a new SSID
 int apLoopCount = 0;
 
 ESP8266WebServer server(80);
@@ -35,6 +36,12 @@ void setup() {
   userButtonValue = digitalRead(USERBUTTON);
 
   debugPrintln("[INFO] Wakeup sleep count " + String(CURRENT_SLEEP_COUNT) + "/" + String(MAX_SLEEP_COUNT));
+
+  if (willEraseWiFiCredentials) {
+    eraseWiFiCredentials();
+    debugPrintln("[INFO] Erasing WiFi credentials");
+    debugPrintln("[INFO] Read empty WiFi SSID: " + WiFi.SSID());
+  }
 
   if (!isCurrentSleepCountMax() && !hasUserPressedButton(userButtonValue)) {
     increaseSleepCount();
@@ -73,8 +80,6 @@ void setup() {
 }
 
 void loop() {
-  // TODO: Erase Wifi Credentials via Serial commands
-
   if (isAPWebServerRunning) {
     MDNS.update();
     server.handleClient();
@@ -130,13 +135,16 @@ bool hasUserPressedButton(int userButtonValue) {
 
 // Sleep and Wakup functions
 void goToSleep() {
-  // WiFi.disconnect( true );
-  // delay(1);
-
   ESP.deepSleep(SLEEP_INTERVAL_DURATION, WAKE_RF_DISABLED);
 }
 
 // WiFi functions
+void eraseWiFiCredentials() {
+  WiFi.disconnect(true);
+  ESP.eraseConfig();
+  willEraseWiFiCredentials = false;
+}
+
 void enableWiFi() {
   WiFi.forceSleepWake(); // wakeup WiFi modem
   delay(1);
