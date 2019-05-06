@@ -212,7 +212,6 @@ bool connectToWiFi(bool useCredsFromFlash) {
 }
 
 void initAccessPoint() {
-  // TODO: Blink LED to indicate that user has to put in the credentials in AP mode
   WiFi.mode(WIFI_AP);
   WiFi.softAP(createAPName().c_str(), WiFiAPPSK);
 }
