@@ -18,6 +18,7 @@
 - **Total units:** 1
 - **Total cost:** USD 35.41
 - **Battery life:** [4.5 months](power.md)
+- **Total schedule:** [2 years](schedule.md)
 
 ![](hardware/images/prototype-front.jpg)
 ![](hardware/images/prototype-back.jpg)

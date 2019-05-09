@@ -3,7 +3,10 @@
 ## Total duration
 
 - **Start Date:** 10 May 2017
-- End Date:
+- **Re-started:** 12 March 2019
+- **End Date:** 9 May 2019
+- **Total duration:** 2 years
+- **Total duration after re-start date:** 2 months
 
 ## Ideation
 
@@ -81,14 +84,14 @@ Manufacturing tasks:
 
 - [x] Order BOM parts online
 - [x] Order PCB manufacturing online
-- [ ] Note the cost per unit
-- [ ] Note other charges
+- [x] Note the cost per unit
+- [x] Note other charges
 
 ## System Integration
 
-- **Integration Duration:** *Pending*
+- **Integration Duration:** 3 weeks
 - **Integration Start Date:** 15 April, 2019
-- **Integration End Date:** *Pending*
+- **Integration End Date:** [6 May, 2019](https://github.com/hutscape/cactus/commit/078730f91350e5b59ebddbac2966697ce2433d47)
 
 System Integration tasks:
 
@@ -96,11 +99,11 @@ System Integration tasks:
 - [x] Ensure continuity check for all power pins
 - [x] Do a power on test
 - [x] Run the test firmware
-- [ ] Run the full firmware
+- [x] Run the full firmware
 
 ## Deployment
 
-- **Start logging:** *Pending*
+- **Start logging:** 9 May 2019
 
 Deployment tasks:
 
