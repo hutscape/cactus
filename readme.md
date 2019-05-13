@@ -47,7 +47,6 @@
 - [Power](power.md)
 - [Mechanical](mechanical.md)
 - [Schedule](schedule.md)
-- [Components](components)
 - [Live log](https://docs.google.com/spreadsheets/d/1qedLXiCeU6vCwEvv3JqwrVWjrriB8L3DA9Xp-g01Jk0/edit?usp=sharing)
 - [Lessons Learnt](lessons.md)
 - [References](references.md)
