@@ -11,3 +11,4 @@
 - Design a power on/off switch to start/stop using the battery
 - Leave out the module's on-board LED as a possible separate indicator E.g. Not linking `GPIO02` to `EN` for the shift register
 - Ensure the mechanical housing has an opening above any environmental sensors E.g humidity, UV index, air pressure
+- Make 2 units, not just 1: one for deployment, one for iteration/testing
