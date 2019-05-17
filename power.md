@@ -17,3 +17,10 @@
 - `2000mAh` battery will last for `5470h ≃ 7.59 months`
 - `500mAh` battery will last for `1402h ≃ 60 days`
 - `1200mAh` battery will last for `3282h ≃ 4.5 months`
+
+## Actual data
+
+| Interval wakeup | Checkup wakeup | Total duration | Log dates
+| ------ | ------ | ------ | ------ |
+| 4 hours | 20 minutes | 10 days | 7 may - 17 May, 2019
+| 6 hours | 20 minutes | 15 days | *Pending*
