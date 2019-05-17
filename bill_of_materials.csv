@@ -6,6 +6,7 @@ R6,470,1,SMD 0805,Resistor 470Ω 0805 SMD,Electronics,33,CRCW0805470RFKEAC,Vish
 "R1, R2, R3, R4, R5, R7",1k,6,SMD 0805,Resistor 1kΩ 0805 SMD,Electronics,18,,,Old Stock,$0.20,Estimated,,,,,"RES, THICK FILM, 1K, 1%, 0.125W, 0805"
 R8,10k,1,SMD 0805,Resistor 10kΩ 0805 SMD,Electronics,31,CRCW080510K0FKEAC,Vishay,Mouser,$0.15,Exact,$0.15,$0.76,5,1,
 R9,0ohm,1,SMD 0805,Resistor 0Ω 0805 SMD,Electronics,3,,,Old Stock,$0.15,Estimated,$0.15,,,,
+R10,100k,1,TH,Resistor 100kΩ TH,Electronics,Yes,,,,,,,,,,100k resistor to patch WeMos battery shield
 SW1,SW Push,1,SMD,Button,Electronics,14,,,Old Stock,$3.50,Estimated,$3.50,,,,
 U1,WeMos Battery shield,1,TH,WeMos Battery shield,Electronics,,,,AliExpress,$0.79,Exact,$0.79,,,,WeMos Battery Shield
 U2,WeMos D1 mini,1,TH,WeMos board,Electronics,Yes,,,Prototype stock,$2.50,Exact,$2.50,,,,WeMos D1 Mini V3.0.0
@@ -18,9 +19,9 @@ PCB,,1,,PCB,PCB,,,JLCPCB,JLCPCB,$2.00,Exact,$2.00,$2.00,5,5,
 ,3.7 1200mAh LiPo,1,,,Battery,,,,12Geeks,$14.40,Exact,$14.40,$14.40,1,1,
 ,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,
-,,,Total BOM items,35,,,BOM Cost breakdown,Percentage,Cost,,,,,,,
-,,,Total BOM unique items,16,,,Electronics,50.73%,$17.96,,,,,,,
-,,,Total unique electronics items,11,,,Battery,40.67%,$14.40,,,,,,,
+,,,Total BOM items,36,,,BOM Cost breakdown,Percentage,Cost,,,,,,,
+,,,Total BOM unique items,18,,,Electronics,50.73%,$17.96,,,,,,,
+,,,Total unique electronics items,12,,,Battery,40.67%,$14.40,,,,,,,
 ,,,Total unique mechanical items,2,,,PCB,5.65%,$2.00,,,,,,,
 ,,,Total unique connector items,1,,,Mechanical,2.26%,$0.80,,,,,,,
 ,,,,,,,Connectors,0.71%,$0.25,,,,,,,
