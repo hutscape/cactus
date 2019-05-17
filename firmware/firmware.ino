@@ -9,7 +9,7 @@
 // Things to input
 #define SLEEP_INTERVAL_DURATION  1200e6 // 1200 seconds = 20 minutes
 #define SLEEP_DURATION_ENGLISH String("20 minutes")
-#define MAX_SLEEP_COUNT 12 // 12*20 minutes = 4 hours
+#define MAX_SLEEP_COUNT 18 // 6*3 *20 minutes = 6 hours
 
 // Options
 #define DEBUG true
