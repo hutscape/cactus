@@ -316,12 +316,12 @@ I2C_SDA
 $Comp
 L power:GND #PWR01
 U 1 1 5C89C91B
-P 4100 4750
-F 0 "#PWR01" H 4100 4500 50  0001 C CNN
-F 1 "GND" H 4105 4577 50  0000 C CNN
-F 2 "" H 4100 4750 50  0001 C CNN
-F 3 "" H 4100 4750 50  0001 C CNN
-	1    4100 4750
+P 4050 4550
+F 0 "#PWR01" H 4050 4300 50  0001 C CNN
+F 1 "GND" H 4055 4377 50  0000 C CNN
+F 2 "" H 4050 4550 50  0001 C CNN
+F 3 "" H 4050 4550 50  0001 C CNN
+	1    4050 4550
 	1    0    0    -1  
 $EndComp
 Text Label 6350 2050 0    50   ~ 0
@@ -518,7 +518,7 @@ Wire Bus Line
 	7050 3650 7250 3650
 NoConn ~ 1100 2300
 $Comp
-L cactus-rescue:WeMos_D1_mini-wemos_mini U2
+L WeMos_D1_Mini_board:WeMos_D1_mini U2
 U 1 1 5C9440E1
 P 5500 1700
 F 0 "U2" H 5950 2250 60  0000 C CNN
@@ -530,35 +530,12 @@ F 3 "http://www.wemos.cc/Products/d1_mini.html" H 5500 2494 60  0001 C CNN
 $EndComp
 Wire Wire Line
 	1800 1300 1950 1300
-Connection ~ 1800 1300
-$Comp
-L cactus-rescue:WeMos_Battery_Shield-wemos_mini U1
-U 1 1 5C954F32
-P 1800 2000
-F 0 "U1" H 2200 2550 60  0000 C CNN
-F 1 "WeMos_Battery_Shield" H 2300 1400 60  0000 C CNN
-F 2 "WeMos:Battery_shield" H 2200 1300 60  0001 C CNN
-F 3 "https://wiki.wemos.cc/products:d1_mini_shields:battery_shield" H 1800 2794 60  0001 C CNN
-	1    1800 2000
-	1    0    0    -1  
-$EndComp
 Wire Notes Line
 	900  900  900  3000
 Wire Wire Line
 	5500 1000 5650 1000
 Wire Notes Line
 	4300 900  4300 3000
-$Comp
-L cactus-rescue:Si7021_breakout-Si7021_breakout_board U4
-U 1 1 5C97D9C5
-P 4100 4250
-F 0 "U4" H 3800 4700 50  0000 L CNN
-F 1 "Si7021_breakout" H 3350 3800 50  0000 L CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x05_P2.54mm_Vertical" H 4100 3650 50  0001 C CNN
-F 3 "https://learn.adafruit.com/adafruit-si7021-temperature-plus-humidity-sensor/downloads" H 4100 4050 50  0001 C CNN
-	1    4100 4250
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	3700 4150 3550 4150
 Wire Wire Line
@@ -581,27 +558,19 @@ EN
 $Comp
 L Device:R_Small R9
 U 1 1 5C9E0F92
-P 4700 4200
-F 0 "R9" V 4600 4150 50  0000 L CNN
-F 1 "0ohm" V 4800 4100 50  0000 L CNN
-F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 4700 4200 50  0001 C CNN
-F 3 "~" H 4700 4200 50  0001 C CNN
-	1    4700 4200
+P 4700 4150
+F 0 "R9" V 4600 4100 50  0000 L CNN
+F 1 "0ohm" V 4800 4050 50  0000 L CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 4700 4150 50  0001 C CNN
+F 3 "~" H 4700 4150 50  0001 C CNN
+	1    4700 4150
 	0    1    1    0   
 $EndComp
 Wire Wire Line
-	4500 4200 4600 4200
-Wire Wire Line
 	4350 3750 4350 3600
-Wire Wire Line
-	4100 3750 4350 3750
 Connection ~ 4350 3750
 Text Notes 4500 4950 0    50   ~ 0
 Do not populate for \nAdafruit 5-pin Si7021 \nbreakout board. \n\nPopulate it for other \n4-pin Si7021 breakout \nboards.
-Wire Wire Line
-	4850 3750 4850 4200
-Wire Wire Line
-	4850 4200 4800 4200
 Wire Wire Line
 	4350 3750 4850 3750
 Wire Notes Line
@@ -31382,6 +31351,39 @@ Wire Notes Line
 	6550 5750 6550 6400
 Wire Notes Line
 	8050 5750 8050 6400
+$Comp
+L Adafruit_Si7021_breakout:Si7021_breakout U4
+U 1 1 5CE67193
+P 4050 4200
+F 0 "U4" H 3750 4450 50  0000 L CNN
+F 1 "Si7021_breakout" H 3300 3850 50  0000 L CNN
+F 2 "" H 4050 3600 50  0000 C CNN
+F 3 "https://learn.adafruit.com/adafruit-si7021-temperature-plus-humidity-sensor/overview" H 4050 4000 50  0001 C CNN
+	1    4050 4200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4050 3750 4050 3900
+Wire Wire Line
+	4050 3750 4350 3750
+Wire Wire Line
+	4400 4150 4600 4150
+Wire Wire Line
+	4850 3750 4850 4150
+Wire Wire Line
+	4850 4150 4800 4150
+$Comp
+L WeMos_D1_Mini_board:WeMos_Battery_Shield U1
+U 1 1 5CE67330
+P 1800 2000
+F 0 "U1" H 2250 2550 60  0000 C CNN
+F 1 "WeMos_Battery_Shield" H 2300 1400 60  0000 C CNN
+F 2 "" H 2200 1300 60  0000 C CNN
+F 3 "http://www.wemos.cc/Products/d1_mini.html" H 1800 2797 60  0001 C CNN
+	1    1800 2000
+	1    0    0    -1  
+$EndComp
+Connection ~ 1800 1300
 Wire Bus Line
 	7250 3650 7250 4250
 Wire Bus Line

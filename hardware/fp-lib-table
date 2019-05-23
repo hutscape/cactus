@@ -1,3 +1,2 @@
 (fp_lib_table
-  (lib (name Switch_Tactile_pushbutton)(type KiCad)(uri ${KIPRJMOD}/library/Push_Button.pretty)(options "")(descr "Tactile push button"))
 )
