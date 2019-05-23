@@ -1,26 +1,50 @@
 # Power
 
+## Power source
+
+`1200mAh` LiPo
+
 ## Main components
 
-| Chip # | Chip | Operating Voltage | Active mode | Standby / Sleep mode |
-| ------ | ------ | ------ | ------ | ------ |
-| SN4HC595 | Shift register | `2V` - `6V` | `60uA` | `1uA` |
-| Si7021 | Temperature / Humidity sensor | `1.9V` - `3.6V` | `150uA` | `60nA` |
-| ESP8266 | WiFi based MCU | `3.3V` | `170mA` | `10uA` |
-| **Total consumption** | | | **170.23mA** | **11.06uA** |
-| **Total duration** | | | **30s.** | **4h.** |
+| Chip # | Chip | Operating Voltage | Active mode | Modem-sleep mode | Deep-sleep mode |
+| ------ | ------ | ------ | ------ | ------ | ------ |
+| ESP8266 | WiFi based MCU | `3.3V` | `170mA` | `15mA` | `10uA` |
+| Si7021 | Temperature / Humidity sensor | `1.9V` - `3.6V` | `150uA` |  | `60nA` |
+| SN4HC595 | Shift register | `2V` - `6V` | `60uA` |  | `1uA` |
+| **Total consumption** | | | **170.23mA** | **15mA** | **11.06uA** |
+| **Total duration** | | | **30s.** | 10s x 12 = **120s.** |**4h.** |
 
-## Calculation
+## Calculated
 
-`30/14400 * 170.21m + 14370/14400 * 11.06u = 0.3656mA`
+3 power modes:
 
-- `2000mAh` battery will last for `5470h ≃ 7.59 months`
-- `500mAh` battery will last for `1402h ≃ 60 days`
-- `1200mAh` battery will last for `3282h ≃ 4.5 months`
+- Wakes up in **Active mode** for **30 seconds** every **4 hours** to read the sensor value and ping to cloud
+- Wakes up in **Mode-sleep mode** for **10 seconds** every **20 minutes** to check whether the counter has reached the threshold
+- **Deep-sleep mode** for the rest of the time, unless user button pressed
 
-## Actual data
+```
+30/14400 * 170.21m 				--> Active mode
++ 120/14400 *15m					--> Modem-sleep mode
++ 14250/14400 * 11.06u 		--> Deep-sleep mode
 
-| Interval wakeup | Checkup wakeup | Total duration | Log dates
-| ------ | ------ | ------ | ------ |
-| 4 hours | 20 minutes | 10 days | 7 may - 17 May, 2019
-| 6 hours | 20 minutes | 15 days | *Pending*
+=
+0.354 mAs
++ 0.125mAs
++ 0.011mAs
+
+= 0.589 mAs
+```
+
+`1200mAh` battery will last for `1200/0.589/24/30 = 2.89 months`
+
+## Actual vs Calculated
+
+| Periodic wakeup | Calculated | Actual | Error %
+| ------ | ------ | ------ |
+| 4 hours | 2.89 months | 10 days | 767% ⁉️
+
+## References
+
+- [ESP8266 Low Power Solutions](https://www.espressif.com/sites/default/files/9b-esp8266-low_power_solutions_en_0.pdf)
+- [ESP8266 Maximum deep sleep i ~71 minutes](https://www.losant.com/blog/making-the-esp8266-low-powered-with-deep-sleep)
+- [Extend ESP8266 12 F Deep Sleep Time](https://electronics.stackexchange.com/questions/306374/extend-esp8266-12-f-deep-sleep-time)
