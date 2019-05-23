@@ -37,6 +37,15 @@
 
 `1200mAh` battery will last for `1200/0.589/24/30 = 2.89 months`
 
+## Measuring
+
+| Mode | Pins | Voltage
+| ------ | ------ | ------ |
+| Deep sleep | `5V` - `GND` on WeMos D1 mini | `4.94V`
+| Deep sleep | `Vin` - `GND` on Si7021 breakout board | `5V`
+| Deep sleep | `Vcc` - `GND` on 74HC595 chip | `5V`
+| Deep sleep | `EN` - `GND` on 74HC595 chip |
+
 ## Actual vs Calculated
 
 | Periodic wakeup | Calculated | Actual | Error %
