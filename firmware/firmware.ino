@@ -7,35 +7,36 @@
 #include "Adafruit_Si7021.h"
 
 // Things to input
-#define SLEEP_INTERVAL_DURATION  1200e6 // 1200 seconds = 20 minutes
+#define SLEEP_INTERVAL_DURATION  1200e6  // 1200 seconds = 20 minutes
 #define SLEEP_DURATION_ENGLISH String("20 minutes")
-#define MAX_SLEEP_COUNT 18 // 6*3 *20 minutes = 6 hours
+#define MAX_SLEEP_COUNT 18  // 6*3 *20 minutes = 6 hours
 
 // Options
 #define DEBUG true
-bool willEraseWiFiCredentials = false; // change to true if WiFi credentials need to be erased for reconnecting to a new SSID
+// Change to true if WiFi config need to be erased for a new SSID
+bool willEraseWiFiCredentials = false;
 
 // Other constants
-#define EN 2 // GPIO02 on ESP-01 module, D4 on nodeMCU WeMos, or on-board LED
+#define EN 2  // GPIO02 on ESP-01 module, D4 on nodeMCU WeMos, or on-board LED
 #define LED 2
 #define BATTERY_VOLT A0
-#define USERBUTTON 12 // GPIO012 on ESP or D6 on WeMos
+#define USERBUTTON 12  // GPIO012 on ESP or D6 on WeMos
 #define CURRENT_SLEEP_COUNT EEPROM.read(CURRENT_SLEEP_INTERVAL_ADDR)
-#define CURRENT_SLEEP_INTERVAL_ADDR 30 // EEPROM address to store sleep interval
-#define MAX_WIFI_RECONNECT_INTERVAL 20 // WiFi will try to connect for 20 seconds
-#define MAX_AP_ON_MINUTES 1 // The AP mode will be on for 1 minute
+#define CURRENT_SLEEP_INTERVAL_ADDR 30  // EEPROM add. to store sleep interval
+#define MAX_WIFI_RECONNECT_INTERVAL 20  // WiFi will try to connect for 20s
+#define MAX_AP_ON_MINUTES 1  // The AP mode will be on for 1 minute
 
 // WiFi
-char ssid [50] = "secret";
-char password [50] = "secret";
+char ssid[50] = "secret";
+char password[50] = "secret";
 String AP_NamePrefix = "Cactus ";
 const char WiFiAPPSK[] = "hutscape";
-const char* DomainName = "cactus"; // set domain name domain.local
+const char* DomainName = "cactus";  // set domain name domain.local
 
 // LEDs and shift register
-int dataPin = 13; // pin D7 `GPIO13` on NodeMCU boards
-int clockPin = 14; // pin D5 `GPIO14` on NodeMCU boards
-int latchPin = 15; // pin D8 `GPIO15` on NodeMCU boards
+int dataPin = 13;  // pin D7 `GPIO13` on NodeMCU boards
+int clockPin = 14;  // pin D5 `GPIO14` on NodeMCU boards
+int latchPin = 15;  // pin D8 `GPIO15` on NodeMCU boards
 
 struct SensorValues {
   float temperature;
@@ -245,8 +246,7 @@ void initReadingBatteryVoltage() {
 void initTempHumiditySensor() {
   if (!sensor.begin()) {
     Serial.println("[ERROR] Did not find Si7021 sensor!");
-    while (true)
-      ;
+    while (true) {}
   }
 }
 
@@ -278,7 +278,7 @@ void displayHumidity(float humidity) {
 
   displayLED(pow(2, barHumidity) -1);
 
-  delay(10000); // display the humidity LEDs on-board for 10 seconds
+  delay(10000);  // display the humidity LEDs on-board for 10 seconds
 }
 
 void displayLED(int lednumber) {
@@ -300,7 +300,7 @@ void eraseWiFiCredentials() {
 }
 
 void enableWiFi() {
-  WiFi.forceSleepWake(); // wakeup WiFi modem
+  WiFi.forceSleepWake();  // wakeup WiFi modem
   delay(1);
 }
 
@@ -311,14 +311,12 @@ void disableWiFi() {
 }
 
 bool connectToWiFi(bool useCredsFromFlash) {
-
-  if (useCredsFromFlash){
+  if (useCredsFromFlash) {
     WiFi.begin();
-  } else{
+  } else {
     WiFi.mode(WIFI_STA);
     WiFi.begin(ssid, password);
   }
-
 
   int count = 0;
   while (WiFi.status() != WL_CONNECTED) {
@@ -331,14 +329,14 @@ bool connectToWiFi(bool useCredsFromFlash) {
     }
 
     if (count >= MAX_WIFI_RECONNECT_INTERVAL) {
-      if (count % 10 != 0){
+      if (count % 10 != 0) {
         debugPrintln("");
       }
       return false;
     }
   }
 
-  if (count % 10 != 0){
+  if (count % 10 != 0) {
     debugPrintln("");
   }
 
@@ -364,17 +362,17 @@ String createAPName() {
 void startServer() {
   server.on("/", handleRoot);
 
-  const char * headerkeys[] = {"User-Agent","Cookie"} ;
+  const char * headerkeys[] = {"User-Agent", "Cookie"};
   size_t headerkeyssize = sizeof(headerkeys)/sizeof(char*);
 
-  server.collectHeaders(headerkeys, headerkeyssize );
+  server.collectHeaders(headerkeys, headerkeyssize);
   server.begin();
 
   isAPWebServerRunning = true;
 }
 
 void handleRoot() {
-  if (server.hasArg("ssid") && server.hasArg("password") && server.hasArg("key")){
+  if (server.hasArg("ssid") && server.hasArg("password") && server.hasArg("key")) {
     String receivedSSID = server.arg("ssid");
 
     debugPrintln("[INFO] WiFi SSID received: " + receivedSSID);
@@ -393,9 +391,9 @@ void handleRoot() {
 
     if (!hasConectedToWifi) {
       Serial.println("[ERROR] Cannot connect to WiFi after AP mode!");
-      server.sendHeader("Location","/");
-      server.sendHeader("Cache-Control","no-cache");
-      server.sendHeader("Set-Cookie","ESPSESSIONID=1");
+      server.sendHeader("Location", "/");
+      server.sendHeader("Cache-Control", "no-cache");
+      server.sendHeader("Set-Cookie", "ESPSESSIONID=1");
       server.send(301);
       return;
     }
@@ -447,6 +445,7 @@ void sendToIFTTT(SensorValues sensorValues, float batteryVoltage) {
   url += readKey();
 
   char data[34];
+  // TODO: Never use sprintf. Use snprintf instead.  [runtime/printf]
   sprintf(data, "value1=%03d&value2=%03d&value3=%2.1f", roundToInt(sensorValues.temperature), roundToInt(sensorValues.humidity), batteryVoltage);
 
   Serial.print("[INFO] Data sent: ");
@@ -474,7 +473,7 @@ void sendToIFTTT(SensorValues sensorValues, float batteryVoltage) {
   }
 
   Serial.println("[INFO] Reply from client:");
-  while(client.available()){
+  while (client.available()) {
     String line = client.readStringUntil('\r');
     Serial.print(line);
   }
