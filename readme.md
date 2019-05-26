@@ -34,6 +34,7 @@
 1. Go to the web page `http://cactus.local` to fill in the WiFi credentials and [IFTTT webhook key](https://ifttt.com/services/maker_webhooks/settings)
 
     ![](firmware/webpage.png)
+    ![](firmware/webpage-received.png)
 1. Wait for the [Google Sheet](https://docs.google.com/spreadsheets/d/1qedLXiCeU6vCwEvv3JqwrVWjrriB8L3DA9Xp-g01Jk0/edit?usp=sharing) to update with a new row
 
     ![](firmware/google-sheet.png)
