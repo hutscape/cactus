@@ -49,7 +49,7 @@
 ## Actual vs Calculated
 
 | Periodic wakeup | Calculated | Actual | Error %
-| ------ | ------ | ------ |
+| ------ | ------ | ------ | ------ |
 | 4 hours | 2.89 months | 10 days | 767% ⁉️
 
 ## References
