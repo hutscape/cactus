@@ -1,6 +1,8 @@
 # Hardware
 
-## Components
+View the [schematic](images/schematic.pdf) and [footprint](images/footprint.pdf) in PDF format.
+
+## Main components
 
 1. PCB (1x)
 1. WeMos D1 Mini `v3.0.0` (1x)
