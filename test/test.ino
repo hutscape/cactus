@@ -17,10 +17,10 @@ void setup() {
 
   int userButtonValue = digitalRead(USERBUTTON);
 
-  Serial.println("\nTest 1/9: It expects to wake up periodically");
+  Serial.println("\n\nTest 1/10: It expects to wake up periodically");
 
   if (userButtonValue == 0) {
-    Serial.println("Test 9/9: It expects to wake up on user long press");
+    Serial.println("Test 10/10: It expects to wake up on user long press");
   }
 
   initShiftRegister();
@@ -30,35 +30,35 @@ void setup() {
   displayLED(0);
   delay(500);
 
-  Serial.println("Test 2/9: It expects to make LED 1 ON");
+  Serial.println("Test 2/10: It expects to make LED 1 ON");
   displayLED(1);
   delay(500);
 
-  Serial.println("Test 3/9: It expects to make LED 1, LED 2 ON");
+  Serial.println("Test 3/10: It expects to make LED 1, LED 2 ON");
   displayLED(3);
   delay(500);
 
-  Serial.println("Test 4/9: It expects to make LED 1, LED 2, LED 3 ON");
+  Serial.println("Test 4/10: It expects to make LED 1, LED 2, LED 3 ON");
   displayLED(7);
   delay(500);
 
-  Serial.println("Test 5/9: It expects to make LED 1, LED 2, LED 3, LED 4 ON");
+  Serial.println("Test 5/10: It expects to make LED 1, LED 2, LED 3, LED 4 ON");
   displayLED(15);
   delay(500);
 
-  Serial.println("Test 6/9: It expects to make 4 LEDs ON");
+  Serial.println("Test 6/10: It expects to make all 5 LEDs ON");
   displayLED(31);
   delay(500);
 }
 
 void loop() {
-  Serial.println("Test 7/9: It expects to read the temperature and humidity");
   displayTempHumidity();
-
   disableLEDs();
 
-  Serial.println("Test 8/9: It expects to go to sleep");
-  Serial.println("\tGoing to sleep for 10 seconds");
+  Serial.println("Test 9/10: It expects to go to sleep for 10 seconds");
+  Serial.println("[INFO] Press user button to test wakeup on button press!");
+  Serial.println("");
+  Serial.println("");
   ESP.deepSleep(10e6);
 }
 
@@ -85,17 +85,19 @@ void displayLED(int lednumber) {
 }
 
 void displayTempHumidity(void) {
-  Serial.print("\tTemperature: ");
+  Serial.print("Test 7/10: It expects to read the current temperature ");
   Serial.print(sensor.readTemperature());
-  Serial.print(" °C\tHumidity: ");
+  Serial.print("C and humidity ");
   Serial.print(sensor.readHumidity());
-  Serial.print(" RH%");
+  Serial.println(" RH%");
 
   int barHumidity = sensor.readHumidity()/20 + 1;
-  String sBar = "\tGraph: " + String(barHumidity) + " LEDs";
+  String sBar = String(barHumidity) + " LEDs";
+  Serial.print("Test 8/10: It expects to display the sensor values with ");
   Serial.println(sBar);
 
   displayLED(pow(2, barHumidity) -1);
+  delay(5000);
 }
 
 void disableLEDs(void) {
