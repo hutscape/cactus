@@ -1,19 +1,19 @@
 #include <ESP8266WiFi.h>
 #include "Adafruit_Si7021.h"
 
-#define EN 2 // GPIO02 on ESP-01 module, D4 on nodeMCU WeMos
-#define USERBUTTON 12 // GPIO012 on ESP or D6 on WeMos
+#define EN 2  // GPIO02 on ESP-01 module, D4 on nodeMCU WeMos
+#define USERBUTTON 12  // GPIO012 on ESP or D6 on WeMos
 
-int dataPin = 13; // pin D7 `GPIO13` on NodeMCU boards
-int clockPin = 14; // pin D5 `GPIO14` on NodeMCU boards
-int latchPin = 15; // pin D8 `GPIO15` on NodeMCU boards
+int dataPin = 13;  // pin D7 `GPIO13` on NodeMCU boards
+int clockPin = 14;  // pin D5 `GPIO14` on NodeMCU boards
+int latchPin = 15;  // pin D8 `GPIO15` on NodeMCU boards
 
 Adafruit_Si7021 sensor = Adafruit_Si7021();
 
 void setup() {
   Serial.begin(115200);
   Serial.setTimeout(2000);
-  while(!Serial) { }
+  while (!Serial) { }
 
   int userButtonValue = digitalRead(USERBUTTON);
 
@@ -46,13 +46,13 @@ void setup() {
   displayLED(15);
   delay(500);
 
-  Serial.println("Test 6/9: It expects to make LED 1, LED 2, LED 3, LED 4, LED 5 ON");
+  Serial.println("Test 6/9: It expects to make 4 LEDs ON");
   displayLED(31);
   delay(500);
 }
 
 void loop() {
-  Serial.println("Test 7/9: It expects to read the current temperature and humidity");
+  Serial.println("Test 7/9: It expects to read the temperature and humidity");
   displayTempHumidity();
 
   disableLEDs();
@@ -74,8 +74,7 @@ void initShiftRegister() {
 void initTempHumiditySensor() {
   if (!sensor.begin()) {
     Serial.println("Did not find Si7021 sensor!");
-    while (true)
-      ;
+    while (true) {}
   }
 }
 
