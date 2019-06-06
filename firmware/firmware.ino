@@ -36,6 +36,9 @@ String AP_NamePrefix = "Cactus ";
 const char WiFiAPPSK[] = "hutscape";
 const char* DomainName = "cactus";  // set domain name domain.local
 
+// TODO: User user form input to take in IFTTT applet name
+String IFTTT_EventName = "cactus_values"
+
 // LEDs and shift register
 int dataPin = 13;  // pin D7 `GPIO13` on NodeMCU boards
 int clockPin = 14;  // pin D5 `GPIO14` on NodeMCU boards
@@ -448,8 +451,7 @@ void sendToIFTTT(SensorValues sensorValues, float batteryVoltage) {
 
   Serial.println("[INFO] Client connected");
 
-  // TODO: User user form input to take in IFTTT applet name
-  String url = "/trigger/cactus_2/with/key/";
+  String url = "/trigger/" + IFTTT_EventName + "/with/key/";
   url += readKey();
 
   char data[34];
