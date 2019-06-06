@@ -50,7 +50,11 @@
 
 | Periodic wakeup | Calculated | Actual | Error %
 | ------ | ------ | ------ | ------ |
-| 4 hours | 2.89 months | 10 days | 767% ⁉️
+| 6 hours | 2.89 months | 10 days | 767% ⁉️
+
+## Charging
+
+Takes about 12 hours to re-charge to 100%.
 
 ## References
 
