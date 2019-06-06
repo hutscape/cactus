@@ -7,13 +7,15 @@
 #include "Adafruit_Si7021.h"
 
 // Things to input
-#define SLEEP_INTERVAL_DURATION  1200e6  // 1200 seconds = 20 minutes
-#define SLEEP_DURATION_ENGLISH String("20 minutes")
-#define MAX_SLEEP_COUNT 18  // 6*3 *20 minutes = 6 hours
+// Wakeup every 10,800,000,000 µs = 10800e6 = 10,800s = 3 hours
+#define SLEEP_INTERVAL_DURATION  10800e6
+#define SLEEP_DURATION_ENGLISH String("3 hours")
+#define MAX_SLEEP_COUNT 2  // 3 hours * 2 times = 6 hours
 
 // Options
 #define DEBUG true
 // Change to true if WiFi config need to be erased for a new SSID
+// TODO: Implement a factory reset button to erase all stored configurations
 bool willEraseWiFiCredentials = false;
 
 // Other constants
@@ -22,9 +24,10 @@ bool willEraseWiFiCredentials = false;
 #define BATTERY_VOLT A0
 #define USERBUTTON 12  // GPIO012 on ESP or D6 on WeMos
 #define CURRENT_SLEEP_COUNT EEPROM.read(CURRENT_SLEEP_INTERVAL_ADDR)
+#define IFTTT_KEY_LENGTH 22
 #define CURRENT_SLEEP_INTERVAL_ADDR 30  // EEPROM add. to store sleep interval
 #define MAX_WIFI_RECONNECT_INTERVAL 20  // WiFi will try to connect for 20s
-#define MAX_AP_ON_MINUTES 1  // The AP mode will be on for 1 minute
+#define MAX_AP_ON_MINUTES 5  // The AP mode will be on for 5 minutes
 
 // WiFi
 char ssid[50] = "secret";
@@ -174,7 +177,7 @@ String readKey() {
   String readStr;
   char readChar;
 
-  for (int i = 0; i < 22; ++i) {
+  for (int i = 0; i < IFTTT_KEY_LENGTH; ++i) {
     readChar = char(EEPROM.read(i));
     readStr += readChar;
   }
@@ -372,7 +375,7 @@ void startServer() {
 }
 
 void handleRoot() {
-  if (server.hasArg("ssid") && server.hasArg("password") && server.hasArg("key")) {
+  if (server.hasArg("ssid") && server.hasArg("password") && server.hasArg("key") && server.hasArg("event")) {
     String receivedSSID = server.arg("ssid");
 
     debugPrintln("[INFO] WiFi SSID received: " + receivedSSID);
@@ -383,6 +386,9 @@ void handleRoot() {
 
     debugPrintln("[INFO] IFTTT key received!");
     writeKey(server.arg("key"));
+
+    debugPrintln("[INFO] IFTTT event name received!");
+    // TODO: Store IFTTT Event name in EEPROM
 
     returnSuccessPage();
     delay(1000);
@@ -414,9 +420,10 @@ void returnConfigPage() {
   content += "<p>WiFi SSID: <input type='text' name='ssid' placeholder='ssid'></p>";
   content += "<p>WiFi Password:<input type='password' name='password' placeholder='secret'></p>";
 
-  content += "<p>IFTTT Key:<input type='text' name='key' placeholder='IFTTT Key'></p>";
   // IFTTT key from https://ifttt.com/services/maker_webhooks/settings
   // https://maker.ifttt.com/use/{key}
+  content += "<p>IFTTT Key:<input type='text' name='key' placeholder='IFTTT Key'></p>";
+  content += "<p>IFTTT Event name:<input type='text' name='event' placeholder='IFTTT event name'></p>";
 
   content += "<input type='submit' name='submit' value='Submit'></form></body></html>";
   server.send(200, "text/html", content);
@@ -441,7 +448,8 @@ void sendToIFTTT(SensorValues sensorValues, float batteryVoltage) {
 
   Serial.println("[INFO] Client connected");
 
-  String url = "/trigger/cactus_values/with/key/";
+  // TODO: User user form input to take in IFTTT applet name
+  String url = "/trigger/cactus_2/with/key/";
   url += readKey();
 
   char data[34];
