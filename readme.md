@@ -39,6 +39,12 @@
 
     ![](firmware/google-sheet.png)
 
+## Maintenance
+
+- Do not plug in the USB cable on WeMos D1 Mini while the battery shield is on the PCB
+- Charge the LiPo by plugging in the USB cable into the battery shield
+- Re-flash firmware by removing the battery shield from the PCB and using the USB cable on the WeMos D1 mini
+
 ## Others
 
 - [Hardware](hardware)
