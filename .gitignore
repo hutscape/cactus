@@ -1,9 +1,11 @@
 # Temporary
 *.kicad_pcb-bak
 *.bak
-*.bck
-*.bin
+*-cache.lib
+*-rescue.lib
+*-rescue.dcm
 *.elf
+*.hex
+*.pyc
 
 datasheets
-.pretty
