@@ -5,7 +5,7 @@
         {% assign pages = site.pages | sort: 'sequence' %}
         {%- for pg in pages -%}
           {% if page.url == pg.permalink %}
-            <li class="is-active"><a href="{{ pg.permalink }}">{{ pg.title }}</a></li>
+            <li class="is-active"><a href="{{site.url}}{{ pg.permalink }}">{{ pg.title }}</a></li>
           {%- else -%}
             <li><a href="{{ pg.permalink }}">{{ pg.title }}</a></li>
           {%- endif -%}
