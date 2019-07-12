@@ -1,3 +1,10 @@
+---
+layout: default
+title: Firmware
+permalink: /firmware
+sequence: 3
+---
+
 # Firmware
 
 Firmware contains parts of the circuit prototyped and tested separately.

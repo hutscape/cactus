@@ -1,0 +1,8 @@
+title: Cactus
+description: 🌵 Measure humidity in kitchen cupboards to keep food fresh 🍶
+url: "https://hutscape.com/palm"
+markdown: kramdown
+permalink: /:title
+google_analytics: UA-XXXXX-Y
+github:
+  repository_url: https://github.com/hutscape/cactus

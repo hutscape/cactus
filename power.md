@@ -1,3 +1,9 @@
+---
+layout: default
+title: Power
+permalink: /power
+sequence: 6
+---
 # Power
 
 ## Power source

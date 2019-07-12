@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cactus</title>
+  <meta name="description" content="🌵 Measure humidity in kitchen cupboards to keep food fresh 🍶">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+  <link rel="stylesheet" href="/assets/github.css">
+  <style>
+    .highlight {
+      max-height: 500px;
+      overflow: auto;
+    }
+  </style>
+</head>
+<body><nav class="navbar is-spaced has-shadow" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="https://hutscape.com">Hutscape</a>
+
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navMenu">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navMenu" class="navbar-menu">
+    <div class="navbar-start">
+      <a class="navbar-item" href="https://hutscape.com/checklists">Checklists</a>
+      <a class="navbar-item" href="https://hutscape.com/components">Components</a>
+      <a class="navbar-item" href="https://hutscape.com/references">References</a>
+    </div>
+
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons">
+          <a class="button is-primary" href="https://github.com/hutscape/cactus/blob/master/firmware.md"><strong>Edit this page</strong></a>
+          <a class="button is-light" href="https://github.com/hutscape/cactus"> GitHub </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+<section class="hero is-small is-light">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title is-1"> Cactus </h1>
+      <h2 class="subtitle is-1"> 🌵 Measure humidity in kitchen cupboards to keep food fresh 🍶 </h2>
+    </div>
+  </div>
+</section>
+<section class="section is-small">
+  <div class="container">
+    <div class="tabs">
+      <ul>
+        <li><a href="/">Getting Started</a></li><li><a href="/hardware">Hardware</a></li>
+            <li class="is-active"><a href="/firmware">Firmware</a></li><li><a href="/bom">Bill of Materials</a></li><li><a href="/design">Design</a></li><li><a href="/power">Power</a></li><li><a href="/mechanical">Mechanical</a></li><li><a href="/schedule">Schedule</a></li><li><a href="/lessons">Lessons learnt</a></li><li><a href="/references">References</a></li></ul>
+    </div>
+  </div>
+</section>
+<h1 id="firmware">Firmware</h1>
+
+<p>Firmware contains parts of the circuit prototyped and tested separately.</p>
+
+<h2 id="arduino-ide-settings">Arduino IDE settings</h2>
+
+<ul>
+  <li>Board: NodeMCU board ESP-12E</li>
+  <li>Flash size: <code class="highlighter-rouge">4M</code></li>
+  <li>CPU Frequency: <code class="highlighter-rouge">80MHz</code></li>
+  <li>Upload speed: <code class="highlighter-rouge">115200</code></li>
+  <li>Port: <code class="highlighter-rouge">/dev/cu.wchusbserial1410</code></li>
+</ul>
+
+<h2 id="main-features">Main features</h2>
+
+<ul class="task-list">
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />Read humidity from the sensor</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />Read temperature from the sensor</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />Read battery levels</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />Display humidity values in the LEDs</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />Wakeup every 4 hours</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />Wakeup on long button press</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />Check for stored WiFi credentials</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />Connect to WiFi with the stored credentials</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />Setup an AP mode if WiFi cannot be connected</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />Send sensor and battery values to IFTTT if WiFi is connected</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />Wait for 5 minutes in AP mode is WiFi is not connected</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />Sleep after sending data to IFTTT</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />Sleep after waiting for 5 minutes in AP mode</li>
+</ul>
+<footer class="footer">
+  <div class="content has-text-centered">
+    <p>
+      <strong>Hutscape</strong> by <a href="https://sayan.ee">Sayanee</a>. The source code is licensed
+      <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
+      is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
+    </p>
+  </div>
+</footer>
+<!-- Scripts --><script>
+document.addEventListener('DOMContentLoaded', () => {
+  const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+  if ($navbarBurgers.length > 0) {
+    $navbarBurgers.forEach( el => {
+      el.addEventListener('click', () => {
+        const target = el.dataset.target;
+        console.log(target)
+        const $target = document.getElementById(target);
+        el.classList.toggle('is-active');
+        $target.classList.toggle('is-active');
+      });
+    });
+  }
+});
+</script>
+<script src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script></body>
+</html>

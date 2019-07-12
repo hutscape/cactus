@@ -1,0 +1,8 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP Si7021_breakout
+D Si7021 Temperature and Humidity Sensor breakout board
+F https://learn.adafruit.com/adafruit-si7021-temperature-plus-humidity-sensor/overview
+$ENDCMP
+#
+#End Doc Library

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+{%- include head.html -%}
+<body>
+{%- include navbar.html -%}
+{%- include header.html -%}
+{%- include tabs.html -%}
+{{ content }}
+{%- include footer.html -%}
+
+<!-- Scripts -->
+{%- include menu-mobile.html -%}
+
+<script src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+{%- if jekyll.environment == 'production' and site.google_analytics -%}
+  {%- include google-analytics.html -%}
+{%- endif -%}
+</body>
+</html>

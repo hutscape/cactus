@@ -1,3 +1,10 @@
+---
+layout: default
+title: Hardware
+permalink: /hardware
+sequence: 2
+---
+
 # Hardware
 
 View the [schematic](images/schematic.pdf) and [footprint](images/footprint.pdf) in PDF format.

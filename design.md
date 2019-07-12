@@ -1,3 +1,10 @@
+---
+layout: default
+title: Design
+permalink: /design
+sequence: 5
+---
+
 # Design
 
 ## Power tree schematic

@@ -1,3 +1,9 @@
+---
+layout: default
+title: Lessons learnt
+permalink: /lessons
+sequence: 9
+---
 # Lessons Learnt
 
 > Good practices to continue for future projects

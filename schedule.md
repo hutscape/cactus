@@ -1,3 +1,9 @@
+---
+layout: default
+title: Schedule
+permalink: /schedule
+sequence: 8
+---
 # Schedule
 
 ## Total duration
