@@ -8,4 +8,7 @@
 *.hex
 *.pyc
 
+# jekyll
+_site
+
 datasheets
