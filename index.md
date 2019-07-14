@@ -8,10 +8,10 @@ sequence: 1
 <section class="section is-small">
   <div class="container">
     <div class="columns is-desktop">
-      <div class="column"><img src="images/prototype/front.jpg" alt="Prototype Front"></div>
-      <div class="column"><img src="images/prototype/back.jpg" alt="Prototype Back"></div>
-      <div class="column"><img src="images/prototype/side.jpg" alt="Prototype Side"></div>
-      <div class="column"><img src="images/prototype/top.jpg" alt="Prototype Side"></div>
+      <div class="column"><img src="{{site.url}}/images/prototype/front.jpg" alt="Prototype Front"></div>
+      <div class="column"><img src="{{site.url}}/images/prototype/back.jpg" alt="Prototype Back"></div>
+      <div class="column"><img src="{{site.url}}/images/prototype/side.jpg" alt="Prototype Side"></div>
+      <div class="column"><img src="{{site.url}}/images/prototype/top.jpg" alt="Prototype Side"></div>
     </div>
   </div>
 </section>

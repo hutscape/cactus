@@ -7,56 +7,33 @@ sequence: 2
 
 <section class="section is-small">
   <div class="container">
-    <h2 class="title is-1">Schematic</h2>
+    <div class="columns is-desktop">
+      <div class="column"><img src="{{site.url}}/images/3dview-front.png" alt="3D view Front"></div>
+      <div class="column"><img src="{{site.url}}/images/3dview-back.png" alt="3D view Back"></div>
+    </div>
+  </div>
+</section>
 
-    View the [schematic](images/schematic.pdf) and [footprint](images/footprint.pdf) in PDF format.
+<section class="section is-small">
+  <div class="container">
+    <div class="columns is-desktop">
+      <div class="column">
+        <h2 class="title is-1">Schematic</h2>
+        <a href="{{site.url}}/hardware/docs/schematic.pdf" class="button is-large is-fullwidth is-info">Download schematic PDF</a>
 
-    ## Main components
+        <br>
+        <a href="{{site.url}}/images/schematic.png"><img src="{{site.url}}/images/schematic.png" alt="Schematic"></a>
+      </div>
 
-    1. PCB (1x)
-    1. WeMos D1 Mini `v3.0.0` (1x)
-    1. WeMos Battery shield `v1.1.0` (1x)
-    1. LiPo `1200mAh` battery with JST PH2 connector (1x)
-    1. `M2` nuts (4x)
-    1. `M2` spacers `15mm` height (4x)
+      <div class="column">
+        <h2 class="title is-1">Footprint</h2>
+        <a href="{{site.url}}/hardware/docs/footprint.pdf" class="button is-large is-fullwidth is-info">Download footprint layout PDF</a>
 
-    Connect pins `A0` and positive `+` terminal of the LiPo JST connector on the battery shield with a `100k ohm` resistor.
-
-    ![](images/battery-shield.jpg)
-
-    ## Prototype
-
-    ![](images/prototype-back.jpg)
-    ![](images/prototype-front.jpg)
-    ![](images/prototype-side.jpg)
-    ![](images/prototype-top.jpg)
-
-    <h2 class="title is-1">Footprint</h2>
-
-    View the [PDF](images/schematic.pdf) version
-
-    ![](images/schematic.png)
-
-    ## Footprint
-
-    View [PDF](images/footprint.pdf) version
-
-    Front
-
-    ![](images/footprint-front.png)
-
-    Back
-
-    ![](images/footprint-back.png)
-
-    <h2 class="title is-1">3D View</h2>
-
-    Front
-
-    ![](images/3dview-front.png)
-
-    Back
-
-    ![](images/3dview-back.png)
+        <br>
+        <a href="{{site.url}}/images/footprint-front.png"><img src="{{site.url}}/images/footprint-front.png" alt="Footprint front"></a>
+        <br>
+        <a href="{{site.url}}/images/footprint-back.png"><img src="{{site.url}}/images/footprint-back.png" alt="Footprint back"></a>
+      </div>
+    </div>
   </div>
 </section>
