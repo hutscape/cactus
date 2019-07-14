@@ -5,7 +5,7 @@
   <title>Cactus</title>
   <meta name="description" content="🌵 Measure humidity in kitchen cupboards to keep food fresh 🍶">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
-  <link rel="stylesheet" href="/assets/github.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/styles/github.min.css">
   <style>
     .highlight {
       max-height: 500px;
@@ -45,7 +45,7 @@
   <div class="hero-body">
     <div class="container">
       <h1 class="title is-1"> Cactus </h1>
-      <h2 class="subtitle is-1"> 🌵 Measure humidity in kitchen cupboards to keep food fresh 🍶 </h2>
+      <p class="subtitle is-1"> 🌵 Measure humidity in kitchen cupboards to keep food fresh 🍶 </p>
     </div>
   </div>
 </section>
@@ -68,59 +68,61 @@
     </div>
   </div>
 </section>
-<h1 id="hardware">Hardware</h1>
+<section class="section is-small">
+  <div class="container">
+    <h2 class="title is-1">Schematic</h2>
 
-<p>View the <a href="images/schematic.pdf">schematic</a> and <a href="images/footprint.pdf">footprint</a> in PDF format.</p>
+    View the [schematic](images/schematic.pdf) and [footprint](images/footprint.pdf) in PDF format.
 
-<h2 id="main-components">Main components</h2>
+    ## Main components
 
-<ol>
-  <li>PCB (1x)</li>
-  <li>WeMos D1 Mini <code class="highlighter-rouge">v3.0.0</code> (1x)</li>
-  <li>WeMos Battery shield <code class="highlighter-rouge">v1.1.0</code> (1x)</li>
-  <li>LiPo <code class="highlighter-rouge">1200mAh</code> battery with JST PH2 connector (1x)</li>
-  <li><code class="highlighter-rouge">M2</code> nuts (4x)</li>
-  <li><code class="highlighter-rouge">M2</code> spacers <code class="highlighter-rouge">15mm</code> height (4x)</li>
-</ol>
+    1. PCB (1x)
+    1. WeMos D1 Mini `v3.0.0` (1x)
+    1. WeMos Battery shield `v1.1.0` (1x)
+    1. LiPo `1200mAh` battery with JST PH2 connector (1x)
+    1. `M2` nuts (4x)
+    1. `M2` spacers `15mm` height (4x)
 
-<p>Connect pins <code class="highlighter-rouge">A0</code> and positive <code class="highlighter-rouge">+</code> terminal of the LiPo JST connector on the battery shield with a <code class="highlighter-rouge">100k ohm</code> resistor.</p>
+    Connect pins `A0` and positive `+` terminal of the LiPo JST connector on the battery shield with a `100k ohm` resistor.
 
-<p><img src="images/battery-shield.jpg" alt="" /></p>
+    ![](images/battery-shield.jpg)
 
-<h2 id="prototype">Prototype</h2>
+    ## Prototype
 
-<p><img src="images/prototype-back.jpg" alt="" />
-<img src="images/prototype-front.jpg" alt="" />
-<img src="images/prototype-side.jpg" alt="" />
-<img src="images/prototype-top.jpg" alt="" /></p>
+    ![](images/prototype-back.jpg)
+    ![](images/prototype-front.jpg)
+    ![](images/prototype-side.jpg)
+    ![](images/prototype-top.jpg)
 
-<h2 id="schematic">Schematic</h2>
+    <h2 class="title is-1">Footprint</h2>
 
-<p>View the <a href="images/schematic.pdf">PDF</a> version</p>
+    View the [PDF](images/schematic.pdf) version
 
-<p><img src="images/schematic.png" alt="" /></p>
+    ![](images/schematic.png)
 
-<h2 id="footprint">Footprint</h2>
+    ## Footprint
 
-<p>View <a href="images/footprint.pdf">PDF</a> version</p>
+    View [PDF](images/footprint.pdf) version
 
-<p>Front</p>
+    Front
 
-<p><img src="images/footprint-front.png" alt="" /></p>
+    ![](images/footprint-front.png)
 
-<p>Back</p>
+    Back
 
-<p><img src="images/footprint-back.png" alt="" /></p>
+    ![](images/footprint-back.png)
 
-<h2 id="3d-view">3D View</h2>
+    <h2 class="title is-1">3D View</h2>
 
-<p>Front</p>
+    Front
 
-<p><img src="images/3dview-front.png" alt="" /></p>
+    ![](images/3dview-front.png)
 
-<p>Back</p>
+    Back
 
-<p><img src="images/3dview-back.png" alt="" /></p>
+    ![](images/3dview-back.png)
+  </div>
+</section>
 <footer class="footer">
   <div class="content has-text-centered">
     <p>
