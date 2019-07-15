@@ -49,3 +49,12 @@
       url: https://www.intel.com/content/dam/www/programmable/us/en/pdfs/literature/an/an-721-creating-fpga-power-tree.pdf
     - name: System-Level Design Tool Quick Start Guide
       url: https://www.analog.com/media/en/technical-documentation/user-guides/ltpowerplanneriii_qsg.pdf
+
+- topic: Low power
+  list:
+    - name: ESP8266 Low Power Solutions
+      url: https://www.espressif.com/sites/default/files/9b-esp8266-low_power_solutions_en_0.pdf
+    - name: ESP8266 Maximum deep sleep i ~71 minutes
+      url: https://www.losant.com/blog/making-the-esp8266-low-powered-with-deep-sleep
+    - name: Extend ESP8266 12 F Deep Sleep Time
+      url: https://electronics.stackexchange.com/questions/306374/extend-esp8266-12-f-deep-sleep-time
