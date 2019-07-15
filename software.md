@@ -32,7 +32,7 @@ sequence: 3
   <div class="container">
     <h2 class="title is-1">Firmware</h2>
 
-    <p class="subtitle is-4"><a href="https://github.com/hutscape/cactus/tree/master/{{page.path | replace:'.md',''}}">Upload the code</a> with <code>make flash</code> command to the <code>nRF52</code> board.</p>
+    <p class="subtitle is-4"><a href="{{site.github.repository_url}}/tree/master/{{page.path | replace:'.md',''}}">Upload the code</a> with <code>make flash</code> command to the <code>nRF52</code> board.</p>
     {% highlight c %}{%- include_relative firmware/firmware.ino -%}{% endhighlight %}
 
     <p class="subtitle is-4">Makefile</p>
