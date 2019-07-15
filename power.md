@@ -12,7 +12,6 @@ sequence: 6
   </div>
 </section>
 
-
 <section class="section is-small">
   <div class="container">
     <h2 class="title is-1">Main components</h2>
