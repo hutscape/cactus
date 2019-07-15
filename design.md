@@ -5,26 +5,18 @@ permalink: /design
 sequence: 5
 ---
 
-# Design
+<section class="section is-small">
+  <div class="container">
+    <h2 class="title is-1">Power tree schematic</h2>
+    <p class="subtitle">Edit <code><a href="{{site.url}}/images/design/power_tree_drawio.xml">power_tree_drawio.xml</a></code> at <a href="https://draw.io">draw.io</a>.</p>
+    <img src="{{site.url}}/images/design/power_tree.png" alt="Power Tree schematic">
+  </div>
+</section>
 
-## Power tree schematic
-
-> A power tree is a graphical representation of your system’s power management architecture. The power tree illustrates the main supply power flow through a tree of power converters that convert the main supply power to the voltage and current required to drive various loads. - Intel's Creating an FPGA Power Tree
-
-![](power_tree.png)
-
-## State machine
-
-Via [mermaid.js](https://mermaidjs.github.io/)
-
-```
-mmdc -i state_machine.md -o state_machine.png
-mmdc -i state_machine.md -o state_machine.svg
-```
-
-![](state_machine.png)
-
-## References
-
-- [Creating an FPGA Power Tree](https://www.intel.com/content/dam/www/programmable/us/en/pdfs/literature/an/an-721-creating-fpga-power-tree.pdf)
-- [System-Level Design Tool Quick Start Guide](https://www.analog.com/media/en/technical-documentation/user-guides/ltpowerplanneriii_qsg.pdf)
+<section class="section is-small">
+  <div class="container">
+    <h2 class="title is-1">State Machine</h2>
+    <p class="subtitle">Edit <code><a href="https://raw.githubusercontent.com/hutscape/cactus/master/design/state_machine.md">state_machine.md</a></code> at <a href="https://mermaidjs.github.io/mermaid-live-editor">mermaid js live editor</a>.</p>
+    <img src="{{site.url}}/images/design/state_machine.svg" alt="State Machine">
+  </div>
+</section>

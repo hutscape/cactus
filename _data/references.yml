@@ -42,3 +42,10 @@
   list:
     - name: ESP8266 pogo jig programming
       url: https://hackaday.io/project/20046-esp8266-pogo-jig-programming-board
+
+- topic: Design tools
+  list:
+    - name: Creating an FPGA Power Tree
+      url: https://www.intel.com/content/dam/www/programmable/us/en/pdfs/literature/an/an-721-creating-fpga-power-tree.pdf
+    - name: System-Level Design Tool Quick Start Guide
+      url: https://www.analog.com/media/en/technical-documentation/user-guides/ltpowerplanneriii_qsg.pdf
