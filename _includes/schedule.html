@@ -1,0 +1,38 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/frappe-gantt/0.3.0/frappe-gantt.js"></script>
+
+<script>
+var tasks = [
+{
+  id: 'Task 1',
+  name: 'Design',
+  start: '2019-03-12',
+  end: '2019-03-29',
+  progress: 100,
+}, {
+  id: 'Task 2',
+  name: 'Manufacturing',
+  start: '2019-04-04',
+  end: '2019-04-12',
+  progress: 100,
+  dependencies: 'Task 1',
+}, {
+  id: 'Task 3',
+  name: 'System Integration',
+  start: '2019-04-15',
+  end: '2019-05-06',
+  progress: 100,
+  dependencies: 'Task 2',
+}, {
+  id: 'Task 3',
+  name: 'Deployment',
+  start: '2019-05-06',
+  end: '2019-05-09',
+  progress: 100,
+  dependencies: 'Task 3',
+}
+]
+var gantt = new Gantt("#gantt", tasks, {
+  bar_height: 40,
+  view_mode: 'Week'
+});
+</script>

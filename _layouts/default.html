@@ -12,12 +12,17 @@
 {%- include menu-mobile.html -%}
 
 <script src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.2.0/anchor.js"></script>
 <script>anchors.add()</script>
+
+{% if page.url == "/software" %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+{% endif %}
+
+{% if page.url == "/schedule" %}
+  {%- include schedule.html -%}
+{% endif %}
 
 {%- if jekyll.environment == 'production' and site.google_analytics -%}
   {%- include google-analytics.html -%}
