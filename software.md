@@ -37,12 +37,23 @@ sequence: 3
 
     <p class="subtitle is-4">Makefile</p>
     {% highlight make %}{%- include_relative firmware/Makefile -%}{% endhighlight %}
+
+    <p class="subtitle is-4">Serial console</p>
+    <img src="{{site.url}}/images/console.png" alt="Firmware serial console">
   </div>
 </section>
 
 <section class="section is-small">
   <div class="container">
-    <h2 class="title is-1">Serial console</h2>
-    <img src="{{site.url}}/images/console.png" alt="Firmware serial console">
+    <h2 class="title is-1">Test</h2>
+
+    <p class="subtitle is-4"><a href="{{site.github.repository_url}}/tree/master/test">Upload the code</a> with <code>make flash</code> command to the <code>nRF52</code> board.</p>
+    {% highlight c %}{%- include_relative test/test.ino -%}{% endhighlight %}
+
+    <p class="subtitle is-4">Makefile</p>
+    {% highlight make %}{%- include_relative test/Makefile -%}{% endhighlight %}
+
+    <p class="subtitle is-4">Serial console</p>
+    <img src="{{site.url}}/images/test-console.png" alt="Firmware serial console">
   </div>
 </section>
