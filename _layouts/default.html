@@ -24,6 +24,10 @@
   {%- include schedule.html -%}
 {% endif %}
 
+{% if page.url == "/bom" %}
+  {%- include bom.html -%}
+{% endif %}
+
 {%- if jekyll.environment == 'production' and site.google_analytics -%}
   {%- include google-analytics.html -%}
 {%- endif -%}
