@@ -8,6 +8,13 @@ sequence: 2
 <section class="section is-small">
   <div class="container">
     <div class="columns is-desktop">
+      <div class="column">
+        <h2 class="title is-1">ECAD Files</h2>
+        <a href="{{site.github.repository_url}}/tree/master/hardware" class="button is-large is-fullwidth is-info">Download KiCad project files</a>
+      </div>
+    </div>
+
+    <div class="columns is-desktop">
       <div class="column"><img src="{{site.url}}/images/3dview-front.png" alt="3D view Front"></div>
       <div class="column"><img src="{{site.url}}/images/3dview-back.png" alt="3D view Back"></div>
     </div>
