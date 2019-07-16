@@ -5,34 +5,34 @@ var tasks = [
 {
   id: 'Task 1',
   name: 'Design',
-  start: '2019-03-12',
-  end: '2019-03-29',
+  start: '{{site.data.schedule.design_start}}',
+  end: '{{site.data.schedule.design_end}}',
   progress: 100,
 }, {
   id: 'Task 2',
   name: 'Manufacturing',
-  start: '2019-04-04',
-  end: '2019-04-12',
+  start: '{{site.data.schedule.manufacturing_start}}',
+  end: '{{site.data.schedule.manufacturing_end}}',
   progress: 100,
   dependencies: 'Task 1',
 }, {
   id: 'Task 3',
-  name: 'System Integration',
-  start: '2019-04-15',
-  end: '2019-05-06',
+  name: 'Integration',
+  start: '{{site.data.schedule.integration_start}}',
+  end: '{{site.data.schedule.integration_end}}',
   progress: 100,
   dependencies: 'Task 2',
 }, {
-  id: 'Task 3',
+  id: 'Task 4',
   name: 'Deployment',
-  start: '2019-05-06',
-  end: '2019-05-09',
+  start: '{{site.data.schedule.deployment_start}}',
+  end: '{{site.data.schedule.deployment_end}}',
   progress: 100,
   dependencies: 'Task 3',
 }
 ]
 var gantt = new Gantt("#gantt", tasks, {
   bar_height: 40,
-  view_mode: 'Week'
+  view_mode: 'Month'
 });
 </script>
