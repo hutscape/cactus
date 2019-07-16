@@ -6,5 +6,6 @@ permalink: /:title
 google_analytics: UA-XXXXX-Y
 github:
   repository_url: https://github.com/hutscape/cactus
+  raw_content_url: https://raw.githubusercontent.com/hutscape/cactus/master
 exclude: ["datasheets", "Gemfile", "Gemfile.lock", "contributing.md", "Makefile", "readme.md", "test", "scripts", "firmware"]
 include: ["_data"]
