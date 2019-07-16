@@ -7,4 +7,4 @@ google_analytics: UA-XXXXX-Y
 github:
   repository_url: https://github.com/hutscape/cactus
 exclude: ["datasheets", "Gemfile", "Gemfile.lock", "contributing.md", "Makefile", "readme.md", "test", "hardware", "scripts", "firmware"]
-include: ["_data"]
+include: ["_data", "hardware.md"]
