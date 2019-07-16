@@ -15,7 +15,6 @@ sequence: 4
         <li><strong>Total number of items:</strong> <span id="bom-total"></span></li>
         <li><strong>Total cost of items:</strong> <span id="bom-cost"></span></li>
         <li><strong>Total number of vendors:</strong> <span id="bom-vendors"></span></li>
-        <li><strong>Most expensive item:</strong> 3.7V 1200mAh LiPo Battery at SGD $14.40</li>
       </ul>
     </div>
   </div>
@@ -52,9 +51,15 @@ sequence: 4
             <td>{{bom.Value}}</td>
             <td>
               {% if bom.Datasheet %}
-              <a href="{{bom.Datasheet}}">{{bom.MPN}}</a><br>
+                {% if bom.MPN %}
+                <a href="{{bom.Datasheet}}">{{bom.MPN}}</a><br>
+                {% else %}
+                <a href="{{bom.Datasheet}}">Datasheet</a><br>
+                {% endif %}
               {% else %}
-              {{bom.MPN}}<br>
+                {% if bom.MPN %}
+                {{bom.MPN}}<br>
+                {% endif %}
               {% endif %}
               <span class="tag">{{bom.Category}}</span>
             </td>
@@ -75,6 +80,5 @@ sequence: 4
         {% endfor %}
       </tbody>
     </table>
-
   </div>
 </section>
