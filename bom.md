@@ -14,8 +14,8 @@ sequence: 4
         <li><strong>Unique number of items:</strong> <span id="bom-unique"></span></li>
         <li><strong>Total number of items:</strong> <span id="bom-total"></span></li>
         <li><strong>Total cost of items:</strong> <span id="bom-cost"></span></li>
-        <li><strong>Total number of vendors:</strong> 5</li>
-        <li><strong>Most expensive item:</strong> 3.7 1200mAh LiPo at SGD $14.40</li>
+        <li><strong>Total number of vendors:</strong> <span id="bom-vendors"></span></li>
+        <li><strong>Most expensive item:</strong> 3.7V 1200mAh LiPo Battery at SGD $14.40</li>
       </ul>
     </div>
   </div>
@@ -23,6 +23,7 @@ sequence: 4
 <section class="section is-small">
   <div class="container">
     <h2 class="title is-1">Bill of Materials</h2>
+    <a href="{{site.url}}/_data/bill_of_materials.csv" class="button is-large is-fullwidth is-info">Download Bill of Materials in CSV</a>
 
     <table class="table is-fullwidth is-hoverable">
       <thead>
@@ -49,11 +50,24 @@ sequence: 4
             <td class="bom-quantity">{{bom.Q}}</td>
             <td>{{bom.Package}}</td>
             <td>{{bom.Value}}</td>
-            <td>{{bom.MPN}} <span class="tag">{{bom.Category}}</span></td>
+            <td>
+              {% if bom.Datasheet %}
+              <a href="{{bom.Datasheet}}">{{bom.MPN}}</a><br>
+              {% else %}
+              {{bom.MPN}}<br>
+              {% endif %}
+              <span class="tag">{{bom.Category}}</span>
+            </td>
             <td>{{bom.Manufacturer}}</td>
-            <td>{{bom.Vendor}}</td>
-            <td>{{bom.Unit}}</td>
-            <td class="bom-cost">{{bom.Total}}</td>
+            <td>
+              {% if bom.Link %}
+              <a href="{{bom.Link}}"><span class="bom-vendor">{{bom.Vendor}}</span></a>
+              {% else %}
+              <span class="bom-vendor">{{bom.Vendor}}</span>
+              {% endif %}
+            </td>
+            <td>${{bom.Unit | round:2}}</td>
+            <td class="bom-cost">${{bom.Total | round:2}}</td>
             <td>{{bom.MOQ}}</td>
             <td>{{bom.Description}}</td>
           </tr>

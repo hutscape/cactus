@@ -20,4 +20,19 @@
     }
   }
   document.getElementById("bom-cost").innerHTML = "SGD $" + bomCost.toFixed(2)
+
+  // Get total unique number of vendors
+  var bomVendorEl = document.getElementsByClassName("bom-vendor")
+  var bomVendors = []
+  var bomUniqVendors = []
+  for (var i = 0; i < bomVendorEl.length; i++) {
+    if (bomVendorEl[i].innerText) {
+      bomVendors.push(bomVendorEl[i].innerText)
+    }
+  }
+  bomUniqVendors = bomVendors.filter((v, i, a) => a.indexOf(v) === i);
+  bomUniqVendors.splice(bomUniqVendors.indexOf("Old Stock"), 1)
+  bomUniqVendors.splice(bomUniqVendors.indexOf("Prototype stock"), 1)
+
+  document.getElementById("bom-vendors").innerHTML = bomUniqVendors.length + " (" + bomUniqVendors + ")"
 </script>
