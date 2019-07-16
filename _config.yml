@@ -6,5 +6,5 @@ permalink: /:title
 google_analytics: UA-XXXXX-Y
 github:
   repository_url: https://github.com/hutscape/cactus
-exclude: ["datasheets", "Gemfile", "Gemfile.lock", "contributing.md", "Makefile", "readme.md", "test", "hardware", "scripts", "firmware"]
-include: ["_data", "hardware.md"]
+exclude: ["datasheets", "Gemfile", "Gemfile.lock", "contributing.md", "Makefile", "readme.md", "test", "scripts", "firmware"]
+include: ["_data"]
