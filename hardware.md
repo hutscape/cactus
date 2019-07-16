@@ -15,8 +15,8 @@ sequence: 2
     </div>
 
     <div class="columns is-desktop">
-      <div class="column"><img src="{{site.url}}/images/3dview-front.png" alt="3D view Front"></div>
-      <div class="column"><img src="{{site.url}}/images/3dview-back.png" alt="3D view Back"></div>
+      <div class="column"><img src="{{site.url}}/images/hardware/3dview-front.png" alt="3D view Front"></div>
+      <div class="column"><img src="{{site.url}}/images/hardware/3dview-back.png" alt="3D view Back"></div>
     </div>
   </div>
 </section>
@@ -29,7 +29,7 @@ sequence: 2
         <a href="{{site.url}}/hardware/docs/schematic.pdf" class="button is-large is-fullwidth is-info">Download schematic PDF</a>
 
         <br>
-        <a href="{{site.url}}/images/schematic.png"><img src="{{site.url}}/images/schematic.png" alt="Schematic"></a>
+        <a href="{{site.url}}/images/hardware/schematic.png"><img src="{{site.url}}/images/hardware/schematic.png" alt="Schematic"></a>
       </div>
 
       <div class="column">
@@ -37,9 +37,24 @@ sequence: 2
         <a href="{{site.url}}/hardware/docs/footprint.pdf" class="button is-large is-fullwidth is-info">Download footprint layout PDF</a>
 
         <br>
-        <a href="{{site.url}}/images/footprint-front.png"><img src="{{site.url}}/images/footprint-front.png" alt="Footprint front"></a>
+        <a href="{{site.url}}/images/hardware/footprint-front.png"><img src="{{site.url}}/images/hardware/footprint-front.png" alt="Footprint front"></a>
         <br>
-        <a href="{{site.url}}/images/footprint-back.png"><img src="{{site.url}}/images/footprint-back.png" alt="Footprint back"></a>
+        <a href="{{site.url}}/images/hardware/footprint-back.png"><img src="{{site.url}}/images/hardware/footprint-back.png" alt="Footprint back"></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section is-small">
+  <div class="container">
+    <h2 class="title is-1">Prototypes</h2>
+
+    <div class="columns is-desktop">
+      <div class="column">
+        <img src="{{site.url}}/images/prototype/prototype-1.jpg" alt="Prototype 1">
+      </div>
+      <div class="column">
+        <img src="{{site.url}}/images/prototype/prototype-2.jpg" alt="Prototype 2">
       </div>
     </div>
   </div>
