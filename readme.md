@@ -8,4 +8,4 @@ Visit [hutscape.com/cactus](https://hutscape.com/cactus/) for more details.
 - [Firmware](/firmware)
 - [Test firmware](/test)
 - [Bill of Materials](/_data/bill_of_materials.csv)
-- [References](/_data/reference.yml)
+- [References](/_data/references.yml)
