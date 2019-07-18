@@ -1,3 +1,6 @@
 [submodule "hardware/library"]
 	path = hardware/library
 	url = https://github.com/hutscape/kicad-library.git
+[submodule "_includes"]
+	path = _includes
+	url = https://github.com/hutscape/project-includes
