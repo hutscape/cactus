@@ -1,0 +1,16 @@
+{
+   "power": "LiPO",
+   "wireless":"WiFi",
+   "sensor": "Humidity",
+   "mcu": "ESP8266",
+   "ota": "No",
+   "battery-life": "1 month",
+
+   "bom-uniq": 17,
+   "bom-total": 36,
+   "bom-cost-sgd": 35.40,
+   "bom-cost-usd": 26.00,
+   "vendors": 5,
+   "schedule": "2 months",
+   "status": "completed"
+}

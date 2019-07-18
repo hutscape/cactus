@@ -33,7 +33,10 @@ sequence: 3
     <h2 class="title is-1">Firmware</h2>
 
     <p class="subtitle is-4"><a href="{{site.github.repository_url}}/tree/master/{{page.path | replace:'.md',''}}">Upload the code</a> with <code>make flash</code> command.</p>
+    <p>Use firmware version at least <a href="https://github.com/esp8266/Arduino/tree/0da6906499aaa9977f7b456c6ec32c090b117cef">Arduino ESP8266 commit hash <code>0da69064</code></a> and above for mDNS patch.</p>
+
     {% highlight c %}{%- include_relative firmware/firmware.ino -%}{% endhighlight %}
+
 
     <p class="subtitle is-4">Makefile</p>
     {% highlight make %}{%- include_relative firmware/Makefile -%}{% endhighlight %}
