@@ -35,8 +35,6 @@ sequence: 4
           <th>Manufacturer</th>
           <th>Vendor</th>
           <th>Unit Cost (SGD)</th>
-          <th>Total Cost (SGD)</th>
-          <th>Minimum Order Quantity</th>
           <th>Description</th>
         </tr>
       </thead>
@@ -71,9 +69,7 @@ sequence: 4
               <span class="bom-vendor">{{bom.Vendor}}</span>
               {% endif %}
             </td>
-            <td>${{bom.Unit | round:2}}</td>
-            <td class="bom-cost">${{bom.Total | round:2}}</td>
-            <td>{{bom.MOQ}}</td>
+            <td class="bom-cost">${{bom.Unit | round:2}}</td>
             <td>{{bom.Description}}</td>
           </tr>
           {% endif %}
