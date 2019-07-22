@@ -14,8 +14,10 @@
   {%- include bom.html -%}
 {% elsif page.url == "/design" %}
   {%- include design.html -%}
-  {% elsif page.url == "/lessons" %}
-    {%- include lessons.html -%}
+{% elsif page.url == "/lessons" %}
+  {%- include lessons.html -%}
+{% elsif page.url == "/references" %}
+  {%- include references.html -%}
 {% endif %}
 
 {{ content }}
