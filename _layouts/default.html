@@ -5,6 +5,11 @@
 {%- include navbar.html -%}
 {%- include header.html -%}
 {%- include tabs.html -%}
+
+{% if page.url == "/bom" %}
+  {%- include bom.html -%}
+{% endif %}
+
 {{ content }}
 {%- include footer.html -%}
 
@@ -25,7 +30,7 @@
 {% endif %}
 
 {% if page.url == "/bom" %}
-  {%- include bom.html -%}
+  {%- include bom-script.html -%}
 {% endif %}
 
 {%- if jekyll.environment == 'production' and site.google_analytics -%}
