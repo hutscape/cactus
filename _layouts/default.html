@@ -6,7 +6,9 @@
 {%- include header.html -%}
 {%- include tabs.html -%}
 
-{% if page.url == "/hardware" %}
+{% if page.url == "/" %}
+  {%- include start.html -%}
+{% elsif page.url == "/hardware" %}
   {%- include hardware.html -%}
 {% elsif page.url == "/bom" %}
   {%- include bom.html -%}

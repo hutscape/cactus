@@ -7,17 +7,6 @@ sequence: 1
 
 <section class="section is-small">
   <div class="container">
-    <div class="columns is-desktop">
-      <div class="column"><img src="{{site.url}}/images/prototype/front.jpg" alt="Prototype Front"></div>
-      <div class="column"><img src="{{site.url}}/images/prototype/back.jpg" alt="Prototype Back"></div>
-      <div class="column"><img src="{{site.url}}/images/prototype/side.jpg" alt="Prototype Side"></div>
-      <div class="column"><img src="{{site.url}}/images/prototype/top.jpg" alt="Prototype Top"></div>
-    </div>
-  </div>
-</section>
-
-<section class="section is-small">
-  <div class="container">
     <h2 class="title is-1">Getting Started</h2>
 
     <div class="tile is-ancestor">
