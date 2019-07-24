@@ -25,4 +25,5 @@ lessons:
       - name: Do not use ESP8266's LED GPIO pin
       - name: Do not use ESP8266's <code>5V</code> pin to power other components
       - name: Increase battery life by cutting off power to the sensors during sleep
+      - name: Device an easy way to erase on board WiFi credentials and cloud connectivity details without the need to flash and re-flash the erasing firmware E.g. press a button
 ---
