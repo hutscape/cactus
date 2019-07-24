@@ -19,6 +19,7 @@ lessons:
       - name: Ensure the mechanical housing has an opening above any environmental sensors E.g humidity, UV index, air pressure
       - name: Make 2 units, not just 1 especially for non-interactive projects - one for deployment, one for iteration/testing
   - title: V2.0
+    subtitle: For next iteration
     list:
       - name: No more modules
       - name: Reduce total BOM components
