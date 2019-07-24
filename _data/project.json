@@ -5,6 +5,7 @@
    "mcu": "ESP8266",
    "ota": "No",
    "battery-life": "1 month",
+   "version": "1.0",
 
    "bom-uniq": 17,
    "bom-total": 36,
