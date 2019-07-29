@@ -3,14 +3,11 @@ layout: default
 title: Power
 permalink: /power
 sequence: 6
+power_source: <code>2000mAh</code> LiPo battery
+battery_life: 1 month
+charging_duration: 12 hours
+charging_instruction: Remove the WeMos Battery shield from the board. Plug in the USB cable to the WeMos battery shield to charge. <code>Red</code> LED will be on while it is charging.<code>Green</code> LED will be on when charging is complete.
 ---
-
-<section class="section is-small">
-  <div class="container">
-    <h2 class="title is-1">Power source</h2>
-    <p class="subtitle"><code>1200mAh</code> LiPo battery</p>
-  </div>
-</section>
 
 <section class="section is-small">
   <div class="container">
@@ -166,12 +163,5 @@ sequence: 6
         </tr>
       </tbody>
     </table>
-  </div>
-</section>
-
-<section class="section is-small">
-  <div class="container">
-    <h2 class="title is-1">Charging</h2>
-    <p class="subtitle">Takes about 12 hours to re-charge to 100%.</p>
   </div>
 </section>
