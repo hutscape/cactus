@@ -1,10 +1,12 @@
 # Temporary
 *.kicad_pcb-bak
 *.bak
+_autosave*
 *-cache.lib
 *-rescue.lib
 *-rescue.dcm
 *.elf
+*.bin
 *.hex
 *.pyc
 

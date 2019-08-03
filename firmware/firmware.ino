@@ -15,6 +15,7 @@
 // Options
 #define DEBUG true
 // Change to true if WiFi config need to be erased for a new SSID
+// Change back to false and flash the firmware immediately
 // TODO: Implement a factory reset button to erase all stored configurations
 bool willEraseWiFiCredentials = false;
 
@@ -35,9 +36,6 @@ char password[50] = "secret";
 String AP_NamePrefix = "Cactus ";
 const char WiFiAPPSK[] = "hutscape";
 const char* DomainName = "cactus";  // set domain name domain.local
-
-// TODO: User user form input to take in IFTTT applet name
-String IFTTT_EventName = "cactus_values"
 
 // LEDs and shift register
 int dataPin = 13;  // pin D7 `GPIO13` on NodeMCU boards
@@ -188,6 +186,26 @@ String readKey() {
   return readStr;
 }
 
+String readEvent() {
+  String word;
+  char readChar;
+
+  // IFTTT Event name is stored after the IFTTT Key in EEPROM
+  int i = IFTTT_KEY_LENGTH;
+
+  while (readChar != '\0') {
+    readChar = char(EEPROM.read(i));
+    delay(10);
+    i++;
+
+    if (readChar != '\0') {
+      word += readChar;
+    }
+  }
+
+  return word;
+}
+
 void writeKey(String writeStr) {
   delay(10);
 
@@ -195,6 +213,25 @@ void writeKey(String writeStr) {
     EEPROM.write(i, writeStr[i]);
   }
 
+  EEPROM.commit();
+}
+
+void writeEvent(String eventName) {
+  delay(10);
+
+  int address = 0;
+  int eventNameIndex = 0;
+  int initialAddress = IFTTT_KEY_LENGTH;
+  int finalAddress = IFTTT_KEY_LENGTH + eventName.length();
+
+  for (address = initialAddress; address < finalAddress; ++address) {
+    delay(10);
+
+    EEPROM.write(address, eventName[eventNameIndex]);
+    eventNameIndex++;
+  }
+
+  EEPROM.write(finalAddress, '\0');
   EEPROM.commit();
 }
 
@@ -215,7 +252,7 @@ float getBatteryVoltage() {
 
   batteryVoltage /= 10;
 
-  Serial.print("[INFO] Current voltage is ");
+  Serial.print("[INFO] Battery voltage is ");
   Serial.print(batteryVoltage);
   Serial.println("V");
 
@@ -391,7 +428,7 @@ void handleRoot() {
     writeKey(server.arg("key"));
 
     debugPrintln("[INFO] IFTTT event name received!");
-    // TODO: Store IFTTT Event name in EEPROM
+    writeEvent(server.arg("event"));
 
     returnSuccessPage();
     delay(1000);
@@ -426,7 +463,7 @@ void returnConfigPage() {
   // IFTTT key from https://ifttt.com/services/maker_webhooks/settings
   // https://maker.ifttt.com/use/{key}
   content += "<p>IFTTT Key:<input type='text' name='key' placeholder='IFTTT Key'></p>";
-  content += "<p>IFTTT Event name:<input type='text' name='event' placeholder='IFTTT event name'></p>";
+  content += "<p>IFTTT Maker Event name:<input type='text' name='event' placeholder='IFTTT event name'></p>";
 
   content += "<input type='submit' name='submit' value='Submit'></form></body></html>";
   server.send(200, "text/html", content);
@@ -451,8 +488,7 @@ void sendToIFTTT(SensorValues sensorValues, float batteryVoltage) {
 
   Serial.println("[INFO] Client connected");
 
-  String url = "/trigger/" + IFTTT_EventName + "/with/key/";
-  url += readKey();
+  String url = "/trigger/" + readEvent() + "/with/key/" + readKey();
 
   char data[34];
   // TODO: Never use sprintf. Use snprintf instead.  [runtime/printf]
