@@ -18,3 +18,16 @@ features:
   - detail: Charge the LiPo by plugging in the USB cable into the battery shield
 firmware_instructions: Use firmware version at least <a href="https://github.com/esp8266/Arduino/tree/0da6906499aaa9977f7b456c6ec32c090b117cef">Arduino ESP8266 commit hash <code>0da69064</code></a> and above for mDNS patch.
 ---
+
+<section class="section is-small">
+  <div class="container">
+    <h2 class="title is-1">Web config page</h2>
+    <p class="subtitle is-4 is-spaced">This web config page is displayed when the device is in the configuration mode to setup WiFi and IFTTT credentials. It uses <a href="https://bulma.io">Bulma CSS</a> with <a href="https://uncss-online.com/">UnCSS</a> to extract only the used CSS styles so that no CDN access is required in the Access Point mode.</p>
+
+    <a class="button is-primary" href="{{ site.github.repository_url }}/tree/master/web-config/index.html">Download code</a>
+    <a class="button is-primary" href="{{ site.url }}/web-config">View demo</a>
+    <br>
+
+    {% highlight html %}{%- include_relative web-config/index.html -%}{% endhighlight %}
+  </div>
+</section>
