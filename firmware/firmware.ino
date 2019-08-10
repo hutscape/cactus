@@ -5,6 +5,7 @@
 #include <Ticker.h>
 #include <math.h>
 #include "Adafruit_Si7021.h"
+#include "./web.h"
 
 // Things to input
 // Wakeup every 10,800,000,000 µs = 10800e6 = 10,800s = 3 hours
@@ -454,18 +455,6 @@ void handleRoot() {
 }
 
 void returnConfigPage() {
-  String content = "<html><body><form action='/' method='post'>";
-
-  content += "<h1>Welcome to Cactus@Hutscape</h1>";
-  content += "<p>WiFi SSID: <input type='text' name='ssid' placeholder='ssid'></p>";
-  content += "<p>WiFi Password:<input type='password' name='password' placeholder='secret'></p>";
-
-  // IFTTT key from https://ifttt.com/services/maker_webhooks/settings
-  // https://maker.ifttt.com/use/{key}
-  content += "<p>IFTTT Key:<input type='text' name='key' placeholder='IFTTT Key'></p>";
-  content += "<p>IFTTT Maker Event name:<input type='text' name='event' placeholder='IFTTT event name'></p>";
-
-  content += "<input type='submit' name='submit' value='Submit'></form></body></html>";
   server.send(200, "text/html", content);
 }
 

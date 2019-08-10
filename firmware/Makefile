@@ -1,16 +1,19 @@
-.PHONY: lint compile upload clean
+BOARD?=esp8266com:esp8266:d1_mini
+PORT?=/dev/cu.wchusbserial1410
+
+.PHONY: default lint all flash clean
+
+default: lint all flash clean
 
 lint:
 	cpplint --extensions=ino --filter=-legal/copyright,-readability/todo,-readability/casting,-runtime/int,-whitespace/line_length,-runtime/printf *.ino
 
-compile:
-	arduino-cli compile --fqbn esp8266com:esp8266:d1_mini ./
+all:
+	arduino-cli compile --fqbn $(BOARD) ./
 
-upload:
-	arduino-cli upload -p /dev/cu.wchusbserial1410 --fqbn esp8266com:esp8266:d1_mini ./
+flash:
+	arduino-cli upload -p $(PORT) --fqbn $(BOARD) ./
 
 clean:
 	rm -f .*.bin
 	rm -f .*.elf
-
-flash: compile upload clean
