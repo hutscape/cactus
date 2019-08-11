@@ -424,12 +424,15 @@ void handleRoot() {
 
     debugPrintln("[INFO] WiFi password received");
     server.arg("password").toCharArray(password, 50);
+    // Serial.println(server.arg("password"));
 
     debugPrintln("[INFO] IFTTT key received!");
     writeKey(server.arg("key"));
+    // Serial.println(server.arg("key"));
 
     debugPrintln("[INFO] IFTTT event name received!");
     writeEvent(server.arg("event"));
+    // Serial.println(server.arg("event"));
 
     returnSuccessPage();
     delay(1000);
@@ -469,6 +472,7 @@ void sendToIFTTT(SensorValues sensorValues, float batteryVoltage) {
 
   WiFiClientSecure client;
   client.setFingerprint(fingerprint);
+  // Serial.println("[INFO] Setting fingerprint...");
 
   if (!client.connect(host, httpsPort)) {
     Serial.println("[ERROR] Connection failed");
@@ -478,6 +482,8 @@ void sendToIFTTT(SensorValues sensorValues, float batteryVoltage) {
   Serial.println("[INFO] Client connected");
 
   String url = "/trigger/" + readEvent() + "/with/key/" + readKey();
+  // Serial.print("URL: ");
+  // Serial.println(url);
 
   char data[34];
   // TODO: Never use sprintf. Use snprintf instead.  [runtime/printf]
