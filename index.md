@@ -16,7 +16,7 @@ sequence: 1
             <article class="tile is-child notification">
               <p class="title">Step 1</p>
               <p class="subtitle">Setup an <a href="https://ifttt.com/services/maker_webhooks">IFTTT webhook</a> to receive a POST request with data and add a row to a Google Spreadsheet.</p>
-              <img src="images/start/ifttt.png" alt="IFTTT">
+              <a href="{{ site.url }}/images/start/ifttt.png"><img src="{{ site.url }}/images/start/ifttt.png" alt="IFTTT"></a>
             </article>
           </div>
           <div class="tile is-parent">
@@ -24,8 +24,8 @@ sequence: 1
               <p class="title">Step 2</p>
               <p class="subtitle">Connect to the WiFi access point <code>Cactus {UNIQUE_MAC_ADDRESS}</code>.</p>
               <p class="subtitle">Go to the web page <code>http://cactus.local</code> to fill in the WiFi credentials and <a href="https://ifttt.com/services/maker_webhooks/settings">IFTTT webhook key</a>.</p>
-              <img src="images/start/access_point.jpg" alt="Access point">
-              <img src="images/start/webpage.png" alt="Webpage form">
+              <a href="{{ site.url }}/images/start/access_point.jpg"><img src="{{ site.url }}/images/start/access_point.jpg" alt="Access point"></a>
+              <a href="{{ site.url }}/images/start/webpage.png"><img src="{{ site.url }}/images/start/webpage.png" alt="Webpage form"></a>
             </article>
           </div>
           <div class="tile is-parent">
@@ -33,7 +33,7 @@ sequence: 1
               <div class="content">
                 <p class="title">Step 3</p>
                 <p class="subtitle">Press on-board button or wait for the <a href="https://docs.google.com/spreadsheets/d/1qedLXiCeU6vCwEvv3JqwrVWjrriB8L3DA9Xp-g01Jk0/edit?usp=sharing">Google Sheet</a> to update with a new row with a periodic update to the cloud.</p>
-                <img src="images/start/google-sheet.png" alt="Google sheets">
+                <a href="{{ site.url }}/images/start/google-sheet.png"><img src="{{ site.url }}/images/start/google-sheet.png" alt="Google sheets"></a>
               </div>
             </article>
           </div>
