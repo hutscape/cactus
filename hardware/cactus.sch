@@ -1,5 +1,4 @@
 EESchema Schematic File Version 4
-LIBS:cactus-cache
 EELAYER 29 0
 EELAYER END
 $Descr A4 11693 8268
@@ -513,7 +512,6 @@ Text Label 4650 1700 2    50   ~ 0
 I2C_SCL
 NoConn ~ 4800 1400
 NoConn ~ 4800 1500
-NoConn ~ 4800 1900
 Wire Bus Line
 	7050 3650 7250 3650
 NoConn ~ 1100 2300
@@ -540,8 +538,6 @@ Wire Wire Line
 	3700 4150 3550 4150
 Wire Wire Line
 	3700 4250 3550 4250
-Text Label 4350 3600 0    50   ~ 0
-5V
 Wire Wire Line
 	8550 4550 8650 4550
 Connection ~ 8150 5050
@@ -568,17 +564,14 @@ F 3 "~" H 4700 4150 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	4350 3750 4350 3600
-Connection ~ 4350 3750
-Text Notes 4500 4950 0    50   ~ 0
-Do not populate for \nAdafruit 5-pin Si7021 \nbreakout board. \n\nPopulate it for other \n4-pin Si7021 breakout \nboards.
+Text Notes 4350 4900 0    50   ~ 0
+Do not populate R9 for \nAdafruit 5-pin Si7021 \nbreakout board. \n\nPopulate it for other \n4-pin Si7021 breakout \nboards.
 Wire Wire Line
 	4350 3750 4850 3750
 Wire Notes Line
 	5500 3500 5500 5200
 Wire Notes Line
 	3200 5200 5500 5200
-Wire Notes Line
-	3200 3500 5500 3500
 Text Label 8450 3600 0    50   ~ 0
 5V
 Wire Wire Line
@@ -31363,10 +31356,6 @@ F 3 "https://learn.adafruit.com/adafruit-si7021-temperature-plus-humidity-sensor
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	4050 3750 4050 3900
-Wire Wire Line
-	4050 3750 4350 3750
-Wire Wire Line
 	4400 4150 4600 4150
 Wire Wire Line
 	4850 3750 4850 4150
@@ -31384,8 +31373,25 @@ F 3 "http://www.wemos.cc/Products/d1_mini.html" H 1800 2797 60  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Connection ~ 1800 1300
-Wire Bus Line
-	7250 3650 7250 4250
+Wire Wire Line
+	4050 3750 4050 3900
+Connection ~ 4350 3750
+Wire Wire Line
+	4050 3750 4350 3750
+Text Label 4800 1900 2    50   ~ 0
+EN_SENSOR
+Text Label 4350 3600 0    50   ~ 0
+EN_SENSOR
+Text Notes 4950 4200 0    39   Italic 0
+EN_SENSOR\nis a bodge of \nVersion 1.0 PCB \nlayout so that\nsensor can be \nturned on/off\ndigitally. It is \nconnected to \n5V directly on\nthe PCB.
+Wire Notes Line
+	4900 4250 5500 4250
+Wire Notes Line
+	3200 3500 5500 3500
 Wire Bus Line
 	7050 3650 7050 5000
+Wire Bus Line
+	7250 3650 7250 4250
+Wire Notes Line
+	4900 3500 4900 4250
 $EndSCHEMATC
