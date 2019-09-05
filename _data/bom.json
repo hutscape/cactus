@@ -1,0 +1,15 @@
+{
+  "bom-uniq": 17,
+  "bom-total": 36,
+  "bom-cost": "36.61",
+  "vendors": 7,
+  "vendor-names": [
+    "Mouser",
+    "Old Stock",
+    "AliExpress",
+    "Prototype stock",
+    "RS Components",
+    "JLCPCB",
+    "12Geeks"
+  ]
+}
