@@ -12,6 +12,9 @@ _autosave*
 
 # jekyll
 _site
+
+# node js
 node_modules
+package-lock.json
 
 datasheets
