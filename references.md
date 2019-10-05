@@ -9,8 +9,21 @@ references:
       - name: Shelly H&T is a Battery Powered ESP8266 WiFi Temperature & Humidity Sensor
         url: https://www.cnx-software.com/2018/10/30/shelly-ht-battery-powered-esp8266-wifi-temperature-humidity-sensor/
 
+  - topic: ESP8266
+    list:
+      - name: ESP12-E pinout
+        url: https://simba-os.readthedocs.io/en/latest/_images/esp12e-pinout.png
+      - name: WeMos D1 mini 2015 schematic
+        url: https://escapequotes.net/wp-content/uploads/2016/02/wemos-d1-mini-shematics.jpg
+      - name: WeMos D1 mini pinout
+        url: http://esp8266-server.de/dateien/wemos/D1-mini-pinoutKl.png
+
   - topic: Sensor <code>Si7021</code>
     list:
+      - name: Si7021 Adafruit Breakout board schematic
+        url: https://cdn-learn.adafruit.com/assets/assets/000/035/932/original/temperature_schem.png
+      - name: Si7021 SiLabs datasheet
+        url: https://www.silabs.com/documents/public/data-sheets/Si7021-A20.pdf
       - name: Adafruit Si7021 Temperature & Humidity Sensor Breakout Board
         url: https://www.adafruit.com/product/3251
       - name: Arduino library for Si7020 and Si7021 environmental sensors
@@ -19,6 +32,13 @@ references:
         url: http://www.instructables.com/id/MINI-Si7021-Temperature-and-Humidity-Sensor/
       - name: ESP8266 and Si7021 temperature sensor example
         url: https://www.esp8266learning.com/esp8266-si7021-temperature-sensor-example.php
+
+  - topic: Shift register <code>SN74HC595</code>
+    list:
+      - name: SN74HC595 TI datasheet
+        url: http://www.ti.com/lit/ds/symlink/sn74hc595.pdf
+      - name: 74HC595 pinout
+        url: https://learn.pimoroni.com/static/repos/learn/170pt-projects/pinout-74hc595.jpg
 
   - topic: Coin cell
     list:
