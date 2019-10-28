@@ -3,6 +3,21 @@ layout: default
 title: Getting Started
 permalink: /
 sequence: 1
+
+manufacturing: true
+downloads:
+  - schematic: true
+    layout: true
+    kicad: true
+    gerber: true
+    bom: true
+software:
+  - name: Firmware
+    code: firmware
+  - name: Test
+    code: test
+  - name: Web config
+    code: web-config
 ---
 
 <section class="section is-small">
