@@ -5,12 +5,11 @@ permalink: /
 sequence: 1
 
 manufacturing: true
-downloads:
-  - schematic: true
-    layout: true
-    kicad: true
-    gerber: true
-    bom: true
+download_schematic: true
+download_layout: true
+download_kicad: true
+download_gerber: true
+download_bom: true
 software:
   - name: Firmware
     code: firmware
