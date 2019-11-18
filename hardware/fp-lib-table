@@ -1,2 +1,4 @@
 (fp_lib_table
+  (lib (name "WeMos _D1_Mini")(type KiCad)(uri ${KIPRJMOD}/library/footprints/wemos_d1_mini.pretty)(options "")(descr ""))
+  (lib (name WeMos_D1_Battery_shield)(type KiCad)(uri ${KIPRJMOD}/library/footprints/wemos_battery_shield.pretty)(options "")(descr ""))
 )
