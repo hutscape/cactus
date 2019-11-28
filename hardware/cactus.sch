@@ -1,5 +1,5 @@
 EESchema Schematic File Version 4
-EELAYER 29 0
+EELAYER 30 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
@@ -31345,7 +31345,7 @@ Wire Notes Line
 Wire Notes Line
 	8050 5750 8050 6400
 $Comp
-L Adafruit_Si7021_breakout:Si7021_breakout U4
+L Si7021_Breakout_board:Si7021_breakout U4
 U 1 1 5CE67193
 P 4050 4200
 F 0 "U4" H 3750 4450 50  0000 L CNN
@@ -31388,10 +31388,10 @@ Wire Notes Line
 	4900 4250 5500 4250
 Wire Notes Line
 	3200 3500 5500 3500
+Wire Notes Line
+	4900 3500 4900 4250
 Wire Bus Line
 	7050 3650 7050 5000
 Wire Bus Line
 	7250 3650 7250 4250
-Wire Notes Line
-	4900 3500 4900 4250
 $EndSCHEMATC
