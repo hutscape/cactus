@@ -204,7 +204,18 @@ String readEvent() {
     }
   }
 
+  word[word.length() - 1] = '\0';
   return word;
+}
+
+void clearEEPROM() {
+  EEPROM.begin(512);
+
+  for (int i = 0; i < 512; i++) {
+    EEPROM.write(i, 0);
+  }
+
+  EEPROM.commit();
 }
 
 void writeKey(String writeStr) {
@@ -425,6 +436,8 @@ void handleRoot() {
     debugPrintln("[INFO] WiFi password received");
     server.arg("password").toCharArray(password, 50);
     // Serial.println(server.arg("password"));
+
+    clearEEPROM();
 
     debugPrintln("[INFO] IFTTT key received!");
     writeKey(server.arg("key"));
