@@ -29,4 +29,5 @@ lessons:
       - name: Increase battery life by cutting off power to the sensors during sleep
       - name: Device an easy way to erase on board WiFi credentials and cloud connectivity details without the need to flash and re-flash the erasing firmware E.g. press a button
       - name: Tag the repository with the version number when the PCB is sent out for manufacturing
+      - name: Make the measurement interval configurable without re-flashing the firmware
 ---
