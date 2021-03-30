@@ -1,9 +1,11 @@
 BOM_PATH?=_data/bill_of_materials.csv
 
-.PHONY: compile upload clean serve install
+.PHONY: default serve build install bom
 
-serve: build
-	jekyll serve
+default: serve
+
+serve:
+	bundle exec jekyll serve
 
 build:
 	jekyll build
