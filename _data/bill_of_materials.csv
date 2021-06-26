@@ -1,4 +1,4 @@
-Designator,Value,Q,Package,Type,Category,Stock,MPN,Manufacturer,Vendor,Unit,Price type,Total,Ordered Cost,Ordered Quantity,MOQ,Description
+Designator,Value,Qty,Package,Type,Category,Stock,MPN,Manufacturer,Vendor,Unit,Price type,Total,Ordered Cost,Ordered Quantity,MOQ,Description
 C1,10u,1,SMD 0805,Capacitor 10uF 0805 SMD,Electronics,30,LMK212ABJ106KGHT,Taiyo Yuden,Mouser,0.27,Exact,0.27,1.36,5,1,"SMD Multilayer Ceramic Capacitor, 10 µF, 25 V, 0805 [2012 Metric], ± 20%, X5R, GRM Series"
 "D1, D2, D3, D4, D5",LED,5,SMD 0805,LED RED 0805 SMD,Electronics,32,150080RS75000,Wurth Electronics,Mouser,0.26,Exact,1.29,2.58,10,1,"LED, Yellow, SMD, 0805, 20 mA, 2.1 V, 590 nm"
 R6,470,1,SMD 0805,Resistor 470Ω 0805 SMD,Electronics,33,CRCW0805470RFKEAC,Vishay,Mouser,0.15,Exact,0.15,0.76,5,1,"SMD Chip Resistor, 0805 [2012 Metric], 470 ohm, CR Series, 150 V, Thick Film, 125 mW"
