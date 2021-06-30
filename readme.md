@@ -1,11 +1,7 @@
 # Cactus
 
-> 🌵 Measure humidity in kitchen cupboards to keep food fresh 🍶
+> 🌵 Indoor WiFi-connected temperature and humidity sensor 🍶
 
 Visit [hutscape.com/cactus](https://hutscape.com/cactus/) for more details.
 
-- [KiCad ECAD files](/hardware)
-- [Firmware](/firmware)
-- [Test firmware](/test)
-- [Bill of Materials](/_data/bill_of_materials.csv)
-- [References](/_data/references.yml)
+![](images/prototype/front.jpg)

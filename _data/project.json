@@ -1,6 +1,6 @@
 {
   "name": "Cactus",
-  "description": "🌵 Measure humidity in kitchen cupboards to keep food fresh 🍶",
+  "description": "🌵 Indoor WiFi-connected temperature and humidity sensor 🍶",
   "version": "1.0",
 
   "power": "LiPO",
