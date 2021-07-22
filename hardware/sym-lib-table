@@ -1,4 +1,4 @@
 (sym_lib_table
   (lib (name WeMos_D1_Mini_board)(type Legacy)(uri ${KIPRJMOD}/library/symbols/wemos_mini.lib)(options "")(descr ""))
-  (lib (name Si7021_Breakout_board)(type Legacy)(uri ${KIPRJMOD}/library/symbols/Si7021_breakout_board.lib)(options "")(descr ""))
+  (lib (name Si7021_Breakout_board)(type Legacy)(uri ${KIPRJMOD}/library/symbols/Adafruit_Si7021_breakout_board.lib)(options "")(descr ""))
 )

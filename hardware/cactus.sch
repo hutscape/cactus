@@ -537,8 +537,6 @@ Wire Notes Line
 Wire Wire Line
 	3700 4150 3550 4150
 Wire Wire Line
-	3700 4250 3550 4250
-Wire Wire Line
 	8550 4550 8650 4550
 Connection ~ 8150 5050
 Wire Notes Line
@@ -31376,8 +31374,6 @@ Connection ~ 1800 1300
 Wire Wire Line
 	4050 3750 4050 3900
 Connection ~ 4350 3750
-Wire Wire Line
-	4050 3750 4350 3750
 Text Label 4800 1900 2    50   ~ 0
 EN_SENSOR
 Text Label 4350 3600 0    50   ~ 0
@@ -31390,8 +31386,12 @@ Wire Notes Line
 	3200 3500 5500 3500
 Wire Notes Line
 	4900 3500 4900 4250
+Wire Wire Line
+	3550 4250 3700 4250
 Wire Bus Line
 	7050 3650 7050 5000
 Wire Bus Line
 	7250 3650 7250 4250
+Wire Wire Line
+	4050 3750 4350 3750
 $EndSCHEMATC
