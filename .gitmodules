@@ -7,3 +7,6 @@
 [submodule "scripts"]
 	path = scripts
 	url = https://github.com/hutscape/project-scripts.git
+[submodule "_layouts"]
+	path = _layouts
+	url = https://github.com/hutscape/project-layouts
