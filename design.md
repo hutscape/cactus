@@ -94,12 +94,14 @@ items:
     weight_unit: g
 
 # Power
-
-power_tree: true
-power_source: <code>2000mAh</code> LiPo battery
-battery_life: 1 month
-charging_duration: 12 hours
-charging_instruction: Remove the WeMos Battery shield from the board. Plug in the USB cable to the WeMos battery shield to charge. <code>Red</code> LED will be on while it is charging.<code>Green</code> LED will be on when charging is complete.
+power:
+  tree: true
+  components: true
+  calculation: true
+  source: <code>2000mAh</code> LiPo battery
+  battery_life: 1 month
+  charging_duration: 12 hours
+  charging_instruction: Remove the WeMos Battery shield from the board. Plug in the USB cable to the WeMos battery shield to charge. <code>Red</code> LED will be on while it is charging.<code>Green</code> LED will be on when charging is complete.
 ---
 
 
