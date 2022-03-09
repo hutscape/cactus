@@ -1,6 +1,7 @@
 title: Cactus
 description: 🌵 Indoor WiFi-connected temperature and humidity sensor 🍶
 url: "https://hutscape.com/cactus"
+parent: "https://hutscape.com"
 markdown: kramdown
 permalink: /:title
 youtube: https://www.youtube.com/user/sweska/videos
