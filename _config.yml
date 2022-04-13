@@ -10,3 +10,20 @@ github:
   raw_content_url: https://raw.githubusercontent.com/hutscape/cactus/master
 exclude: ["datasheets", "Gemfile", "Gemfile.lock", "contributing.md", "Makefile", "readme.md", "test", "scripts", "firmware"]
 include: ["_data"]
+
+project:
+  version: 1.0
+  power: LiPO
+  wireless: WiFi
+  sensor: Humidity
+  mcu: ESP8266
+  ota: No
+  battery-life: 1 month
+  bom-uniq: 17
+  bom-total: 36
+  bom-cost-sgd: 35.40
+  bom-cost-usd: 26.92
+  vendors: 5
+  schedule: 2 months
+  status: completed
+  completion: May 2019
