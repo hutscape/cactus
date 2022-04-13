@@ -12,7 +12,6 @@ exclude: ["datasheets", "Gemfile", "Gemfile.lock", "contributing.md", "Makefile"
 include: ["_data"]
 
 project:
-  version: 1.0
   power: LiPO
   wireless: WiFi
   sensor: Humidity
