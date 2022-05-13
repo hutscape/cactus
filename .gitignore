@@ -30,3 +30,9 @@ build
 # hardware
 datasheets
 gerbers
+
+# mechanical
+*.FCStd1
+
+# text editor
+!.vscode
