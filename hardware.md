@@ -1,6 +1,6 @@
 ---
-layout: hardware
-title: Hardware
-permalink: /hardware
+layout: pcb
+title: PCB
+permalink: /pcb
 sequence: 2
 ---
