@@ -10,7 +10,10 @@ github:
   raw_content_url: https://raw.githubusercontent.com/hutscape/cactus/master
 exclude: ["datasheets", "Gemfile", "Gemfile.lock", "contributing.md", "Makefile", "readme.md", "test", "scripts", "firmware"]
 include: ["_data"]
-
+collections:
+  code:
+    output: true
+    permalink: /code/:name
 project:
   power: LiPO
   wireless: WiFi
