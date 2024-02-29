@@ -37,3 +37,12 @@ install:
 	echo "Adding Gemfile and installing ruby gems..."
 	cat scripts/Gemfile > Gemfile
 	bundle install
+
+update:
+	git submodule update --remote
+
+uncommit:
+	# git uncommit the last commit
+	git reset --hard HEAD~1
+	# remove the last commit in main branch from the GitHub
+	git push -f origin main
