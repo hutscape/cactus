@@ -11,6 +11,7 @@ downloads:
   kicad: true
   gerber: true
   bom: true
+  freecad: false
   case: false
 software:
   - name: Demo firmware
