@@ -1,6 +1,6 @@
 ---
 layout: code
-title: Cactus Demo
+title: Demo
 description: Wakup every 6 hours to read the temperature and humidity
 difficulty: medium
 features:
