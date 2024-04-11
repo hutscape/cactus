@@ -15,153 +15,44 @@ power:
   charging_instruction: Remove the WeMos Battery shield from the board. Plug in the USB cable to the WeMos battery shield to charge. <code>Red</code> LED will be on while it is charging.<code>Green</code> LED will be on when charging is complete.
 ---
 
-<section class="section is-small">
-  <div class="container">
-    <h2 class="title is-1">Power consumption of main components</h2>
-    <table class="table is-fullwidth">
-      <thead>
-        <tr>
-          <th>Chip #</th>
-          <th>Chip</th>
-          <th>Operating Voltage</th>
-          <th>Active mode</th>
-          <th>Modem-sleep mode</th>
-          <th>Deep-sleep mode</th>
-          <th>Total</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>ESP8266</td>
-          <td>WiFi based MCU</td>
-          <td><code>3.3V</code></td>
-          <td><code>170mA</code></td>
-          <td><code>15mA</code></td>
-          <td><code>10uA</code></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>Si7021</td>
-          <td>Temperature / Humidity sensor</td>
-          <td><code>1.9V</code> - <code>3.6V</code></td>
-          <td><code>150uA</code></td>
-          <td></td>
-          <td><code>60nA</code></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>SN4HC595</td>
-          <td>Shift register</td>
-          <td><code>2V</code> - <code>6V</code></td>
-          <td><code>60uA</code></td>
-          <td></td>
-          <td><code>1uA</code></td>
-          <td></td>
-        </tr>
-        <tr class="is-selected">
-          <td>Total consumption</td>
-          <td></td>
-          <td></td>
-          <td><code>170.23mA</code></td>
-          <td><code>15mA</code></td>
-          <td><code>11.06uA</code></td>
-          <td></td>
-        </tr>
-        <tr class="is-selected">
-          <td>Total duration</td>
-          <td></td>
-          <td></td>
-          <td>30s.</td>
-          <td>10s x 12 = 120s.</td>
-          <td>4h.</td>
-          <td>4h.</td>
-        </tr>
-        <tr class="is-selected">
-          <td>Total charge</td>
-          <td></td>
-          <td></td>
-          <td>30/14400 * 170.21m <br>= 0.354 mAs</td>
-          <td>120/14400 *15m <br>= 0.125mAs</td>
-          <td>14250/14400 * 11.06u <br>= 0.011mAs</td>
-          <td>0.589mAs</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</section>
+# Power consumption of main components
 
-<section class="section is-small">
-  <div class="container">
-    <h2 class="title is-1">Power calculation</h2>
-    <div class="content is-medium">
-      <p>3 power modes:</p>
-      <ol>
-        <li>Wakes up in <strong>Active mode</strong> for 30 seconds every 4 hours to read the sensor value and ping to cloud</li>
-        <li>Wakes up in <strong>Mode-sleep mode</strong> for <strong>10 seconds</strong> every <strong>20 minutes</strong> to check whether the counter has reached the threshold</li>
-        <li><strong>Deep-sleep mode</strong> for the rest of the time, unless user button pressed</li>
-      </ol>
-      <p><code>1200mAh</code> battery will last for <code>(1200/24/30)</code> = <strong>2.89 months</strong></p>
-    </div>
-  </div>
-</section>
+| Chip # | Chip | Operating Voltage | Active mode | Modem-sleep mode | Deep-sleep mode | Total |
+|-----------|-----------|---------|-------------|-----------|------------|---------|
+| ESP8266 | WiFi based MCU | 3.3V | 170mA | 15mA   | 10uA  | |
+| Si7021 | Temperature / Humidity sensor | 1.9V - 3.6V | 150uA  | | 60nA  | |
+| SN4HC595 | Shift register | 2V - 6V | 60uA | | 1uA  | |
+| Total consumption | | | 170.23mA | 15mA | 11.06uA| |
 
-<section class="section is-small">
-  <div class="container">
-    <h2 class="title is-1">Measuring power</h2>
-    <table class="table is-fullwidth">
-      <thead>
-        <tr>
-          <td>Mode</td>
-          <td>Pins</td>
-          <td>Voltage</td>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Deep sleep</td>
-          <td><code>5V</code> - <code>GND</code> on WeMos D1 mini</td>
-          <td><code>4.94V</code></td>
-        </tr>
-        <tr>
-          <td>Deep sleep</td>
-          <td><code>Vin</code> - <code>GND</code> on Si7021 breakout board</td>
-          <td><code>5V</code></td>
-        </tr>
-        <tr>
-          <td>Deep sleep</td>
-          <td><code>Vcc</code> - <code>GND</code> on 74HC595 chip</td>
-          <td><code>5V</code></td>
-        </tr>
-        <tr>
-          <td>Deep sleep</td>
-          <td><code>EN</code> - <code>GND</code> on 74HC595 chip</td>
-          <td></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</section>
+- Total duration: `30s.`
+- Total duration in Modem-sleep mode: 10s x 12 = `120s.`
+- Total duration in Deep-sleep mode: `4h.`
+- Total charge in Active mode: 30/14400 * 170.21m = `0.354 mAs`
+- Total charge in Modem-sleep mode: 120/14400 * 15m = `0.125mAs`
+- Total charge in Deep-sleep mode: 14250/14400 * 11.06u = `0.011mAs`
+- Total charge: `0.589mAs`
 
-<section class="section is-small">
-  <div class="container">
-    <h2 class="title is-1">Actual vs. calculated power</h2>
-    <table class="table is-fullwidth">
-      <thead>
-        <tr>
-          <td>Periodic wakeup</td>
-          <td>Calculated</td>
-          <td>Actual</td>
-          <td>Error %</td>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>6 hours</td>
-          <td>2.89 months</td>
-          <td>30 days</td>
-          <td>~300% ⁉️</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</section>
+# Power calculation
+
+3 power modes:
+
+1. Wakes up in **Active mode** for 30 seconds every 4 hours to read the sensor value and ping to cloud
+1. Wakes up in **Mode-sleep mode** for **10 seconds** every **20 minutes** to check whether the counter has reached the threshold
+1. **Deep-sleep mode** for the rest of the time, unless user button pressed
+
+`1200mAh` battery will last for `(1200/24/30)` = **2.89 months**
+
+# Measuring power
+
+| Mode | Pins | Voltage |
+|------|------|---------|
+| Deep sleep | `5V` - `GND` on WeMos D1 mini | `4.94V` |
+| Deep sleep | `Vin` - `GND` on Si7021 breakout board | `5V` |
+| Deep sleep | `Vcc` - `GND` on 74HC595 chip | `5V` |
+| Deep sleep | `EN` - `GND` on 74HC595 chip | |
+
+## Actual vs. calculated power
+
+| Periodic wakeup | Calculated | Actual | Error % |
+|-----------------|------------|--------|---------|
+| 6 hours         | 2.89 months| 30 days| ~300% ⁉️ |
