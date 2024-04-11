@@ -1,7 +1,7 @@
 ---
-layout: others
-title: Others
-permalink: /others
+layout: resources
+title: Resources
+permalink: /resources
 sequence: 8
 
 # References
