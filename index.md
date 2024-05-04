@@ -14,9 +14,6 @@ downloads:
   bom: true
   freecad: false
   case: false
-software:
-  - name: Demo firmware
-    code: _code/demo
 
 features:
   - detail: Read humidity and temperature values from the sensor <code>Si7021</code>
