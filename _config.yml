@@ -7,7 +7,7 @@ permalink: /:title
 youtube: https://www.youtube.com/user/sweska/videos
 github:
   repository_url: https://github.com/hutscape/cactus
-  raw_content_url: https://raw.githubusercontent.com/hutscape/cactus/master
+  raw_content_url: https://github.com/hutscape/cactus/tree/master
 exclude: ["datasheets", "Gemfile", "Gemfile.lock", "contributing.md", "Makefile", "readme.md", "test", "scripts", "firmware"]
 include: ["_data"]
 collections:
