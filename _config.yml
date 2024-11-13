@@ -1,5 +1,6 @@
 title: Cactus
-description: 🌵 Indoor WiFi-connected temperature and humidity sensor 🍶
+description: 🌵 An indoor WiFi-connected temperature and humidity sensor 🍶
+reasoning: Named after the cactus, a plant known for thriving in extreme climates while conserving moisture—perfect for a device monitoring environmental conditions indoors.
 url: "https://hutscape.com/cactus"
 parent: "https://hutscape.com"
 markdown: kramdown
